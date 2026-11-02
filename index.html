@@ -120,11 +120,11 @@
           </div>
           <div class="flex items-center space-x-1.5 text-xs text-stone-500 dark:text-stone-400">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span id="liveSleepersText">1,842 bạn đang ngủ say sưa</span>
+            <span id="liveSleepersText">Không gian yên tĩnh • Sẵn sàng đón bạn</span>
           </div>
           <button id="btnOpenRoomModalHeader" class="flex items-center space-x-1 text-xs text-cozy-700 dark:text-cozy-300 hover:underline font-semibold mt-0.5" title="Chọn phòng ngủ">
             <span>🏮</span>
-            <span id="headerRoomLabel">Phòng 12h (97/100)</span>
+            <span id="headerRoomLabel">Phòng 12h (Giờ Vàng)</span>
             <span class="text-stone-400 text-[10px]">(Đổi phòng)</span>
           </button>
         </div>
@@ -195,7 +195,7 @@
         </div>
       </div>
       <div class="flex items-center space-x-2 self-end sm:self-center">
-        <span class="text-xs text-stone-500 dark:text-stone-400"><b id="roomSleepersOnline">97</b> / 100 người</span>
+        <span class="text-xs text-stone-500 dark:text-stone-400" id="roomStatusNotice">Không gian riêng tư • Chúc bạn ngủ ngon</span>
         <button id="btnSwitchRoomQuick" class="px-3 py-1.5 rounded-xl bg-cozy-100 dark:bg-stone-700 hover:bg-cozy-200 dark:hover:bg-stone-600 text-cozy-800 dark:text-cozy-200 text-xs font-semibold transition">
           Đổi Phòng 🔄
         </button>
@@ -821,40 +821,16 @@
 
         <!-- Message List -->
         <div id="checkinList" class="space-y-2.5 max-h-72 overflow-y-auto pr-1">
-          <!-- Item 1 -->
-          <div class="p-3 rounded-2xl bg-cozy-50/70 dark:bg-stone-800/40 border border-cozy-200/60 dark:border-stone-700/50 flex items-start justify-between">
-            <div class="space-y-0.5">
+          <!-- Lời chúc chủ phòng Minh Châu -->
+          <div class="p-3.5 rounded-2xl bg-cozy-50/80 dark:bg-stone-800/50 border border-cozy-200 dark:border-stone-700 flex items-start justify-between">
+            <div class="space-y-1">
               <div class="flex items-center space-x-2">
                 <span class="font-bold text-xs text-cozy-900 dark:text-cozy-200">Minh Châu</span>
-                <span class="text-[10px] text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-1.5 py-0.5 rounded font-medium">Chủ phòng</span>
+                <span class="text-[10px] text-emerald-700 bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-full font-semibold">Chủ phòng</span>
               </div>
-              <p class="text-xs text-stone-700 dark:text-stone-300">"Chúc mọi người ngủ một giấc thật ngon, thức dậy tràn ngập năng lượng nhé! ✨"</p>
+              <p class="text-xs text-stone-700 dark:text-stone-300 leading-relaxed">"Chào mừng bạn đến với góc ngủ trưa! Chúc bạn có một giấc chợp mắt thật ngon, thức dậy tinh thần sảng khoái và tràn đầy năng lượng nhé! ✨"</p>
             </div>
-            <span class="text-[10px] text-stone-400 whitespace-nowrap ml-2">Vừa xong</span>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/30 border border-stone-200/60 dark:border-stone-700/50 flex items-start justify-between">
-            <div class="space-y-0.5">
-              <div class="flex items-center space-x-2">
-                <span class="font-bold text-xs text-stone-800 dark:text-stone-200">Kenji Takahashi</span>
-                <span class="text-[10px] text-stone-400">Tokyo, Japan</span>
-              </div>
-              <p class="text-xs text-stone-700 dark:text-stone-300">"居眠り最高！20分昼寝して午後の仕事頑張ります。"</p>
-            </div>
-            <span class="text-[10px] text-stone-400 whitespace-nowrap ml-2">2m ago</span>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/30 border border-stone-200/60 dark:border-stone-700/50 flex items-start justify-between">
-            <div class="space-y-0.5">
-              <div class="flex items-center space-x-2">
-                <span class="font-bold text-xs text-stone-800 dark:text-stone-200">Sarah Jenkins</span>
-                <span class="text-[10px] text-stone-400">London, UK</span>
-              </div>
-              <p class="text-xs text-stone-700 dark:text-stone-300">"The gentle fan and roof rain combo is pure bliss for an afternoon power nap!"</p>
-            </div>
-            <span class="text-[10px] text-stone-400 whitespace-nowrap ml-2">5m ago</span>
+            <span class="text-[10px] text-stone-400 whitespace-nowrap ml-3">Chủ phòng</span>
           </div>
         </div>
 
@@ -977,7 +953,7 @@
 
       <div class="space-y-2.5">
         <!-- PHÒNG 10H -->
-        <button class="room-select-card w-full p-3.5 rounded-2xl border border-stone-200 dark:border-stone-700 hover:border-cozy-500 bg-stone-50 dark:bg-stone-800/60 hover:bg-cozy-50 dark:hover:bg-cozy-950/30 flex items-center justify-between transition text-left group" data-room-id="10h" data-room-name="Phòng 10h" data-sleepers="42" data-desc="Ca Chợp Mắt Sớm: Tỉnh táo cho buổi trưa nhiều việc">
+        <button class="room-select-card w-full p-3.5 rounded-2xl border border-stone-200 dark:border-stone-700 hover:border-cozy-500 bg-stone-50 dark:bg-stone-800/60 hover:bg-cozy-50 dark:hover:bg-cozy-950/30 flex items-center justify-between transition text-left group" data-room-id="10h" data-room-name="Phòng 10h"  data-desc="Ca Chợp Mắt Sớm: Tỉnh táo cho buổi trưa nhiều việc">
           <div class="flex items-center space-x-3">
             <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-stone-700 flex items-center justify-center text-lg font-display font-bold text-cozy-700 dark:text-amber-300">
               10h
@@ -990,14 +966,11 @@
               <p class="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">Dành cho bạn làm ca sáng cần nạp năng lượng sớm</p>
             </div>
           </div>
-          <div class="text-right">
-            <span class="text-xs font-bold text-stone-700 dark:text-stone-300">42 / 100</span>
-            <span class="block text-[10px] text-emerald-600 font-medium">Vào nằm</span>
-          </div>
+          <div class="text-right"><span class="text-[11px] font-semibold text-cozy-600 dark:text-cozy-400 bg-cozy-50 dark:bg-stone-700/60 px-2.5 py-1 rounded-full border border-cozy-200 dark:border-stone-600">Vào nằm</span></div>
         </button>
 
         <!-- PHÒNG 11H -->
-        <button class="room-select-card w-full p-3.5 rounded-2xl border border-stone-200 dark:border-stone-700 hover:border-cozy-500 bg-stone-50 dark:bg-stone-800/60 hover:bg-cozy-50 dark:hover:bg-cozy-950/30 flex items-center justify-between transition text-left group" data-room-id="11h" data-room-name="Phòng 11h" data-sleepers="89" data-desc="Ca Văn Phòng Tiêu Chuẩn: Ăn nhẹ rồi chợp mắt 20 phút">
+        <button class="room-select-card w-full p-3.5 rounded-2xl border border-stone-200 dark:border-stone-700 hover:border-cozy-500 bg-stone-50 dark:bg-stone-800/60 hover:bg-cozy-50 dark:hover:bg-cozy-950/30 flex items-center justify-between transition text-left group" data-room-id="11h" data-room-name="Phòng 11h"  data-desc="Ca Văn Phòng Tiêu Chuẩn: Ăn nhẹ rồi chợp mắt 20 phút">
           <div class="flex items-center space-x-3">
             <div class="w-10 h-10 rounded-xl bg-cozy-100 dark:bg-stone-700 flex items-center justify-center text-lg font-display font-bold text-cozy-700 dark:text-amber-300">
               11h
@@ -1010,14 +983,11 @@
               <p class="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">Khung giờ chuẩn bị vào giấc ngủ ngon</p>
             </div>
           </div>
-          <div class="text-right">
-            <span class="text-xs font-bold text-stone-700 dark:text-stone-300">89 / 100</span>
-            <span class="block text-[10px] text-cozy-600 font-medium">Vào nằm</span>
-          </div>
+          <div class="text-right"><span class="text-[11px] font-semibold text-cozy-600 dark:text-cozy-400 bg-cozy-50 dark:bg-stone-700/60 px-2.5 py-1 rounded-full border border-cozy-200 dark:border-stone-600">Vào nằm</span></div>
         </button>
 
         <!-- PHÒNG 12H -->
-        <button class="room-select-card active w-full p-3.5 rounded-2xl border-2 border-cozy-500 bg-cozy-50 dark:bg-stone-800 flex items-center justify-between transition text-left group" data-room-id="12h" data-room-name="Phòng 12h" data-sleepers="97" data-desc="Giờ Vàng Ngủ Trưa: Cả văn phòng cùng chùm chăn im lặng">
+        <button class="room-select-card active w-full p-3.5 rounded-2xl border-2 border-cozy-500 bg-cozy-50 dark:bg-stone-800 flex items-center justify-between transition text-left group" data-room-id="12h" data-room-name="Phòng 12h"  data-desc="Giờ Vàng Ngủ Trưa: Cả văn phòng cùng chùm chăn im lặng">
           <div class="flex items-center space-x-3">
             <div class="w-10 h-10 rounded-xl bg-cozy-500 text-white flex items-center justify-center text-lg font-display font-bold shadow-md">
               12h
@@ -1027,17 +997,14 @@
                 <h4 class="font-bold text-xs text-stone-900 dark:text-white">Phòng 12h (Giờ Vàng Nghỉ Trưa)</h4>
                 <span class="text-[9px] px-1.5 py-0.5 rounded bg-rose-100 text-rose-700 font-bold">Gần đầy</span>
               </div>
-              <p class="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">Đông đúc nhất, ngủ cùng 97 bạn đang say giấc</p>
+              <p class="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">Khung giờ nghỉ trưa trọn vẹn và êm ái nhất</p>
             </div>
           </div>
-          <div class="text-right">
-            <span class="text-xs font-bold text-cozy-700 dark:text-amber-300">97 / 100</span>
-            <span class="block text-[10px] text-emerald-600 font-bold">Đang ở phòng</span>
-          </div>
+          <div class="text-right"><span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">Đang ở phòng</span></div>
         </button>
 
         <!-- PHÒNG 13H -->
-        <button class="room-select-card w-full p-3.5 rounded-2xl border border-stone-200 dark:border-stone-700 hover:border-cozy-500 bg-stone-50 dark:bg-stone-800/60 hover:bg-cozy-50 dark:hover:bg-cozy-950/30 flex items-center justify-between transition text-left group" data-room-id="13h" data-room-name="Phòng 13h" data-sleepers="65" data-desc="Ca Chiều Phục Hồi: Chợp mắt nhanh trước khi bắt đầu công việc buổi chiều">
+        <button class="room-select-card w-full p-3.5 rounded-2xl border border-stone-200 dark:border-stone-700 hover:border-cozy-500 bg-stone-50 dark:bg-stone-800/60 hover:bg-cozy-50 dark:hover:bg-cozy-950/30 flex items-center justify-between transition text-left group" data-room-id="13h" data-room-name="Phòng 13h"  data-desc="Ca Chiều Phục Hồi: Chợp mắt nhanh trước khi bắt đầu công việc buổi chiều">
           <div class="flex items-center space-x-3">
             <div class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-stone-700 flex items-center justify-center text-lg font-display font-bold text-sky-800 dark:text-sky-300">
               13h
@@ -1050,10 +1017,7 @@
               <p class="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">Nghỉ bù cho bạn nào bận việc đột xuất lúc trưa</p>
             </div>
           </div>
-          <div class="text-right">
-            <span class="text-xs font-bold text-stone-700 dark:text-stone-300">65 / 100</span>
-            <span class="block text-[10px] text-sky-600 font-medium">Vào nằm</span>
-          </div>
+          <div class="text-right"><span class="text-[11px] font-semibold text-cozy-600 dark:text-cozy-400 bg-cozy-50 dark:bg-stone-700/60 px-2.5 py-1 rounded-full border border-cozy-200 dark:border-stone-600">Vào nằm</span></div>
         </button>
       </div>
     </div>
@@ -1170,7 +1134,7 @@
       const i18n = {
         vi: {
           subTitle: "Ngủ Trưa Online",
-          sleepersCount: (n) => `${n.toLocaleString()} bạn đang ngủ say sưa`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "Phòng Tối",
           soundOn: "Bật Tiếng Ru",
           soundOff: "Đang Bật Tiếng",
@@ -1307,7 +1271,7 @@
 
         en: {
           subTitle: "Online Power Nap",
-          sleepersCount: (n) => `${n.toLocaleString()} people sleeping soundly right now`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "Dark Room",
           soundOn: "Play Ambience",
           soundOff: "Ambience Playing",
@@ -1444,7 +1408,7 @@
 
         ja: {
           subTitle: "オンライン昼寝ステーション",
-          sleepersCount: (n) => `現在 ${n.toLocaleString()} 人が居眠り中`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "暗室モード",
           soundOn: "環境音再生",
           soundOff: "再生中",
@@ -1581,7 +1545,7 @@
 
         ko: {
           subTitle: "온라인 낮잠 스테이션",
-          sleepersCount: (n) => `현재 ${n.toLocaleString()}명이 꿀낮잠 자는 중`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "다크룸",
           soundOn: "수면 사운드",
           soundOff: "재생 중",
@@ -1718,7 +1682,7 @@
 
         zh: {
           subTitle: "在线午睡小站",
-          sleepersCount: (n) => `当前有 ${n.toLocaleString()} 人正在惬意午休`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "暗房模式",
           soundOn: "开启助眠音",
           soundOff: "正在播放",
@@ -1855,7 +1819,7 @@
 
         es: {
           subTitle: "Estación de Siesta Online",
-          sleepersCount: (n) => `${n.toLocaleString()} personas durmiendo la siesta ahora`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "Cuarto Oscuro",
           soundOn: "Activar Ambiente",
           soundOff: "Reproduciendo",
@@ -1992,7 +1956,7 @@
 
         fr: {
           subTitle: "Station de Sieste en Ligne",
-          sleepersCount: (n) => `${n.toLocaleString()} personnes font la sieste en ce moment`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "Chambre Noire",
           soundOn: "Ambiance",
           soundOff: "En cours",
@@ -2129,7 +2093,7 @@
 
         de: {
           subTitle: "Online Mittagsschlaf-Station",
-          sleepersCount: (n) => `${n.toLocaleString()} Menschen schlafen gerade entspannt`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "Dunkelkammer",
           soundOn: "Klangkulisse an",
           soundOff: "Aktiv",
@@ -2266,7 +2230,7 @@
 
         ru: {
           subTitle: "Онлайн-станция дневного сна",
-          sleepersCount: (n) => `Сейчас сладко спят: ${n.toLocaleString()} чел.`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "Темный экран",
           soundOn: "Включить звуки",
           soundOff: "Играет",
@@ -2403,7 +2367,7 @@
 
         th: {
           subTitle: "เว็บนอนกลางวันออนไลน์",
-          sleepersCount: (n) => `ขณะนี้มี ${n.toLocaleString()} คนกำลังหลับสบาย`,
+          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
           dimBtn: "ห้องมืด",
           soundOn: "เปิดเสียงกล่อม",
           soundOff: "กำลังเล่น",
@@ -2551,7 +2515,7 @@
         masterAudioEnabled: false,
         breatheInterval: null,
         sheepCount: 0,
-        sleepersCount: 1842,
+        sleepersCount: 1,
         currentAlarmTone: 'chime'
       };
 
@@ -3522,32 +3486,68 @@
       // -------------------------------------------------------------
       // 8. GUESTBOOK & CHECK-IN
       // -------------------------------------------------------------
+      function loadSavedCheckins() {
+        try {
+          const saved = JSON.parse(localStorage.getItem('minhchau_checkins') || '[]');
+          const list = document.getElementById('checkinList');
+          saved.forEach(entry => {
+            const item = document.createElement('div');
+            item.className = 'p-3 rounded-2xl bg-cozy-100/70 dark:bg-stone-800/60 border border-cozy-200 dark:border-stone-700 flex items-start justify-between';
+            item.innerHTML = `
+              <div class="space-y-0.5">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-xs text-cozy-900 dark:text-cozy-200">${entry.name}</span>
+                  <span class="text-[10px] text-amber-700 bg-amber-100 dark:bg-stone-700 px-1.5 py-0.5 rounded font-medium">Đang ngủ trưa</span>
+                </div>
+                <p class="text-xs text-stone-700 dark:text-stone-300">"${entry.msg}"</p>
+              </div>
+              <span class="text-[10px] text-stone-400 whitespace-nowrap ml-2">${entry.time}</span>
+            `;
+            list.appendChild(item);
+          });
+        } catch(e) { console.error(e); }
+      }
+
       function handleQuickCheckin() {
         const nameInput = document.getElementById('checkinNameInput');
         const msgInput = document.getElementById('checkinMessageInput');
-        const name = nameInput.value.trim() || 'Minh Châu';
-        const msg = msgInput.value.trim() || 'Nap time... zzz';
+        const name = nameInput.value.trim();
+        const msg = msgInput.value.trim();
+
+        if (!name) {
+          showToast('Vui lòng nhập tên của bạn nhé!', '✍️');
+          nameInput.focus();
+          return;
+        }
+
+        const now = new Date();
+        const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        const finalMsg = msg || 'Chúc mọi người ngủ ngon! zzz';
 
         const list = document.getElementById('checkinList');
         const item = document.createElement('div');
-        item.className = 'p-3 rounded-2xl bg-cozy-100/80 dark:bg-stone-800/60 border border-cozy-300 dark:border-stone-600 flex items-start justify-between transform transition duration-300 -translate-y-2';
+        item.className = 'p-3 rounded-2xl bg-cozy-100/90 dark:bg-stone-800/80 border border-cozy-300 dark:border-stone-600 flex items-start justify-between transform transition duration-300 -translate-y-2';
         item.innerHTML = `
           <div class="space-y-0.5">
             <div class="flex items-center space-x-2">
               <span class="font-bold text-xs text-cozy-900 dark:text-cozy-200">${name}</span>
-              <span class="text-[10px] text-amber-700 bg-amber-100 dark:bg-stone-700 px-1.5 py-0.5 rounded font-medium">Sleeping</span>
+              <span class="text-[10px] text-amber-800 bg-amber-100 dark:bg-amber-950 px-1.5 py-0.5 rounded font-medium">Đang ngủ trưa</span>
             </div>
-            <p class="text-xs text-stone-700 dark:text-stone-300">"${msg}"</p>
+            <p class="text-xs text-stone-700 dark:text-stone-300">"${finalMsg}"</p>
           </div>
-          <span class="text-[10px] text-stone-400 whitespace-nowrap ml-2">Just now</span>
+          <span class="text-[10px] text-emerald-600 font-semibold whitespace-nowrap ml-2">Vừa xong</span>
         `;
         list.prepend(item);
 
+        try {
+          const saved = JSON.parse(localStorage.getItem('minhchau_checkins') || '[]');
+          saved.unshift({ name, msg: finalMsg, time: timeStr });
+          localStorage.setItem('minhchau_checkins', JSON.stringify(saved.slice(0, 30)));
+        } catch(e) {}
+
+        nameInput.value = '';
         msgInput.value = '';
-        state.sleepersCount++;
-        const t = getT();
-        document.getElementById('liveSleepersText').textContent = t.sleepersCount(state.sleepersCount);
-        showToast(`${name} 🛌`, '✨');
+        showToast(`Đã điểm danh: ${name} 🛌`, '✨');
       }
 
       // -------------------------------------------------------------
@@ -3751,13 +3751,7 @@
           }
         });
 
-        // Live sleeper fluctuation simulation
-        setInterval(() => {
-          const delta = Math.floor(Math.random() * 5) - 2;
-          state.sleepersCount = Math.max(1200, state.sleepersCount + delta);
-          const t = getT();
-          document.getElementById('liveSleepersText').textContent = t.sleepersCount(state.sleepersCount);
-        }, 6000);
+        // No fake fluctuation - pure authentic nap room
 
         // --- SANSA NAP SUITE EVENT LISTENERS ---
         // 1. Pillow action
