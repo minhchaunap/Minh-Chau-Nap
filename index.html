@@ -134,9 +134,9 @@
       <div class="flex items-center space-x-2 sm:space-x-3">
         
         <!-- Nút Ủng Hộ Tự Nguyện (Sansa Gongyang-mi) -->
-        <button id="btnOpenDonateModal" class="flex items-center space-x-1 px-2.5 py-1.5 rounded-xl text-xs font-bold bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-200 border border-amber-300 dark:border-amber-700 shadow-sm transition active:scale-95" title="Ủng hộ duy trì máy chủ">
-          <span>🍵</span>
-          <span class="hidden sm:inline">Ủng Hộ Tự Nguyện</span>
+        <button id="btnOpenDonateModal" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-pink-50 hover:bg-pink-100 dark:bg-pink-950/40 text-[#A50064] dark:text-pink-300 border border-pink-200 dark:border-pink-800 shadow-sm transition active:scale-95" title="Mời ly cà phê qua MoMo">
+          <span>☕</span>
+          <span class="hidden sm:inline">Mời Cà Phê (MoMo)</span>
         </button>
         
         <!-- Multi-language Global Selector -->
@@ -271,7 +271,7 @@
           <!-- Quick Mood Selector -->
           <div class="space-y-2">
             <label id="labelChooseMood" class="text-xs font-semibold text-stone-500 dark:text-stone-400">Chọn không gian ngủ yêu thích:</label>
-            <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
               <button class="mood-btn active p-2.5 rounded-xl border border-cozy-300 dark:border-stone-700 bg-cozy-50 dark:bg-stone-800/80 font-medium text-left hover:border-cozy-500 transition flex items-center space-x-2" data-mood="he">
                 <span>🍃</span>
                 <span id="moodHeText">Trưa hè quê nội</span>
@@ -287,6 +287,10 @@
               <button class="mood-btn p-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800/40 font-medium text-left hover:border-cozy-500 transition flex items-center space-x-2" data-mood="bien">
                 <span>🌊</span>
                 <span id="moodBienText">Võng trưa ven biển</span>
+              </button>
+              <button class="mood-btn p-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800/40 font-medium text-left hover:border-cyan-400 transition flex items-center space-x-2 sm:col-span-2" data-mood="ngudong">
+                <span>❄️</span>
+                <span id="moodNgudongText">Ngủ đông trùm chăn (Mùa lạnh)</span>
               </button>
             </div>
           </div>
@@ -328,7 +332,7 @@
           </div>
 
           <!-- Presets -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-8">
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-8">
             <button class="preset-btn active py-2.5 px-3 rounded-2xl border-2 border-cozy-500 bg-cozy-50 dark:bg-stone-800 text-left transition group" data-minutes="15">
               <div class="text-xs text-cozy-700 dark:text-cozy-300 font-semibold flex items-center justify-between">
                 <span>⚡ Power</span>
@@ -359,6 +363,14 @@
                 <span>45p</span>
               </div>
               <div id="descDeepNap" class="text-[11px] text-stone-500 dark:text-stone-400 truncate mt-0.5">Phục hồi sâu</div>
+            </button>
+
+            <button class="preset-btn py-2.5 px-3 rounded-2xl border-2 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800/40 text-left transition group hover:border-cyan-400" data-minutes="90">
+              <div class="text-xs text-stone-700 dark:text-stone-300 font-semibold flex items-center justify-between">
+                <span>❄️ Ngủ Đông</span>
+                <span>90p</span>
+              </div>
+              <div id="descWinterNap" class="text-[11px] text-stone-500 dark:text-stone-400 truncate mt-0.5">1 chu kỳ trọn vẹn</div>
             </button>
           </div>
 
@@ -623,6 +635,29 @@
               </div>
             </div>
 
+            <!-- Channel 7: Gió đông rít khe cửa & Lò sưởi -->
+            <div class="sound-card p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/50 border border-stone-200/70 dark:border-stone-700/60 transition hover:border-cyan-300" data-channel="winter_wind">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center space-x-2.5">
+                  <div class="channel-icon w-8 h-8 rounded-xl bg-cyan-100 dark:bg-stone-700 flex items-center justify-center text-base">
+                    ❄️
+                  </div>
+                  <div>
+                    <h5 id="chWinterTitle" class="text-xs font-bold text-stone-800 dark:text-stone-200">Gió đông & Lò sưởi</h5>
+                    <span id="chWinterDesc" class="text-[10px] text-stone-500 dark:text-stone-400">Gió lùa khe cửa, chăn ấm ngủ vùi</span>
+                  </div>
+                </div>
+                <button class="channel-toggle px-3 py-1 rounded-full text-xs font-semibold transition border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-700 text-stone-600 dark:text-stone-300">
+                  Bật
+                </button>
+              </div>
+              <div class="flex items-center space-x-3 px-1">
+                <span class="text-[10px] text-stone-400">🔈</span>
+                <input type="range" min="0" max="100" value="60" class="sound-slider slider-thumb flex-1 h-1.5 bg-stone-200 dark:bg-stone-700 rounded-lg appearance-none cursor-pointer">
+                <span class="text-[10px] text-stone-400">🔊</span>
+              </div>
+            </div>
+
             <!-- Channel 6: Tích tắc đồng hồ -->
             <div class="sound-card p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/50 border border-stone-200/70 dark:border-stone-700/60 transition hover:border-cozy-300" data-channel="clock">
               <div class="flex items-center justify-between mb-2">
@@ -688,6 +723,7 @@
             <div>
               <label id="lblPassReason" class="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1">Lý do xin ngủ:</label>
               <select id="passReasonSelect" class="w-full px-3 py-2 rounded-xl border border-stone-300 dark:border-stone-600 bg-stone-50 dark:bg-stone-700 text-stone-900 dark:text-white text-xs font-medium focus:ring-2 focus:ring-cozy-400 focus:outline-none">
+                <option value="Hôm nay trời lạnh quá, trùm chăn ngủ đông sạc lại pin ❄️">Hôm nay trời lạnh quá, trùm chăn ngủ đông sạc lại pin ❄️</option>
                 <option value="Tái tạo chất xám để chiều cày deadline cho sếp">Tái tạo chất xám để chiều cày deadline cho sếp</option>
                 <option value="Bộ não đang quá nhiệt (CPU 99%), cần bảo trì">Bộ não đang quá nhiệt (CPU 99%), cần bảo trì</option>
                 <option value="Ngủ để giữ gìn nhan sắc và sự hòa nhã">Ngủ để giữ gìn nhan sắc và sự hòa nhã</option>
@@ -1019,19 +1055,43 @@
           </div>
           <div class="text-right"><span class="text-[11px] font-semibold text-cozy-600 dark:text-cozy-400 bg-cozy-50 dark:bg-stone-700/60 px-2.5 py-1 rounded-full border border-cozy-200 dark:border-stone-600">Vào nằm</span></div>
         </button>
+
+        <!-- PHÒNG NGỦ ĐÔNG -->
+        <button class="room-select-card w-full p-3.5 rounded-2xl border border-stone-200 dark:border-stone-700 hover:border-cyan-500 bg-stone-50 dark:bg-stone-800/60 hover:bg-cyan-50 dark:hover:bg-cyan-950/30 flex items-center justify-between transition text-left group" data-room-id="ngudong" data-room-name="Phòng Ngủ Đông" data-desc="Trùm Chăn Mùa Lạnh: Gió rít ngoài khe cửa, trong chăn ấm sực ngủ vùi">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-stone-700 flex items-center justify-center text-lg font-display font-bold text-cyan-800 dark:text-cyan-300">
+              ❄️
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h4 class="font-bold text-xs text-stone-900 dark:text-white group-hover:text-cyan-600 transition">Phòng Ngủ Đông (Trùm Chăn Mùa Lạnh)</h4>
+                <span class="text-[9px] px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-700 font-medium">Ấm cúng</span>
+              </div>
+              <p class="text-[11px] text-stone-500 dark:text-stone-400 mt-0.5">Không gian ngủ vùi phục hồi sâu, gió lạnh ngoài hiên</p>
+            </div>
+          </div>
+          <div class="text-right"><span class="text-[11px] font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-stone-700/60 px-2.5 py-1 rounded-full border border-cyan-200 dark:border-stone-600">Vào nằm</span></div>
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= MODAL 2: ỦNG HỘ TỰ NGUYỆN (GONGYANG-MI) ================= -->
-  <div id="donateModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="bg-white dark:bg-night-800 rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl border border-cozy-200 dark:border-stone-700 space-y-4 transform transition-transform scale-95">
+  <!-- ================= MODAL 2: MỜI CÀ PHÊ QUA MOMO ================= -->
+  <div id="donateModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-white dark:bg-night-800 rounded-3xl p-6 sm:p-7 max-w-md w-full shadow-2xl border border-stone-200 dark:border-stone-700 space-y-4 transform transition-transform scale-95 max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
       <div class="flex items-center justify-between border-b border-stone-100 dark:border-stone-700 pb-3">
-        <div class="flex items-center space-x-2">
-          <span class="text-2xl">🍵</span>
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-[#A50064] to-[#D82D8B] flex items-center justify-center text-white text-lg shadow-sm">
+            ☕
+          </div>
           <div>
-            <h3 class="font-display font-bold text-base text-stone-900 dark:text-white">Ủng Hộ Tự Nguyện (Tùy Tâm)</h3>
-            <span class="text-[10px] text-emerald-600 font-semibold">Web hoàn toàn miễn phí &bull; Không bắt buộc</span>
+            <h3 class="font-display font-bold text-base text-stone-900 dark:text-white">Mời Minh Châu Ly Cà Phê</h3>
+            <span class="text-[11px] text-[#A50064] dark:text-pink-400 font-semibold flex items-center space-x-1">
+              <span>💖</span>
+              <span>Ủng hộ duy trì phòng ngủ trưa êm ái</span>
+            </span>
           </div>
         </div>
         <button id="btnCloseDonateModal" class="p-1.5 rounded-full text-stone-400 hover:text-stone-700 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-700 transition">
@@ -1039,46 +1099,101 @@
         </button>
       </div>
 
-      <p class="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
-        Giống như ngôi chùa online <i>Sansa</i> của bạn trẻ Hàn Quốc, trang web này được tạo ra để mọi người có một góc chợp mắt bình yên. Mọi đóng góp là hoàn toàn tùy tâm để phụ giúp tiền duy trì máy chủ và mua thêm "chăn gối ảo" cho phòng ngủ!
-      </p>
-
-      <div class="grid grid-cols-3 gap-2 text-center text-xs">
-        <button class="donate-tier p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 hover:border-amber-400 bg-stone-50 dark:bg-stone-800 transition flex flex-col items-center" data-amount="10.000đ" data-item="Ly Trà Đá Ảo">
-          <span class="text-xl">🍵</span>
-          <span class="font-bold text-stone-800 dark:text-stone-200 mt-1">10.000đ</span>
-          <span class="text-[10px] text-stone-400">Ly trà mát</span>
-        </button>
-
-        <button class="donate-tier active p-2.5 rounded-2xl border-2 border-amber-500 bg-amber-50 dark:bg-stone-800 transition flex flex-col items-center" data-amount="25.000đ" data-item="Ly Cà Phê Cơm Trưa">
-          <span class="text-xl">☕</span>
-          <span class="font-bold text-stone-800 dark:text-stone-200 mt-1">25.000đ</span>
-          <span class="text-[10px] text-stone-400">Ly cà phê</span>
-        </button>
-
-        <button class="donate-tier p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 hover:border-amber-400 bg-stone-50 dark:bg-stone-800 transition flex flex-col items-center" data-amount="50.000đ" data-item="Gối Êm Cho Server">
-          <span class="text-xl">🛋️</span>
-          <span class="font-bold text-stone-800 dark:text-stone-200 mt-1">50.000đ</span>
-          <span class="text-[10px] text-stone-400">Cái mền ấm</span>
-        </button>
-      </div>
-
-      <div class="p-3.5 rounded-2xl bg-amber-50/70 dark:bg-stone-800/80 border border-amber-200/80 dark:border-stone-700 flex items-center space-x-3 text-xs">
-        <div class="w-16 h-16 bg-white p-1 rounded-xl shadow-sm border border-stone-200 flex-shrink-0 flex items-center justify-center">
-          <svg class="w-14 h-14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14-2h2v2h-2v-2zm-4 0h2v2h-2v-2zm0 4h2v4h-2v-4zm4 2h4v2h-4v-2zm2-2h2v2h-2v-2zm-6 2h2v2h-2v-2zm6 2h2v2h-2v-2z"/>
-          </svg>
-        </div>
-        <div class="space-y-0.5 text-stone-700 dark:text-stone-300">
-          <div class="font-bold text-stone-900 dark:text-white">Quét mã VietQR / MoMo</div>
-          <div class="text-[11px] text-stone-500 dark:text-stone-400">Nội dung: <span class="font-mono text-cozy-600 font-semibold">MINHCHAU NGU TRUA</span></div>
-          <div class="text-[10px] text-emerald-600 font-semibold">Cảm ơn bạn đã tiếp sức cho viện ngủ trưa! ❤️</div>
+      <!-- MoMo Recipient Card -->
+      <div class="p-4 rounded-2xl bg-gradient-to-br from-[#A50064] to-[#c2185b] text-white shadow-md relative overflow-hidden">
+        <div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-white/10 pointer-events-none"></div>
+        <div class="flex items-center justify-between relative z-10">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/40 flex items-center justify-center text-lg font-bold text-white shadow-inner">
+              MC
+            </div>
+            <div>
+              <div class="text-[11px] text-pink-100 font-medium tracking-wide uppercase">Ví Điện Tử MoMo</div>
+              <div class="font-bold text-base tracking-tight text-white flex items-center space-x-1.5">
+                <span>Nguyễn Thị Minh Châu</span>
+                <span class="text-[10px] bg-white/25 px-1.5 py-0.5 rounded-full font-normal">Chủ phòng</span>
+              </div>
+              <div class="text-xs text-pink-100 font-mono mt-0.5 flex items-center space-x-1">
+                <span>STK/SĐT:</span>
+                <span class="font-bold text-white text-sm">0793869600</span>
+              </div>
+            </div>
+          </div>
+          <button id="btnCopyPhoneQuick" class="px-3 py-1.5 rounded-xl bg-white text-[#A50064] text-xs font-bold hover:bg-pink-50 transition shadow-sm active:scale-95 flex items-center space-x-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <span id="copyPhoneText">Sao chép</span>
+          </button>
         </div>
       </div>
 
-      <button id="btnSendVirtualDonation" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-cozy-500 hover:from-amber-600 hover:to-cozy-600 text-white font-bold text-xs shadow-md transition">
-        Gửi Tấm Lòng Ủng Hộ (Mô phỏng) 💖
+      <!-- MoMo QR Code Display -->
+      <div class="flex flex-col items-center bg-stone-50 dark:bg-stone-800/60 p-4 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-3">
+        <div class="w-56 h-56 bg-white p-2.5 rounded-2xl shadow-md border border-stone-100 flex items-center justify-center relative">
+          <div id="momoQrContainer" class="w-full h-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" class="w-full h-full rounded-2xl"><rect width="260" height="260" fill="#ffffff" rx="16"/><rect x="0.00" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="0.00" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="8.97" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="17.93" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="26.90" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="35.86" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="44.83" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="53.79" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="62.76" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="62.76" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="71.72" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="62.76" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="80.69" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="62.76" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="188.28" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="89.66" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="98.62" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="107.59" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="62.76" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="116.55" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="62.76" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="125.52" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="134.48" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="188.28" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="143.45" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="152.41" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="62.76" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="161.38" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="188.28" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="170.34" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="62.76" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="188.28" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="179.31" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="188.28" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="170.34" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="197.24" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="89.66" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="206.21" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="188.28" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="215.17" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="107.59" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="125.52" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="161.38" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="188.28" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="224.14" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="152.41" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="206.21" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="233.10" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="251.03" y="233.10" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="224.14" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="242.07" width="9.07" height="9.07" fill="#1c1917" /><rect x="0.00" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="8.97" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="17.93" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="26.90" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="35.86" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="44.83" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="53.79" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="71.72" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="80.69" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="98.62" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="116.55" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="134.48" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="143.45" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="179.31" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="197.24" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="215.17" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="242.07" y="251.03" width="9.07" height="9.07" fill="#1c1917" /><rect x="97" y="97" width="65" height="65" fill="#ffffff" rx="8" /><rect x="101" y="101" width="57" height="57" fill="#a50064" rx="6" /><text x="130" y="136" font-family="Arial, sans-serif" font-weight="900" font-size="31" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">M</text></svg>
+          </div>
+        </div>
+
+        <div class="text-center space-y-1">
+          <p class="text-xs text-stone-600 dark:text-stone-300 font-medium">
+            📱 Quét bằng app <b class="text-[#A50064] dark:text-pink-400">MoMo</b> hoặc <b class="text-stone-800 dark:text-stone-200">Camera điện thoại</b>
+          </p>
+          <p class="text-[11px] text-stone-400 font-mono">
+            Nội dung gợi ý: <span class="text-stone-700 dark:text-stone-300 font-semibold" id="transferNoteText">Ung ho Minh Chau ngu trua</span>
+          </p>
+        </div>
+
+        <!-- Quick Open MoMo App on Mobile -->
+        <a href="https://nhantien.momo.vn/0793869600" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 rounded-xl bg-[#A50064] hover:bg-[#880052] text-white text-xs font-bold text-center transition flex items-center justify-center space-x-1.5 shadow-sm">
+          <span>🚀</span>
+          <span>Mở ứng dụng MoMo trên điện thoại</span>
+        </a>
+      </div>
+
+      <!-- Amount Presets (Tùy tâm) -->
+      <div class="space-y-1.5">
+        <div class="text-[11px] text-stone-500 dark:text-stone-400 font-medium flex items-center justify-between">
+          <span>Mức mời gợi ý (hoặc tùy tâm bạn nhé):</span>
+          <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Tùy tâm ❤️</span>
+        </div>
+        <div class="grid grid-cols-4 gap-2 text-center text-xs">
+          <button class="donate-tier p-2 rounded-xl border-2 border-stone-200 dark:border-stone-700 hover:border-pink-400 bg-stone-50 dark:bg-stone-800 transition flex flex-col items-center" data-amount="10.000đ" data-note="Tra da 10k">
+            <span class="text-base">🍵</span>
+            <span class="font-bold text-stone-800 dark:text-stone-200 text-[11px] mt-0.5">10.000đ</span>
+            <span class="text-[9px] text-stone-400">Trà mát</span>
+          </button>
+
+          <button class="donate-tier active p-2 rounded-xl border-2 border-[#A50064] bg-pink-50 dark:bg-[#A50064]/20 transition flex flex-col items-center" data-amount="20.000đ" data-note="Ca phe 20k">
+            <span class="text-base">☕</span>
+            <span class="font-bold text-[#A50064] dark:text-pink-300 text-[11px] mt-0.5">20.000đ</span>
+            <span class="text-[9px] text-[#A50064]/80 dark:text-pink-400">Cà phê</span>
+          </button>
+
+          <button class="donate-tier p-2 rounded-xl border-2 border-stone-200 dark:border-stone-700 hover:border-pink-400 bg-stone-50 dark:bg-stone-800 transition flex flex-col items-center" data-amount="50.000đ" data-note="Bua trua 50k">
+            <span class="text-base">🍱</span>
+            <span class="font-bold text-stone-800 dark:text-stone-200 text-[11px] mt-0.5">50.000đ</span>
+            <span class="text-[9px] text-stone-400">Bữa trưa</span>
+          </button>
+
+          <button class="donate-tier p-2 rounded-xl border-2 border-stone-200 dark:border-stone-700 hover:border-pink-400 bg-stone-50 dark:bg-stone-800 transition flex flex-col items-center" data-amount="Tùy tâm" data-note="Tuy tam">
+            <span class="text-base">✨</span>
+            <span class="font-bold text-stone-800 dark:text-stone-200 text-[11px] mt-0.5">Tùy tâm</span>
+            <span class="text-[9px] text-stone-400">Tùy hỷ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Heartfelt Note -->
+      <div class="p-3 rounded-2xl bg-amber-50/70 dark:bg-stone-800/80 border border-amber-200/80 dark:border-stone-700 text-[11px] text-stone-600 dark:text-stone-300 leading-relaxed space-y-1">
+        <p>
+          Phòng ngủ trưa này hoàn toàn miễn phí và không có quảng cáo. Mọi ly cà phê đóng góp là nguồn kinh phí quý báu để Minh Châu duy trì máy chủ hoạt động mượt mà cho mọi người. Cảm ơn bạn rất nhiều! 🥰
+        </p>
+      </div>
+
+      <button id="btnCloseModalBottom" class="w-full py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 dark:hover:bg-stone-600 text-stone-700 dark:text-stone-200 font-semibold text-xs transition">
+        Đóng cửa sổ &bull; Quay lại phòng ngủ 💤
       </button>
+
     </div>
   </div>
 
@@ -1213,1567 +1328,68 @@
             cicadas: { title: "Ve sầu râm ran", desc: "Ký ức giấc ngủ trưa tuổi thơ" },
             waves: { title: "Sóng biển dập dềnh", desc: "Nhịp điệu thư giãn vô tận" },
             purr: { title: "Tiếng mèo gừ gừ (Purr)", desc: "Tần số chữa lành 25-50Hz" },
-            clock: { title: "Đồng hồ tích tắc", desc: "Nhịp đập êm đềm ru ngủ" }
-          },
-          btnTurnOn: "Bật",
-          btnTurnOff: "Tắt",
-          audioTip: "Mẹo: Đeo tai nghe và bật kết hợp <b>Quạt máy</b> + <b>Mưa rào</b> để cách âm tuyệt đối khỏi tiếng ồn văn phòng!",
-          passBadge: "Công cụ độc quyền cho dân văn phòng",
-          passTitle: 'Máy Tạo "Vé Xin Phép Đi Ngủ Trưa" 🎫',
-          passDesc: "Tạo thẻ miễn trừ làm phiền để gửi cho sếp, đồng nghiệp hoặc nhóm bạn trước khi vào giấc ngủ ngàn vàng 20 phút!",
-          lblPassName: "Họ tên người ngủ:",
-          lblPassDept: "Chức vụ / Phòng ban:",
-          lblPassReason: "Lý do xin ngủ:",
-          lblPassTime: "Giờ ngủ:",
-          lblPassUrgency: "Mức độ khẩn cấp:",
-          btnCopyPass: "Sao Chép Vé Đi Ngủ (Zalo / Slack)",
-          ticketHeader: "GIẤY PHÉP ĐI NGỦ TRƯA",
-          ticketPillDND: "MIỄN LÀM PHIỀN",
-          tkLblName: "Người thụ hưởng:",
-          tkLblDept: "Vị trí công tác:",
-          tkLblTime: "Thời gian chợp mắt:",
-          tkLblReason: "Lý do chính đáng:",
-          tkLblUrgency: "Chỉ thị khẩn cấp:",
-          stampText: 'ĐÃ DUYỆT 💤<br><span class="text-[8px] font-mono">BẤT KHẢ XÂM PHẠM</span>',
-          guestbookTitle: "Sổ Điểm Danh & Lời Chúc Ngủ Ngon",
-          guestbookOnline: "Trực tuyến",
-          checkinPlaceholderName: "Tên bạn (VD: Minh Châu, Hùng, Linh...)",
-          checkinPlaceholderMsg: "Để lại lời nhắn (VD: Ngủ 20p rồi dậy cày nốt báo cáo nhé...)",
-          btnCheckin: "Điểm Danh 🛌",
-          scienceTitle: "Khoa Học Giấc Ngủ Trưa",
-          sciTip1Title: "Quy tắc 20 - 30 Phút Vàng:",
-          sciTip1Desc: "Tránh ngủ quá 30 phút vì cơ thể sẽ rơi vào giấc ngủ sóng chậm (Deep Sleep). Nếu thức dậy lúc này sẽ bị hiện tượng Sleep Inertia (uể oải, nhức đầu).",
-          sciTip2Title: 'Bí quyết "Coffee Nap":',
-          sciTip2Desc: "Uống nhanh 1 tách cà phê nhỏ rồi nằm nhắm mắt ngay 20 phút. Caffeine cần đúng 20 phút để hấp thụ vào máu, bạn thức dậy đúng lúc tỉnh táo nhân đôi!",
-          sciTip3Title: "Tư thế ngủ văn phòng:",
-          sciTip3Desc: "Nên dùng gối chữ U hoặc gối ôm nhỏ tựa lưng ghế, hạn chế gục đầu trực tiếp xuống bàn để tránh chèn ép dây thần kinh mắt và cột sống cổ.",
-          footerWish: "— Chúc bạn có những phút giây thư thái nhất.",
-          footerSub: "Đa ngôn ngữ toàn cầu • Không quảng cáo • Âm thanh Web Audio mượt mà",
-          dimmerNote: "Màn hình phòng tối đã bật để bạn không bị chói mắt.",
-          dimmerRemaining: "Thời gian còn lại:",
-          dimmerStatus: "Trạng thái:",
-          dimmerStatusVal: "Minh Châu đang ngủ ngon 💤",
-          dimmerExit: "Chạm vào màn hình để thức giấc ☀️",
-          toastAudioOn: "Đã bật âm thanh ru ngủ êm dịu",
-          toastAudioOff: "Đã tắt tiếng toàn bộ",
-          toastTimerStart: "Chúc Minh Châu ngủ một giấc thật ngon lành!",
-          toastTimerWake: "Hết giờ ngủ trưa rồi! Chúc bạn buổi chiều tràn trề năng lượng! ☀️",
-          toastCopySuccess: "Đã sao chép vé ngủ trưa! Hãy dán vào Zalo/Slack gửi sếp nha!",
-          sheepRemarks: [
-            "1 chú cừu bông trắng muốt nhảy qua hàng rào...",
-            "2 chú cừu đang lững thững gặm cỏ rồi nhảy qua...",
-            "3 chú cừu bay bổng nhẹ nhàng...",
-            "5 chú cừu... hai mí mắt bắt đầu cảm thấy nằng nặng...",
-            "10 chú cừu... cơ bắp bắt đầu thả lỏng hoàn toàn...",
-            "15 chú cừu... tâm trí đã chìm vào giấc mơ đẹp cùng Minh Châu 💤"
-          ]
-        },
-
-        en: {
-          subTitle: "Online Power Nap",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "Dark Room",
-          soundOn: "Play Ambience",
-          soundOff: "Ambience Playing",
-          breeze: "Gentle breeze blowing",
-          moodTag: "🌸 Serene Summer Afternoon",
-          quickFan: "🌀 Electric Fan:",
-          quickRain: "🌧️ Rain Sound:",
-          fanOn: "Running",
-          fanOff: "Off",
-          rainOn: "Pouring",
-          rainOff: "Off",
-          snore: "Zzz... zzz... zzz...",
-          sanctuary: "Personal Nap Sanctuary",
-          sleepingState: "Status: Sleeping Soundly",
-          heroTitle: 'Welcome to the cozy bed of <span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> ☁️',
-          heroDesc: "Leave deadlines, urgent pings, and busy code behind. Take a 15–25 min power nap with gentle fan humming and soothing rain to refresh 100% of your brainpower!",
-          chooseMood: "Choose your favorite nap soundscape:",
-          moods: {
-            he: "Countryside Summer",
-            mua: "Tin Roof Rain",
-            vanphong: "Office Sneak Nap",
-            bien: "Seaside Hammock"
-          },
-          btnScrollTimer: "Start Nap Timer",
-          btnScrollPass: "Nap Pass Ticket",
-          timerHeader: "Scientific Power Nap Timer",
-          timerStatusNotStarted: "Not started",
-          timerStatusReady: "Ready",
-          timerStatusPaused: "Paused",
-          timerStatusSleeping: "Falling asleep",
-          timerStatusEnded: "Time is up!",
-          presetPower: "Instant alert",
-          presetCoffee: "Sip coffee & nap",
-          presetNasa: "+34% alertness",
-          presetDeep: "Deep recovery",
-          timerReadyMsg: "Ready for your power nap",
-          timerSleepMsg: "Zzz... sweet dreams!",
-          timerWakeMsg: "Rise and shine!",
-          timerMinMsg: (m) => `Nap duration: ${m}m`,
-          btnStartSleep: "Start Sleeping",
-          btnPauseSleep: "Pause",
-          btnResumeSleep: "Resume",
-          btnRestartSleep: "Nap Again",
-          alarmToneLabel: "🔔 Wake-up Alarm:",
-          alarmTones: {
-            chime: "Gentle Temple Wind Chime",
-            bowl: "Tibetan Singing Bowl",
-            birds: "Morning Birds Chirping",
-            whisper: "Cheerful Wake-up Melody"
-          },
-          testAlarm: "Preview Alarm",
-          titleBreathing: "4-7-8 Breathing Guide",
-          badgeBreathing: "Lower heart rate",
-          descBreathing: "Helps you relax and fall asleep in under 2 minutes.",
-          breatheStart: "Start",
-          breatheIn: "Inhale...",
-          breatheInDesc: "Inhale deeply through your nose for 4s (1... 2... 3... 4)",
-          breatheHold: "Hold breath...",
-          breatheHoldDesc: "Hold the air in your chest for 7 seconds",
-          breatheOut: "Exhale...",
-          breatheOutDesc: "Gently exhale through your mouth for 8 seconds",
-          breatheInitialTip: "Tap button below to start guided breathing",
-          btnStartBreathe: "Start Breathing Guide",
-          btnStopBreathe: "Stop Breathing Guide",
-          titleSheep: "Count Jumping Sheep",
-          sheepUnit: "sheep",
-          descSheep: "Each click jumps a soft sheep over the fence.",
-          sheepPrompt: "Tap to let a cute sheep jump!",
-          btnJumpSheep: "Jump 1 Sheep 🐑",
-          soundboardTitle: "Nap Soundboard & Ambience",
-          muteAll: "Mute All",
-          soundboardDesc: "Synthesized physical acoustics for a perfect Vietnamese afternoon nap. Mix multiple channels freely.",
-          sounds: {
-            fan: { title: "Electric Desk Fan", desc: "Cozy breeze on a warm afternoon" },
-            rain: { title: "Tin Roof Rain", desc: "Gentle rhythmic drops" },
-            cicadas: { title: "Summer Cicadas", desc: "Nostalgic countryside afternoon" },
-            waves: { title: "Ocean Waves", desc: "Soothing rhythmic swell" },
-            purr: { title: "Cat Purring", desc: "Healing 25-50Hz vibration" },
-            clock: { title: "Tick-Tock Clock", desc: "Steady peaceful heartbeat" }
-          },
-          btnTurnOn: "Turn On",
-          btnTurnOff: "Turn Off",
-          audioTip: "Pro-tip: Put on headphones and combine <b>Electric Fan</b> + <b>Tin Roof Rain</b> for instant office noise cancellation!",
-          passBadge: "Exclusive tool for office workers",
-          passTitle: 'Official "Nap Permission Pass" Generator 🎫',
-          passDesc: "Generate an official Do-Not-Disturb nap ticket to send your boss or colleagues before your sacred 20-minute nap!",
-          lblPassName: "Sleeper's Name:",
-          lblPassDept: "Role / Department:",
-          lblPassReason: "Valid Reason:",
-          lblPassTime: "Nap Window:",
-          lblPassUrgency: "Urgency Level:",
-          btnCopyPass: "Copy Nap Ticket (Slack / Teams / Zalo)",
-          ticketHeader: "OFFICIAL NAP PASS",
-          ticketPillDND: "DO NOT DISTURB",
-          tkLblName: "Beneficiary:",
-          tkLblDept: "Department:",
-          tkLblTime: "Nap Window:",
-          tkLblReason: "Approved Reason:",
-          tkLblUrgency: "Directive:",
-          stampText: 'APPROVED 💤<br><span class="text-[8px] font-mono">SACRED SANCTUARY</span>',
-          guestbookTitle: "Nap Guestbook & Goodnight Notes",
-          guestbookOnline: "Live Online",
-          checkinPlaceholderName: "Your name (e.g. Minh Chau, Alex, Sarah...)",
-          checkinPlaceholderMsg: "Leave a cozy note (e.g. Taking 20m before the afternoon rush...)",
-          btnCheckin: "Check In 🛌",
-          scienceTitle: "Science of the Afternoon Nap",
-          sciTip1Title: "The 20-30 Minute Golden Rule:",
-          sciTip1Desc: "Avoid napping over 30 minutes to prevent falling into slow-wave deep sleep, which leads to sleep inertia (grogginess and brain fog).",
-          sciTip2Title: 'The "Coffee Nap" Secret:',
-          sciTip2Desc: "Drink a cup of coffee quickly, then immediately nap for 20 minutes. Caffeine peaks in your bloodstream right at 20 minutes, doubling your wakefulness!",
-          sciTip3Title: "Office Ergonomics:",
-          sciTip3Desc: "Use an ergonomic neck pillow or rest against your chair back. Avoid sleeping face-down on your desk to protect your cervical spine and optic nerves.",
-          footerWish: "— Wishing you the most peaceful and rejuvenating nap.",
-          footerSub: "Global Multilingual • Ad-Free • Pure Web Audio Synthesizer",
-          dimmerNote: "Dark room screen mode active to shield your eyes from glare.",
-          dimmerRemaining: "Remaining Nap Time:",
-          dimmerStatus: "Status:",
-          dimmerStatusVal: "Minh Chau is sleeping peacefully 💤",
-          dimmerExit: "Tap anywhere to wake up ☀️",
-          toastAudioOn: "Ambient nap soundscape turned on",
-          toastAudioOff: "All sounds muted",
-          toastTimerStart: "Have a wonderful, restful nap!",
-          toastTimerWake: "Nap time is over! Wishing you an energized afternoon! ☀️",
-          toastCopySuccess: "Nap pass copied! Paste it into Slack, Teams or Zalo!",
-          sheepRemarks: [
-            "1 fluffy white sheep leaping over the wooden fence...",
-            "2 sheep grazing lazily, then jumping over...",
-            "3 sheep floating through the air gently...",
-            "5 sheep... your eyelids are growing delightfully heavy...",
-            "10 sheep... your entire body is completely relaxed...",
-            "15 sheep... drifting into sweet dreams with Minh Chau 💤"
-          ]
-        },
-
-        ja: {
-          subTitle: "オンライン昼寝ステーション",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "暗室モード",
-          soundOn: "環境音再生",
-          soundOff: "再生中",
-          breeze: "そよ風が吹いています",
-          moodTag: "🌸 穏やかな夏の午後",
-          quickFan: "🌀 扇風機:",
-          quickRain: "🌧️ 雨音:",
-          fanOn: "作動中",
-          fanOff: "停止",
-          rainOn: "降雨中",
-          rainOff: "停止",
-          snore: "すやすや... Zzz...",
-          sanctuary: "プライベート昼寝ルーム",
-          sleepingState: "ステータス: 熟睡中",
-          heroTitle: '<span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> の居眠りベッドへようこそ ☁️',
-          heroDesc: "仕事の締め切りやチャット通知を一旦ストップ。心地よい扇風機の音と屋根の雨音で15〜25分のパワーナップを取り、脳をフル回復させましょう！",
-          chooseMood: "お好みの昼寝空間を選択:",
-          moods: {
-            he: "田舎の夏休み",
-            mua: "トタン屋根の雨",
-            vanphong: "オフィスで居眠り",
-            bien: "浜辺のハンモック"
-          },
-          btnScrollTimer: "タイマー設定",
-          btnScrollPass: "昼寝許可証",
-          timerHeader: "科学的パワーナップタイマー",
-          timerStatusNotStarted: "未開始",
-          timerStatusReady: "準備完了",
-          timerStatusPaused: "一時停止中",
-          timerStatusSleeping: "入眠中",
-          timerStatusEnded: "時間です！",
-          presetPower: "即効リフレッシュ",
-          presetCoffee: "カフェインナップ",
-          presetNasa: "NASA基準 (+34%)",
-          presetDeep: "ディープリカバリー",
-          timerReadyMsg: "昼寝の準備完了",
-          timerSleepMsg: "おやすみなさい... いい夢を！",
-          timerWakeMsg: "スッキリ目覚めましょう！",
-          timerMinMsg: (m) => `設定時間: ${m}分`,
-          btnStartSleep: "昼寝を開始",
-          btnPauseSleep: "一時停止",
-          btnResumeSleep: "再開",
-          btnRestartSleep: "もう一度寝る",
-          alarmToneLabel: "🔔 目覚まし音:",
-          alarmTones: {
-            chime: "寺院の風鈴チャイム",
-            bowl: "シンギングボウル (チベット)",
-            birds: "朝の小鳥のさえずり",
-            whisper: "爽やかなメロディ"
-          },
-          testAlarm: "試聴する",
-          titleBreathing: "4-7-8 呼吸法ガイド",
-          badgeBreathing: "心拍数低下",
-          descBreathing: "自律神経を整え、2分以内にリラックス状態へ導きます。",
-          breatheStart: "スタート",
-          breatheIn: "吸って...",
-          breatheInDesc: "4秒かけて鼻から深く息を吸います",
-          breatheHold: "止めて...",
-          breatheHoldDesc: "7秒間息を止めます",
-          breatheOut: "吐いて...",
-          breatheOutDesc: "8秒かけてゆっくり口から息を吐き出します",
-          breatheInitialTip: "下のボタンを押して呼吸ガイドを開始",
-          btnStartBreathe: "呼吸ガイドを開始",
-          btnStopBreathe: "呼吸ガイドを終了",
-          titleSheep: "柵越えの羊数え",
-          sheepUnit: "匹",
-          descSheep: "タップするたびに、ふわふわの羊が柵を飛び越えます。",
-          sheepPrompt: "ボタンを押して羊をジャンプさせましょう！",
-          btnJumpSheep: "羊を1匹ジャンプ 🐑",
-          soundboardTitle: "安眠サウンドミキサー",
-          muteAll: "すべてミュート",
-          soundboardDesc: "ベトナムの夏の午後を再現したWeb Audio合成音。複数音を自由に組み合わせ可能。",
-          sounds: {
-            fan: { title: "扇風機の風切り音", desc: "どこか懐かしい涼しいモーター音" },
-            rain: { title: "トタン屋根の雨音", desc: "リズミカルで落ち着く雨粒" },
-            cicadas: { title: "夏のひぐらし・蝉の声", desc: "田舎の午後のノスタルジー" },
-            waves: { title: "寄せては返す波の音", desc: "ゆったりとした癒しのリズム" },
-            purr: { title: "猫のゴロゴロ音", desc: "癒しの低周波バイブレーション" },
-            clock: { title: "柱時計のコチコチ音", desc: "規則正しい心拍のようなリズム" }
-          },
-          btnTurnOn: "再生",
-          btnTurnOff: "停止",
-          audioTip: "おすすめ: イヤホンで<b>扇風機</b>＋<b>雨音</b>を同時に流すと、周囲の雑音を完全にシャットアウトできます！",
-          passBadge: "社会人専用ツール",
-          passTitle: '「公式昼寝許可証」発行機 🎫',
-          passDesc: "20分間の貴重な睡眠を邪魔されないよう、上司やチームに送れる免責パスを生成！",
-          lblPassName: "お名前:",
-          lblPassDept: "所属・役職:",
-          lblPassReason: "正当な昼寝の理由:",
-          lblPassTime: "昼寝時間帯:",
-          lblPassUrgency: "緊急度:",
-          btnCopyPass: "許可証をコピー (Slack / LINE)",
-          ticketHeader: "公式昼寝許可証",
-          ticketPillDND: "取り込み中",
-          tkLblName: "対象者:",
-          tkLblDept: "所属部署:",
-          tkLblTime: "昼寝予定時間:",
-          tkLblReason: "正当な理由:",
-          tkLblUrgency: "緊急時対応:",
-          stampText: '承認済 💤<br><span class="text-[8px] font-mono">不可侵睡眠領域</span>',
-          guestbookTitle: "お昼寝芳名録＆メッセージ",
-          guestbookOnline: "オンライン",
-          checkinPlaceholderName: "あなたのお名前",
-          checkinPlaceholderMsg: "一言メッセージ（例：20分寝て午後も頑張ります！）",
-          btnCheckin: "昼寝チェックイン 🛌",
-          scienceTitle: "科学が証明するパワーナップ効果",
-          sciTip1Title: "20〜30分の黄金ルール:",
-          sciTip1Desc: "30分以上眠ると深い睡眠に入り、起床時に頭がボーッとする「睡眠慣性」が起きてしまいます。",
-          sciTip2Title: "コーヒーナップの秘訣:",
-          sciTip2Desc: "コーヒーを飲んですぐに20分仮眠。カフェインが血中に届く20分後にスッキリ目覚められます！",
-          sciTip3Title: "オフィスでの姿勢:",
-          sciTip3Desc: "机に突っ伏して寝ず、椅子の背もたれにクッションを当てて首を休めましょう。",
-          footerWish: "— 心地よい安らぎのひとときをお過ごしください。",
-          footerSub: "多言語対応 • 広告なし • 高音質 Web Audio",
-          dimmerNote: "まぶしさを防ぐため画面暗室モードが有効です。",
-          dimmerRemaining: "残り昼寝時間:",
-          dimmerStatus: "状態:",
-          dimmerStatusVal: "Minh Châu はぐっすり眠っています 💤",
-          dimmerExit: "画面をタップして起きる ☀️",
-          toastAudioOn: "環境音の再生を開始しました",
-          toastAudioOff: "すべての音をミュートしました",
-          toastTimerStart: "良いお昼寝を！",
-          toastTimerWake: "昼寝終了です！午後も元気に頑張りましょう！ ☀️",
-          toastCopySuccess: "許可証をコピーしました！SlackやLINEに貼り付けてください。",
-          sheepRemarks: [
-            "1匹のふわふわ羊が柵をひらりとジャンプ...",
-            "2匹の羊がのんびり草を食べて飛び越えました...",
-            "3匹の羊がふわふわ宙を舞っています...",
-            "5匹... まぶたが心地よく重くなってきました...",
-            "10匹... 体中の力が完全に抜けました...",
-            "15匹... Minh Châuと一緒に夢の中へ 💤"
-          ]
-        },
-
-        ko: {
-          subTitle: "온라인 낮잠 스테이션",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "다크룸",
-          soundOn: "수면 사운드",
-          soundOff: "재생 중",
-          breeze: "산들바람 솔솔",
-          moodTag: "🌸 평화로운 여름 오후",
-          quickFan: "🌀 선풍기:",
-          quickRain: "🌧️ 빗소리:",
-          fanOn: "작동 중",
-          fanOff: "꺼짐",
-          rainOn: "내리는 중",
-          rainOff: "꺼짐",
-          snore: "쿨쿨... Zzz...",
-          sanctuary: "개인 낮잠 쉼터",
-          sleepingState: "상태: 깊은 수면 중",
-          heroTitle: '<span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span>의 낮잠 침대에 오신 것을 환영합니다 ☁️',
-          heroDesc: "마감과 업무 메신저를 잠시 내려놓으세요. 시원한 선풍기 소리와 토닥토닥 빗소리와 함께 15~25분 파워냅으로 뇌 에너지를 100% 충전하세요!",
-          chooseMood: "취향에 맞는 낮잠 분위기 선택:",
-          moods: {
-            he: "시골집의 여름",
-            mua: "양철 지붕 빗소리",
-            vanphong: "사무실 몰래 낮잠",
-            bien: "해변 해먹 낮잠"
-          },
-          btnScrollTimer: "낮잠 타이머",
-          btnScrollPass: "낮잠 허가증",
-          timerHeader: "과학적 파워냅 타이머",
-          timerStatusNotStarted: "시작 전",
-          timerStatusReady: "준비 완료",
-          timerStatusPaused: "일시 중지",
-          timerStatusSleeping: "수면 중",
-          timerStatusEnded: "시간 종료!",
-          presetPower: "즉시 리프레시",
-          presetCoffee: "커피냅 (20분)",
-          presetNasa: "NASA 기준 (+34%)",
-          presetDeep: "깊은 피로 회복",
-          timerReadyMsg: "낮잠 잘 준비 완료",
-          timerSleepMsg: "쿨쿨... 좋은 꿈 꾸세요!",
-          timerWakeMsg: "개운하게 일어날 시간!",
-          timerMinMsg: (m) => `타이머 설정: ${m}분`,
-          btnStartSleep: "낮잠 시작하기",
-          btnPauseSleep: "일시 중지",
-          btnResumeSleep: "이어자기",
-          btnRestartSleep: "다시 자기",
-          alarmToneLabel: "🔔 기상 알람:",
-          alarmTones: {
-            chime: "은은한 풍경 종소리",
-            bowl: "티베트 싱잉볼",
-            birds: "아침 새 지저귐",
-            whisper: "산뜻한 기상 멜로디"
-          },
-          testAlarm: "알람 미리듣기",
-          titleBreathing: "4-7-8 호흡 가이드",
-          badgeBreathing: "심박수 안정",
-          descBreathing: "긴장을 풀고 2분 안에 숙면으로 이끌어 줍니다.",
-          breatheStart: "시작",
-          breatheIn: "숨 들이마시기...",
-          breatheInDesc: "4초 동안 코로 깊게 숨을 들이마십니다",
-          breatheHold: "숨 멈추기...",
-          breatheHoldDesc: "7초 동안 가슴에 숨을 머금습니다",
-          breatheOut: "숨 내쉬기...",
-          breatheOutDesc: "8초 동안 입으로 천천히 숨을 내쉽니다",
-          breatheInitialTip: "아래 버튼을 눌러 호흡 가이드를 시작하세요",
-          btnStartBreathe: "호흡 가이드 시작",
-          btnStopBreathe: "호흡 가이드 중지",
-          titleSheep: "울타리 넘는 양 세기",
-          sheepUnit: "마리",
-          descSheep: "클릭할 때마다 몽실몽실한 양이 울타리를 폴짝 넘습니다.",
-          sheepPrompt: "버튼을 눌러 양을 뛰어넘게 해보세요!",
-          btnJumpSheep: "양 1마리 넘기 🐑",
-          soundboardTitle: "수면 백색소음 사운드보드",
-          muteAll: "전체 음소거",
-          soundboardDesc: "베트남의 따스한 낮잠 환경을 재현한 Web Audio 합성음. 원하는 소리를 자유롭게 조합하세요.",
-          sounds: {
-            fan: { title: "선풍기 바람 소리", desc: "여름 오후의 시원한 모터음" },
-            rain: { title: "양철 지붕 빗소리", desc: "토닥토닥 감성적인 빗방울" },
-            cicadas: { title: "여름 매미 소리", desc: "시골 외갓집의 추억" },
-            waves: { title: "잔잔한 파도 소리", desc: "마음을 편안하게 해주는 파도" },
-            purr: { title: "고양이 골골송", desc: "치유의 25-50Hz 저주파 진동" },
-            clock: { title: "시계 째깍 소리", desc: "차분하게 맥박을 낮추는 리듬" }
-          },
-          btnTurnOn: "켜기",
-          btnTurnOff: "끄기",
-          audioTip: "꿀팁: 이어폰을 끼고 <b>선풍기</b> + <b>빗소리</b>를 함께 켜면 사무실 소음을 완벽히 차단할 수 있습니다!",
-          passBadge: "직장인 필수 생존 템",
-          passTitle: '공식 "낮잠 허가증" 생성기 🎫',
-          passDesc: "황금 같은 20분 낮잠을 방해받지 않도록 팀원이나 상사에게 보낼 방해 금지 티켓을 발급하세요!",
-          lblPassName: "낮잠 자는 사람:",
-          lblPassDept: "소속 / 직책:",
-          lblPassReason: "정당한 낮잠 사유:",
-          lblPassTime: "취침 시간대:",
-          lblPassUrgency: "비상 단계:",
-          btnCopyPass: "허가증 복사하기 (슬랙 / 카카오톡)",
-          ticketHeader: "공식 낮잠 허가증",
-          ticketPillDND: "방해 금지",
-          tkLblName: "수혜자:",
-          tkLblDept: "소속 부서:",
-          tkLblTime: "취침 예정 시간:",
-          tkLblReason: "정당한 사유:",
-          tkLblUrgency: "비상 지침:",
-          stampText: '승인 완료 💤<br><span class="text-[8px] font-mono">불가침 수면 구역</span>',
-          guestbookTitle: "낮잠 출석부 & 응원 메시지",
-          guestbookOnline: "실시간 온라인",
-          checkinPlaceholderName: "이름 (예: 민주, 지훈, 수아...)",
-          checkinPlaceholderMsg: "한마디 남기기 (예: 20분 자고 오후에 불태웁니다!)",
-          btnCheckin: "출석 체크 🛌",
-          scienceTitle: "낮잠의 과학적 원리",
-          sciTip1Title: "20~30분 황금 수칙:",
-          sciTip1Desc: "30분 이상 자면 깊은 서파 수면에 빠져 깨어났을 때 머리가 무거운 '수면 관성'이 발생합니다.",
-          sciTip2Title: "커피냅(Coffee Nap) 비법:",
-          sciTip2Desc: "커피를 마신 직후 곧바로 20분 낮잠을 자세요. 20분 뒤 카페인이 흡수되면서 2배로 개운해집니다!",
-          sciTip3Title: "사무실 수면 자세:",
-          sciTip3Desc: "책상에 엎드리지 말고 목 쿠션을 받쳐 의자에 등을 기댄 자세로 목과 척추를 보호하세요.",
-          footerWish: "— 달콤하고 평화로운 휴식이 되시길 바랍니다.",
-          footerSub: "전 세계 다국어 지원 • 광고 없음 • 순수 Web Audio 사운드",
-          dimmerNote: "눈부심 방지를 위해 화면 다크룸 모드가 켜졌습니다.",
-          dimmerRemaining: "남은 낮잠 시간:",
-          dimmerStatus: "상태:",
-          dimmerStatusVal: "Minh Châu가 곤히 자고 있습니다 💤",
-          dimmerExit: "화면을 터치하여 기상하기 ☀️",
-          toastAudioOn: "편안한 수면 사운드가 켜졌습니다",
-          toastAudioOff: "전체 사운드가 음소거되었습니다",
-          toastTimerStart: "달콤한 꿀낮잠 주무세요!",
-          toastTimerWake: "낮잠 시간이 끝났습니다! 활기찬 오후 보내세요! ☀️",
-          toastCopySuccess: "낮잠 허가증이 복사되었습니다! 메신저에 붙여넣어 보세요.",
-          sheepRemarks: [
-            "1마리의 새하얀 양이 울타리를 사뿐히 뛰어넘습니다...",
-            "2마리의 양이 풀을 뜯다가 훌쩍 넘어가네요...",
-            "3마리의 양이 구름처럼 가볍게 떠오릅니다...",
-            "5마리... 눈꺼풀이 기분 좋게 무거워집니다...",
-            "10마리... 온몸의 긴장이 사르르 풀립니다...",
-            "15마리... Minh Châu와 함께 깊은 꿈나라로 💤"
-          ]
-        },
-
-        zh: {
-          subTitle: "在线午睡小站",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "暗房模式",
-          soundOn: "开启助眠音",
-          soundOff: "正在播放",
-          breeze: "微风徐徐吹来",
-          moodTag: "🌸 宁静夏日午后",
-          quickFan: "🌀 风扇:",
-          quickRain: "🌧️ 雨声:",
-          fanOn: "运转中",
-          fanOff: "已关闭",
-          rainOn: "下雨中",
-          rainOff: "已关闭",
-          snore: "呼噜噜... Zzz...",
-          sanctuary: "个人专属午睡空间",
-          sleepingState: "状态: 熟睡中",
-          heroTitle: '欢迎来到 <span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> 的午睡小窝 ☁️',
-          heroDesc: "把 deadline、工作群通知和繁杂代码暂时放一边。伴随着舒缓的风扇嗡鸣与屋檐雨滴，小憩 15-25 分钟，让大脑满血复活！",
-          chooseMood: "选择您喜爱的午睡环境:",
-          moods: {
-            he: "老家夏日午后",
-            mua: "铁皮屋檐雨声",
-            vanphong: "办公室摸鱼小憩",
-            bien: "海边吊床微风"
-          },
-          btnScrollTimer: "午睡定时",
-          btnScrollPass: "请假条生成",
-          timerHeader: "科学高效午睡定时器",
-          timerStatusNotStarted: "未开始",
-          timerStatusReady: "准备就绪",
-          timerStatusPaused: "已暂停",
-          timerStatusSleeping: "入睡中",
-          timerStatusEnded: "时间到！",
-          presetPower: "快速提神",
-          presetCoffee: "咖啡小睡",
-          presetNasa: "NASA 黄金标准 (+34%)",
-          presetDeep: "深度恢复",
-          timerReadyMsg: "准备好闭目养神了",
-          timerSleepMsg: "呼噜呼噜... 祝好梦！",
-          timerWakeMsg: "醒醒啦，能量已充满！",
-          timerMinMsg: (m) => `设定时长: ${m}分钟`,
-          btnStartSleep: "开始入睡",
-          btnPauseSleep: "暂停",
-          btnResumeSleep: "继续睡",
-          btnRestartSleep: "重新开始",
-          alarmToneLabel: "🔔 唤醒闹铃:",
-          alarmTones: {
-            chime: "寺庙轻柔风铃",
-            bowl: "西藏颂钵 (Singing Bowl)",
-            birds: "晨间清脆鸟鸣",
-            whisper: "欢快晨起旋律"
-          },
-          testAlarm: "试听闹铃",
-          titleBreathing: "4-7-8 呼吸减压法",
-          badgeBreathing: "降低心率",
-          descBreathing: "调节自主神经，帮助您在 2 分钟内平静入睡。",
-          breatheStart: "开始",
-          breatheIn: "吸气...",
-          breatheInDesc: "用鼻子深吸气 4 秒 (1... 2... 3... 4)",
-          breatheHold: "屏息...",
-          breatheHoldDesc: "在胸腔屏住呼吸 7 秒",
-          breatheOut: "呼气...",
-          breatheOutDesc: "通过嘴唇轻柔缓慢呼气 8 秒",
-          breatheInitialTip: "点击下方按钮开始引导呼吸",
-          btnStartBreathe: "开始呼吸练习",
-          btnStopBreathe: "结束呼吸练习",
-          titleSheep: "跨栏数绵羊",
-          sheepUnit: "只",
-          descSheep: "每次点击，就有一只毛茸茸的小羊跃过栅栏。",
-          sheepPrompt: "点击按钮让可爱小羊跳跃！",
-          btnJumpSheep: "跳过 1 只小羊 🐑",
-          soundboardTitle: "午睡白噪音混音台",
-          muteAll: "全部静音",
-          soundboardDesc: "采用 Web Audio 纯音频合成，真实还原越南夏日午休氛围。随心混搭多种声音。",
-          sounds: {
-            fan: { title: "台式风扇嗡鸣", desc: "夏日午后最安心的白噪音" },
-            rain: { title: "铁皮屋檐淅沥雨", desc: "滴滴答答规律的催眠雨滴" },
-            cicadas: { title: "夏日悠悠蝉鸣", desc: "童年夏天的怀旧记忆" },
-            waves: { title: "温柔海浪起伏", desc: "舒缓连绵的自然节律" },
-            purr: { title: "猫咪咕噜咕噜", desc: "治愈人心的 25-50Hz 低频共振" },
-            clock: { title: "钟摆滴答走动", desc: "平稳安详的心跳节律" }
-          },
-          btnTurnOn: "开启",
-          btnTurnOff: "关闭",
-          audioTip: "妙招: 戴上耳机同时开启 <b>风扇</b> + <b>屋檐雨声</b>，即可完美隔绝办公室杂音！",
-          passBadge: "打工人专属防打扰神器",
-          passTitle: '官方“午睡请假条”生成器 🎫',
-          passDesc: "生成正规免打扰凭证，在神圣的 20 分钟午睡前发送给老板或同事！",
-          lblPassName: "午睡人员姓名:",
-          lblPassDept: "所属部门 / 职位:",
-          lblPassReason: "正当午睡理由:",
-          lblPassTime: "午睡时段:",
-          lblPassUrgency: "紧急级别:",
-          btnCopyPass: "复制请假条 (微信 / 钉钉 / 飞书)",
-          ticketHeader: "官方午睡请假条",
-          ticketPillDND: "请勿打扰",
-          tkLblName: "受惠人:",
-          tkLblDept: "所在部门:",
-          tkLblTime: "午睡计划时间:",
-          tkLblReason: "正当理由:",
-          tkLblUrgency: "紧急指示:",
-          stampText: '已批准 💤<br><span class="text-[8px] font-mono">神圣不可侵犯</span>',
-          guestbookTitle: "午睡打卡簿 & 暖心留言",
-          guestbookOnline: "在线中",
-          checkinPlaceholderName: "您的名字 (例如: 明珠, 小李, 小王...)",
-          checkinPlaceholderMsg: "留下睡前留言 (例如: 睡20分钟下午继续奋斗...)",
-          btnCheckin: "午睡打卡 🛌",
-          scienceTitle: "午睡的科学原理",
-          sciTip1Title: "20-30 分钟黄金法则:",
-          sciTip1Desc: "避免睡眠超过 30 分钟，否则容易进入深睡眠波，醒来时产生“睡眠惰性”（头晕嗜睡）。",
-          sciTip2Title: "“咖啡盹”(Coffee Nap) 秘诀:",
-          sciTip2Desc: "喝完一杯咖啡后立刻闭目小睡 20 分钟。咖啡因正好在 20 分钟后起效，醒来神清气爽！",
-          sciTip3Title: "工位午睡姿势:",
-          sciTip3Desc: "尽量避免直接趴在桌子上睡觉以保护眼压与颈椎，建议使用 U 型枕靠在椅背休息。",
-          footerWish: "— 祝您享受最宁静、最惬意的午睡时光。",
-          footerSub: "全球多语言支持 • 零广告干扰 • 纯净 Web Audio 实时合成",
-          dimmerNote: "防眩光暗房模式已开启，保护双眼不受强光刺激。",
-          dimmerRemaining: "剩余午睡时间:",
-          dimmerStatus: "状态:",
-          dimmerStatusVal: "Minh Châu 正在甜甜入睡 💤",
-          dimmerExit: "轻触屏幕任意处唤醒 ☀️",
-          toastAudioOn: "已开启惬意助眠声音",
-          toastAudioOff: "已全部静音",
-          toastTimerStart: "祝您午睡香甜，好梦连连！",
-          toastTimerWake: "午休时间结束啦！祝您下午元气满满！ ☀️",
-          toastCopySuccess: "已复制午睡假条！快去发送到群里吧。",
-          sheepRemarks: [
-            "第 1 只毛茸茸的白羊轻盈跃过木栅栏...",
-            "第 2 只小羊悠然吃着青草然后跳了过去...",
-            "第 3 只小羊如云朵般轻柔漂浮...",
-            "5 只小羊... 上下眼皮开始沉甸甸地合拢...",
-            "10 只小羊... 全身肌肉完全放松...",
-            "15 只小羊... 与 Minh Châu 一同沉入甜美梦乡 💤"
-          ]
-        },
-
-        es: {
-          subTitle: "Estación de Siesta Online",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "Cuarto Oscuro",
-          soundOn: "Activar Ambiente",
-          soundOff: "Reproduciendo",
-          breeze: "Brisa suave soplando",
-          moodTag: "🌸 Tarde de verano apacible",
-          quickFan: "🌀 Ventilador:",
-          quickRain: "🌧️ Lluvia:",
-          fanOn: "Encendido",
-          fanOff: "Apagado",
-          rainOn: "Lloviendo",
-          rainOff: "Apagado",
-          snore: "Zzz... zzz...",
-          sanctuary: "Santuario Personal de Siesta",
-          sleepingState: "Estado: Durmiendo plácidamente",
-          heroTitle: 'Bienvenido a la cama de siesta de <span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> ☁️',
-          heroDesc: "Deja a un lado las prisas, correos y tareas. Tómate una sagrada siesta de 15 a 25 minutos con el suave rumor del ventilador y la lluvia para renovar toda tu energía mental.",
-          chooseMood: "Elige tu ambiente de siesta favorito:",
-          moods: {
-            he: "Verano en el campo",
-            mua: "Lluvia en techo de zinc",
-            vanphong: "Siesta en la oficina",
-            bien: "Hamaca junto al mar"
-          },
-          btnScrollTimer: "Temporizador",
-          btnScrollPass: "Pase de Siesta",
-          timerHeader: "Temporizador Científico de Siesta",
-          timerStatusNotStarted: "Sin iniciar",
-          timerStatusReady: "Listo",
-          timerStatusPaused: "Pausado",
-          timerStatusSleeping: "Conciliando el sueño",
-          timerStatusEnded: "¡Se acabó el tiempo!",
-          presetPower: "Alerta rápida",
-          presetCoffee: "Coffee Nap",
-          presetNasa: "Norma NASA (+34%)",
-          presetDeep: "Descanso profundo",
-          timerReadyMsg: "Listo para descansar",
-          timerSleepMsg: "¡A dormir... dulces sueños!",
-          timerWakeMsg: "¡Hora de despertar renovado!",
-          timerMinMsg: (m) => `Duración: ${m} min`,
-          btnStartSleep: "Comenzar Siesta",
-          btnPauseSleep: "Pausar",
-          btnResumeSleep: "Reanudar",
-          btnRestartSleep: "Reiniciar",
-          alarmToneLabel: "🔔 Alarma de despertar:",
-          alarmTones: {
-            chime: "Campanillas de viento",
-            bowl: "Cuenco tibetano",
-            birds: "Canto de pájaros matutino",
-            whisper: "Melodía alegre de despertar"
-          },
-          testAlarm: "Probar alarma",
-          titleBreathing: "Técnica de Respiración 4-7-8",
-          badgeBreathing: "Baja pulsaciones",
-          descBreathing: "Ayuda a relajar el cuerpo y dormir en menos de 2 minutos.",
-          breatheStart: "Comenzar",
-          breatheIn: "Inhala...",
-          breatheInDesc: "Inhala profundamente por la nariz durante 4s",
-          breatheHold: "Mantén el aire...",
-          breatheHoldDesc: "Retén el aire en los pulmones durante 7s",
-          breatheOut: "Exhala...",
-          breatheOutDesc: "Exhala suavemente por la boca durante 8s",
-          breatheInitialTip: "Pulsa el botón de abajo para iniciar la guía",
-          btnStartBreathe: "Iniciar Guía de Respiración",
-          btnStopBreathe: "Detener Guía",
-          titleSheep: "Contador de Ovejas Saltarinas",
-          sheepUnit: "ovejas",
-          descSheep: "Cada toque hace saltar una suave oveja sobre la valla.",
-          sheepPrompt: "¡Pulsa el botón para soltar una ovejita!",
-          btnJumpSheep: "Saltar 1 Oveja 🐑",
-          soundboardTitle: "Mesa de Sonidos Relajantes",
-          muteAll: "Silenciar Todo",
-          soundboardDesc: "Sonidos generados por Web Audio recreando la auténtica siesta vietnamita. Combínalos a tu gusto.",
-          sounds: {
-            fan: { title: "Ventilador de aspas", desc: "El zumbido fresco de verano" },
-            rain: { title: "Lluvia sobre tejado", desc: "Gotas rítmicas reconfortantes" },
-            cicadas: { title: "Cigarros y chicharras", desc: "Nostalgia de tarde campestre" },
-            waves: { title: "Olas marinas", desc: "El vaivén infinito de la marea" },
-            purr: { title: "Ronroneo de gato", desc: "Frecuencia sanadora de 25-50Hz" },
-            clock: { title: "Tic-tac del reloj", desc: "Paz al compás de cada segundo" }
-          },
-          btnTurnOn: "Activar",
-          btnTurnOff: "Desactivar",
-          audioTip: "Consejo: ¡Ponte auriculares y combina <b>Ventilador</b> + <b>Lluvia</b> para aislarte del ruido del trabajo!",
-          passBadge: "Herramienta exclusiva de oficina",
-          passTitle: 'Generador de "Licencia Oficial de Siesta" 🎫',
-          passDesc: "¡Crea tu pase oficial de 'No Molestar' para enviarlo a tu jefe o compañeros antes de tus 20 min sagrados!",
-          lblPassName: "Nombre de quien descansa:",
-          lblPassDept: "Puesto / Departamento:",
-          lblPassReason: "Motivo justificado:",
-          lblPassTime: "Horario de siesta:",
-          lblPassUrgency: "Nivel de urgencia:",
-          btnCopyPass: "Copiar Pase (WhatsApp / Slack)",
-          ticketHeader: "LICENCIA OFICIAL DE SIESTA",
-          ticketPillDND: "NO MOLESTAR",
-          tkLblName: "Beneficiario:",
-          tkLblDept: "Departamento:",
-          tkLblTime: "Horario previsto:",
-          tkLblReason: "Motivo legítimo:",
-          tkLblUrgency: "Directriz:",
-          stampText: 'AUTORIZADO 💤<br><span class="text-[8px] font-mono">SANTUARIO INVIOLABLE</span>',
-          guestbookTitle: "Libro de Registro y Buenas Tardes",
-          guestbookOnline: "En línea",
-          checkinPlaceholderName: "Tu nombre (ej. Minh Chau, Carlos, Elena...)",
-          checkinPlaceholderMsg: "Deja un mensaje (ej. 20 min de siesta y a continuar...)",
-          btnCheckin: "Fichar Siesta 🛌",
-          scienceTitle: "La Ciencia de la Siesta",
-          sciTip1Title: "Regla de Oro de 20-30 Minutos:",
-          sciTip1Desc: "No duermas más de 30 minutos para evitar caer en fase de sueño profundo y despertar con aturdimiento.",
-          sciTip2Title: "El Secreto del 'Coffee Nap':",
-          sciTip2Desc: "Toma un café rápido y acuéstate 20 minutos. La cafeína tarda exactamente 20 min en absorberse, ¡despertarás con doble energía!",
-          sciTip3Title: "Postura en la oficina:",
-          sciTip3Desc: "Usa un cojín cervical reclinado en tu asiento y evita doblarte sobre el escritorio para cuidar tu cuello.",
-          footerWish: "— Deseándote el descanso más reconfortante y placentero.",
-          footerSub: "Multilingüe Global • Sin Publicidad • Web Audio en tiempo real",
-          dimmerNote: "Modo cuarto oscuro activado para proteger tu vista de la luz.",
-          dimmerRemaining: "Tiempo restante:",
-          dimmerStatus: "Estado:",
-          dimmerStatusVal: "Minh Châu está durmiendo plácidamente 💤",
-          dimmerExit: "Toca la pantalla para despertar ☀️",
-          toastAudioOn: "Sonidos de siesta activados",
-          toastAudioOff: "Sonido silenciado",
-          toastTimerStart: "¡Que disfrutes de una deliciosa siesta!",
-          toastTimerWake: "¡Fin de la siesta! ¡A por una tarde llena de energía! ☀️",
-          toastCopySuccess: "¡Licencia copiada! Pégala en WhatsApp o Slack.",
-          sheepRemarks: [
-            "1 ovejita blanca y esponjosa salta la cerca...",
-            "2 ovejitas saltan con ligereza...",
-            "3 ovejitas flotan suavemente en el aire...",
-            "5 ovejas... los párpados pesan gratamente...",
-            "10 ovejas... cuerpo totalmente relajado...",
-            "15 ovejas... soñando junto a Minh Châu 💤"
-          ]
-        },
-
-        fr: {
-          subTitle: "Station de Sieste en Ligne",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "Chambre Noire",
-          soundOn: "Ambiance",
-          soundOff: "En cours",
-          breeze: "Brise douce rafraîchissante",
-          moodTag: "🌸 Après-midi d'été serein",
-          quickFan: "🌀 Ventilateur:",
-          quickRain: "🌧️ Pluie:",
-          fanOn: "Actif",
-          fanOff: "Arrêt",
-          rainOn: "Pluie",
-          rainOff: "Arrêt",
-          snore: "Ron pchiit... Zzz...",
-          sanctuary: "Sanctuaire Personnel de Sieste",
-          sleepingState: "Statut: Sommeil profond",
-          heroTitle: 'Bienvenue dans le lit douillet de <span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> ☁️',
-          heroDesc: "Oubliez les délais et notifications urgentes. Accordez-vous une micro-sieste de 15 à 25 minutes avec le doux souffle du ventilateur et la pluie sur le toit pour recharger 100% de votre cerveau !",
-          chooseMood: "Choisissez votre ambiance de sieste :",
-          moods: {
-            he: "Été à la campagne",
-            mua: "Pluie sur le toit",
-            vanphong: "Micro-sieste au bureau",
-            bien: "Hamac en bord de mer"
-          },
-          btnScrollTimer: "Minuteur Sieste",
-          btnScrollPass: "Passeport Sieste",
-          timerHeader: "Minuteur Scientifique de Sieste",
-          timerStatusNotStarted: "Non démarré",
-          timerStatusReady: "Prêt",
-          timerStatusPaused: "En pause",
-          timerStatusSleeping: "Endormissement",
-          timerStatusEnded: "C'est l'heure !",
-          presetPower: "Coup de boost",
-          presetCoffee: "Coffee Nap",
-          presetNasa: "Norme NASA (+34%)",
-          presetDeep: "Récupération profonde",
-          timerReadyMsg: "Prêt pour la sieste",
-          timerSleepMsg: "Chut... faites de beaux rêves !",
-          timerWakeMsg: "Réveillez-vous en pleine forme !",
-          timerMinMsg: (m) => `Durée: ${m} min`,
-          btnStartSleep: "Commencer la Sieste",
-          btnPauseSleep: "Pause",
-          btnResumeSleep: "Reprendre",
-          btnRestartSleep: "Recommencer",
-          alarmToneLabel: "🔔 Réveil en douceur :",
-          alarmTones: {
-            chime: "Carillon de vent doux",
-            bowl: "Bol chantant tibétain",
-            birds: "Chant d'oiseaux du matin",
-            whisper: "Mélodie joyeuse de réveil"
-          },
-          testAlarm: "Écouter l'alarme",
-          titleBreathing: "Exercice de Respiration 4-7-8",
-          badgeBreathing: "Ralentit le cœur",
-          descBreathing: "Permet de calmer l'esprit et de s'endormir en moins de 2 minutes.",
-          breatheStart: "Démarrer",
-          breatheIn: "Inspirez...",
-          breatheInDesc: "Inspirez profondément par le nez pendant 4s",
-          breatheHold: "Bloquez...",
-          breatheHoldDesc: "Retenez votre souffle pendant 7 secondes",
-          breatheOut: "Expirez...",
-          breatheOutDesc: "Expirez lentement par la bouche pendant 8s",
-          breatheInitialTip: "Appuyez sur le bouton ci-dessous pour démarrer",
-          btnStartBreathe: "Démarrer la Respiration",
-          btnStopBreathe: "Arrêter l'Exercice",
-          titleSheep: "Comptage de Moutons",
-          sheepUnit: "moutons",
-          descSheep: "Chaque clic fait sauter un doux mouton par-dessus la barrière.",
-          sheepPrompt: "Cliquez pour faire sauter un mouton !",
-          btnJumpSheep: "Sauter 1 Mouton 🐑",
-          soundboardTitle: "Table d'Ambiance Apaisante",
-          muteAll: "Tout Couper",
-          soundboardDesc: "Acoustique physique synthétisée évoquant la sieste vietnamienne. Combinez les sons librement.",
-          sounds: {
-            fan: { title: "Ventilateur d'appoint", desc: "Ronronnement frais d'été" },
-            rain: { title: "Pluie sur toit de tôle", desc: "Gouttes rythmées apaisantes" },
-            cicadas: { title: "Chant des cigales", desc: "Douce nostalgie estivale" },
-            waves: { title: "Roulis des vagues", desc: "Mouvement marin régulier" },
-            purr: { title: "Ronronnement de chat", desc: "Fréquence thérapeutique 25-50Hz" },
-            clock: { title: "Tic-tac de l'horloge", desc: "Battement régulier reposant" }
-          },
-          btnTurnOn: "Allumer",
-          btnTurnOff: "Éteindre",
-          audioTip: "Astuce : Au casque, associez <b>Ventilateur</b> + <b>Pluie</b> pour masquer totalement les bruits d'open-space !",
-          passBadge: "Outil exclusif pour le bureau",
-          passTitle: 'Générateur de "Permis de Sieste" 🎫',
-          passDesc: "Créez votre laisser-passer 'Ne pas déranger' officiel à envoyer à vos collègues avant votre sieste sacrée de 20 min !",
-          lblPassName: "Nom du dormeur :",
-          lblPassDept: "Poste / Département :",
-          lblPassReason: "Motif légitime :",
-          lblPassTime: "Créneau de sieste :",
-          lblPassUrgency: "Niveau d'urgence :",
-          btnCopyPass: "Copier le Permis (Slack / Teams)",
-          ticketHeader: "PERMIS OFFICIEL DE SIESTE",
-          ticketPillDND: "NE PAS DÉRANGER",
-          tkLblName: "Bénéficiaire :",
-          tkLblDept: "Département :",
-          tkLblTime: "Créneau prévu :",
-          tkLblReason: "Motif légitime :",
-          tkLblUrgency: "Consigne :",
-          stampText: 'VALIDÉ 💤<br><span class="text-[8px] font-mono">ESPACE INVIOLABLE</span>',
-          guestbookTitle: "Livre d'Or & Petits Mots Doux",
-          guestbookOnline: "En ligne",
-          checkinPlaceholderName: "Votre nom (ex: Minh Chau, Thomas, Léa...)",
-          checkinPlaceholderMsg: "Un petit mot (ex: 20 min de sieste avant le rush...)",
-          btnCheckin: "Pointer la Sieste 🛌",
-          scienceTitle: "La Science de la Micro-Sieste",
-          sciTip1Title: "La Règle d'Or des 20-30 Min :",
-          sciTip1Desc: "Ne dépassez pas 30 minutes pour éviter l'inertie du sommeil causée par les phases d'ondes lentes.",
-          sciTip2Title: "L'Astuce de la 'Coffee Nap' :",
-          sciTip2Desc: "Buvez un café puis fermez les yeux 20 min : la caféine fait effet pile à l'heure du réveil pour doubler votre vigilance !",
-          sciTip3Title: "Ergonomie de bureau :",
-          sciTip3Desc: "Appuyez-vous au dossier avec un coussin plutôt que de poser la tête sur le clavier pour préserver vos cervicales.",
-          footerWish: "— En vous souhaitant la plus douce et réparatrice des siestes.",
-          footerSub: "Multilingue Global • Zéro Publicité • Synthèse Web Audio pure",
-          dimmerNote: "Mode chambre noire actif pour reposer vos yeux de la lumière.",
-          dimmerRemaining: "Temps restant :",
-          dimmerStatus: "Statut :",
-          dimmerStatusVal: "Minh Châu dort profondément 💤",
-          dimmerExit: "Touchez l'écran pour vous réveiller ☀️",
-          toastAudioOn: "Ambiance sonore activée",
-          toastAudioOff: "Son coupé",
-          toastTimerStart: "Bonne et douce sieste !",
-          toastTimerWake: "La sieste est finie ! Belle fin de journée ! ☀️",
-          toastCopySuccess: "Permis de sieste copié !",
-          sheepRemarks: [
-            "1 petit mouton blanc saute par-dessus la barrière...",
-            "2 moutons s'élancent avec légèreté...",
-            "3 moutons flottent comme de petits nuages...",
-            "5 moutons... les paupières deviennent bien lourdes...",
-            "10 moutons... relaxation musculaire totale...",
-            "15 moutons... endormi au pays des songes avec Minh Châu 💤"
-          ]
-        },
-
-        de: {
-          subTitle: "Online Mittagsschlaf-Station",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "Dunkelkammer",
-          soundOn: "Klangkulisse an",
-          soundOff: "Aktiv",
-          breeze: "Sanfter Sommerwind",
-          moodTag: "🌸 Ruhiger Sommernachmittag",
-          quickFan: "🌀 Ventilator:",
-          quickRain: "🌧️ Regen:",
-          fanOn: "Läuft",
-          fanOff: "Aus",
-          rainOn: "Regnet",
-          rainOff: "Aus",
-          snore: "Chrrr... zzz...",
-          sanctuary: "Persönlicher Schlafraum",
-          sleepingState: "Status: Tief im Schlummer",
-          heroTitle: 'Willkommen im Kuschelbett von <span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> ☁️',
-          heroDesc: "Schiebe Termindruck und Chatnachrichten beiseite. Gönne dir 15–25 Minuten Powernap mit sanftem Ventilatorsurren und Regenklängen zur vollkommenen Regeneration!",
-          chooseMood: "Wähle deine bevorzugte Klangkulisse:",
-          moods: {
-            he: "Sommer auf dem Land",
-            mua: "Regen auf dem Blechdach",
-            vanphong: "Büro-Powernap",
-            bien: "Hängematte am Meer"
-          },
-          btnScrollTimer: "Timer starten",
-          btnScrollPass: "Schlaf-Erlaubnis",
-          timerHeader: "Wissenschaftlicher Powernap-Timer",
-          timerStatusNotStarted: "Nicht gestartet",
-          timerStatusReady: "Bereit",
-          timerStatusPaused: "Pausiert",
-          timerStatusSleeping: "Einschlafphase",
-          timerStatusEnded: "Zeit ist um!",
-          presetPower: "Sofort-Frische",
-          presetCoffee: "Coffee Nap",
-          presetNasa: "NASA-Standard (+34%)",
-          presetDeep: "Tiefe Erholung",
-          timerReadyMsg: "Bereit für den Mittagsschlaf",
-          timerSleepMsg: "Träum schön... schlaf gut!",
-          timerWakeMsg: "Aufwachen voller Energie!",
-          timerMinMsg: (m) => `Dauer: ${m} Min`,
-          btnStartSleep: "Schlaf starten",
-          btnPauseSleep: "Pause",
-          btnResumeSleep: "Fortsetzen",
-          btnRestartSleep: "Erneut schlafen",
-          alarmToneLabel: "🔔 Aufwach-Klang:",
-          alarmTones: {
-            chime: "Sanftes Windspiel",
-            bowl: "Tibetische Klangschale",
-            birds: "Morgendlicher Vogelgesang",
-            whisper: "Fröhliche Aufwachmelodie"
-          },
-          testAlarm: "Ton testen",
-          titleBreathing: "4-7-8 Atemübung",
-          badgeBreathing: "Senkt den Puls",
-          descBreathing: "Beruhigt das vegetative Nervensystem in unter 2 Minuten.",
-          breatheStart: "Start",
-          breatheIn: "Einatmen...",
-          breatheInDesc: "4 Sekunden tief durch die Nase einatmen",
-          breatheHold: "Anhalten...",
-          breatheHoldDesc: "7 Sekunden den Atem im Brustkorb halten",
-          breatheOut: "Ausatmen...",
-          breatheOutDesc: "8 Sekunden langsam durch die Lippen ausatmen",
-          breatheInitialTip: "Klicke auf den Button, um die Anleitung zu starten",
-          btnStartBreathe: "Atemübung starten",
-          btnStopBreathe: "Atemübung stoppen",
-          titleSheep: "Schafe zählen",
-          sheepUnit: "Schafe",
-          descSheep: "Mit jedem Klick springt ein flauschiges Schaf über den Zaun.",
-          sheepPrompt: "Klicke, um ein Schaf springen zu lassen!",
-          btnJumpSheep: "1 Schaf springen lassen 🐑",
-          soundboardTitle: "Einschlaf-Klangmischer",
-          muteAll: "Alles stumm",
-          soundboardDesc: "Synthetisierte Akustik für den perfekten vietnamesischen Mittagsschlaf. Frei kombinierbar.",
-          sounds: {
-            fan: { title: "Ventilator-Surren", desc: "Beruhigendes Sommerrauschen" },
-            rain: { title: "Regen auf Blechdach", desc: "Gleichmäßige Tropfen" },
-            cicadas: { title: "Zikadengesang", desc: "Erinnerung an Sommerferien" },
-            waves: { title: "Meereswellen", desc: "Sanfter Rhythmus der Gezeiten" },
-            purr: { title: "Katzen-Schnurren", desc: "Heilsame 25-50Hz Frequenz" },
-            clock: { title: "Uhr-Ticken", desc: "Ruhiger Herzschlagrhythmus" }
-          },
-          btnTurnOn: "An",
-          btnTurnOff: "Aus",
-          audioTip: "Tipp: Kopfhörer aufsetzen und <b>Ventilator</b> + <b>Regen</b> mischen, um Bürolärm komplett auszublenden!",
-          passBadge: "Exklusives Tool für Arbeitnehmer",
-          passTitle: 'Offizieller "Mittagsschlaf-Pass" Generator 🎫',
-          passDesc: "Erstelle dir ein 'Bitte nicht stören'-Zertifikat für Chef und Kollegen vor deinen heiligen 20 Minuten!",
-          lblPassName: "Name des Schläfers:",
-          lblPassDept: "Abteilung / Rolle:",
-          lblPassReason: "Gültiger Grund:",
-          lblPassTime: "Schlafzeitfenster:",
-          lblPassUrgency: "Dringlichkeitsstufe:",
-          btnCopyPass: "Pass kopieren (Teams / Slack)",
-          ticketHeader: "OFFIZIELLER SCHLAF-PASS",
-          ticketPillDND: "BITTE NICHT STÖREN",
-          tkLblName: "Begünstigter:",
-          tkLblDept: "Abteilung:",
-          tkLblTime: "Vorgesehene Zeit:",
-          tkLblReason: "Begründung:",
-          tkLblUrgency: "Anweisung:",
-          stampText: 'GENEHMIGT 💤<br><span class="text-[8px] font-mono">UNANTASTBAR</span>',
-          guestbookTitle: "Gästebuch & Schlafgruß",
-          guestbookOnline: "Online",
-          checkinPlaceholderName: "Dein Name (z.B. Minh Châu, Lukas...)",
-          checkinPlaceholderMsg: "Nachricht hinterlassen (z.B. 20 Min schlafen, dann weiter...)",
-          btnCheckin: "Einchecken 🛌",
-          scienceTitle: "Wissenschaft des Mittagsschlafs",
-          sciTip1Title: "Die goldene 20-30 Minuten Regel:",
-          sciTip1Desc: "Nicht länger als 30 Min schlafen, um nicht in Tiefschlafphasen abzugleiten (Schlafträgheit vermeiden).",
-          sciTip2Title: "Das 'Coffee Nap' Geheimnis:",
-          sciTip2Desc: "Einen schnellen Kaffee trinken und sofort 20 Min dösen. Nach 20 Min wirkt das Koffein – doppelter Frischekick!",
-          sciTip3Title: "Ergonomie im Büro:",
-          sciTip3Desc: "Nackenstützkissen nutzen und im Stuhl anlehnen, statt den Kopf auf den Schreibtisch zu legen.",
-          footerWish: "— Wir wünschen dir die erholsamste Ruhepause.",
-          footerSub: "Weltweit mehrsprachig • Werbefrei • Echte Web Audio Synthese",
-          dimmerNote: "Dunkelkammer-Modus aktiv, um die Augen vor Licht zu schonen.",
-          dimmerRemaining: "Verbleibende Schlafzeit:",
-          dimmerStatus: "Status:",
-          dimmerStatusVal: "Minh Châu schläft selig 💤",
-          dimmerExit: "Bildschirm berühren zum Aufwachen ☀️",
-          toastAudioOn: "Schlafsound aktiviert",
-          toastAudioOff: "Alle Töne stummgeschaltet",
-          toastTimerStart: "Einen wunderbaren, erholsamen Schlaf!",
-          toastTimerWake: "Der Mittagsschlaf ist vorbei! Einen energiegeladenen Nachmittag! ☀️",
-          toastCopySuccess: "Schlaf-Pass kopiert!",
-          sheepRemarks: [
-            "1 flauschiges weißes Schaf springt über den Zaun...",
-            "2 Schafe kauen gemütlich und hüpfen herüber...",
-            "3 Schafe schweben wie Wolken durch die Luft...",
-            "5 Schafe... die Augenlider werden wunderbar schwer...",
-            "10 Schafe... alle Muskeln lassen vollkommen los...",
-            "15 Schafe... süße Träume mit Minh Châu 💤"
-          ]
-        },
-
-        ru: {
-          subTitle: "Онлайн-станция дневного сна",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "Темный экран",
-          soundOn: "Включить звуки",
-          soundOff: "Играет",
-          breeze: "Легкий ветерок",
-          moodTag: "🌸 Безмятежный летний полдень",
-          quickFan: "🌀 Вентилятор:",
-          quickRain: "🌧️ Шум дождя:",
-          fanOn: "Вкл",
-          fanOff: "Выкл",
-          rainOn: "Идет",
-          rainOff: "Выкл",
-          snore: "Хррр... zzz...",
-          sanctuary: "Уголок дневного отдыха",
-          sleepingState: "Статус: Крепкий сон",
-          heroTitle: 'Добро пожаловать в уютную постель <span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> ☁️',
-          heroDesc: "Отложите дедлайны и рабочие чаты. Вздремните 15–25 минут под мягкое гудение вентилятора и шум капель дождя, чтобы перезагрузить мозг на все 100%!",
-          chooseMood: "Выберите атмосферу для сна:",
-          moods: {
-            he: "Лето в деревне",
-            mua: "Дождь по крыше",
-            vanphong: "Сон в офисе",
-            bien: "Гамак у моря"
-          },
-          btnScrollTimer: "Таймер сна",
-          btnScrollPass: "Билет на сон",
-          timerHeader: "Научный таймер дневного сна",
-          timerStatusNotStarted: "Не начат",
-          timerStatusReady: "Готов",
-          timerStatusPaused: "Пауза",
-          timerStatusSleeping: "Засыпаем",
-          timerStatusEnded: "Время вышло!",
-          presetPower: "Быстрый заряд",
-          presetCoffee: "Coffee Nap",
-          presetNasa: "Стандарт NASA (+34%)",
-          presetDeep: "Глубокий отдых",
-          timerReadyMsg: "Готовы ко сну",
-          timerSleepMsg: "Спите сладко... приятных снов!",
-          timerWakeMsg: "Пора просыпаться бодрым!",
-          timerMinMsg: (m) => `Длительность: ${m} мин`,
-          btnStartSleep: "Лечь спать",
-          btnPauseSleep: "Пауза",
-          btnResumeSleep: "Продолжить",
-          btnRestartSleep: "Заново",
-          alarmToneLabel: "🔔 Мелодия пробуждения:",
-          alarmTones: {
-            chime: "Нежные храмовые колокольчики",
-            bowl: "Тибетская поющая чаша",
-            birds: "Утреннее пение птиц",
-            whisper: "Бодрая мелодия пробуждения"
-          },
-          testAlarm: "Слушать сигнал",
-          titleBreathing: "Дыхательная гимнастика 4-7-8",
-          badgeBreathing: "Снижает пульс",
-          descBreathing: "Помогает успокоиться и уснуть быстрее чем за 2 минуты.",
-          breatheStart: "Старт",
-          breatheIn: "Вдох...",
-          breatheInDesc: "Глубокий вдох носом на 4 счета (1... 2... 3... 4)",
-          breatheHold: "Задержка...",
-          breatheHoldDesc: "Задержите дыхание на 7 секунд",
-          breatheOut: "Выдох...",
-          breatheOutDesc: "Медленный мягкий выдох через рот на 8 секунд",
-          breatheInitialTip: "Нажмите кнопку внизу для запуска",
-          btnStartBreathe: "Начать упражнение",
-          btnStopBreathe: "Остановить",
-          titleSheep: "Счет прыгающих овечек",
-          sheepUnit: "овечек",
-          descSheep: "Каждое нажатие перебрасывает пушистую овечку через заборчик.",
-          sheepPrompt: "Нажмите, чтобы выпустить овечку!",
-          btnJumpSheep: "Прыжок 1 овечки 🐑",
-          soundboardTitle: "Звуковая станция для релакса",
-          muteAll: "Выключить все",
-          soundboardDesc: "Чистый синтез Web Audio без интернета, передающий атмосферу вьетнамского сиесты.",
-          sounds: {
-            fan: { title: "Шум вентилятора", desc: "Убаюкивающий гул летнего воздуха" },
-            rain: { title: "Дождь по жестяной крыше", desc: "Уютные мерные капли" },
-            cicadas: { title: "Стрекот цикад", desc: "Ностальгия по летнему теплу" },
-            waves: { title: "Морской прибой", desc: "Плавное качание волн" },
-            purr: { title: "Мурлыканье кота", desc: "Лечебная вибрация 25-50 Гц" },
-            clock: { title: "Тиканье часов", desc: "Мерный умиротворяющий ритм" }
-          },
-          btnTurnOn: "Вкл",
-          btnTurnOff: "Выкл",
-          audioTip: "Совет: В наушниках включите <b>Вентилятор</b> + <b>Дождь</b> для полной изоляции от офисного шума!",
-          passBadge: "Инструмент для офисных работников",
-          passTitle: 'Генератор официальной "Справки на дневной сон" 🎫',
-          passDesc: "Создайте билет 'Не беспокоить', чтобы отправить начальнику или коллегам перед священным 20-минутным сном!",
-          lblPassName: "Имя спящего:",
-          lblPassDept: "Должность / Отдел:",
-          lblPassReason: "Уважительная причина:",
-          lblPassTime: "Время сна:",
-          lblPassUrgency: "Степень важности:",
-          btnCopyPass: "Скопировать билет (Telegram / Slack)",
-          ticketHeader: "СПРАВКА НА ДНЕВНОЙ СОН",
-          ticketPillDND: "НЕ БЕСПОКОИТЬ",
-          tkLblName: "Получатель:",
-          tkLblDept: "Отдел:",
-          tkLblTime: "Время отдыха:",
-          tkLblReason: "Причина:",
-          tkLblUrgency: "Предписание:",
-          stampText: 'УТВЕРЖДЕНО 💤<br><span class="text-[8px] font-mono">НЕПРИКОСНОВЕННО</span>',
-          guestbookTitle: "Книга отметок и пожеланий",
-          guestbookOnline: "В сети",
-          checkinPlaceholderName: "Ваше имя (напр. Minh Chau, Иван...)",
-          checkinPlaceholderMsg: "Оставьте пожелание (напр. 20 минут сна перед дедлайном...)",
-          btnCheckin: "Отметиться 🛌",
-          scienceTitle: "Наука дневного сна",
-          sciTip1Title: "Золотое правило 20-30 минут:",
-          sciTip1Desc: "Не спите дольше 30 минут, чтобы не провалиться в фазу глубокого медленного сна и не чувствовать вялость.",
-          sciTip2Title: "Секрет 'Coffee Nap':",
-          sciTip2Desc: "Выпейте чашку кофе и сразу ложитесь на 20 минут. Кофеин подействует ровно к моменту пробуждения!",
-          sciTip3Title: "Поза для сна в офисе:",
-          sciTip3Desc: "Используйте подушку под шею и откиньтесь на спинку кресла. Не спите лицом на столе.",
-          footerWish: "— Желаем вам самого сладкого и освежающего сна.",
-          footerSub: "Поддержка языков мира • Без рекламы • Синтезатор Web Audio",
-          dimmerNote: "Включен темный экран, чтобы яркий свет не слепил глаза.",
-          dimmerRemaining: "Осталось спать:",
-          dimmerStatus: "Статус:",
-          dimmerStatusVal: "Minh Châu сладко спит 💤",
-          dimmerExit: "Коснитесь экрана, чтобы проснуться ☀️",
-          toastAudioOn: "Звуки сна включены",
-          toastAudioOff: "Все звуки отключены",
-          toastTimerStart: "Сладкого и восстанавливающего сна!",
-          toastTimerWake: "Время сна окончено! Бодрого продолжения дня! ☀️",
-          toastCopySuccess: "Билет на сон скопирован!",
-          sheepRemarks: [
-            "1 пушистая белая овечка перепрыгивает забор...",
-            "2 овечки мирно щиплют травку и скачут...",
-            "3 овечки плавно парят как облачка...",
-            "5 овечек... веки приятно тяжелеют...",
-            "10 овечек... тело полностью расслабляется...",
-            "15 овечек... погружение в сон вместе с Minh Châu 💤"
-          ]
-        },
-
-        th: {
-          subTitle: "เว็บนอนกลางวันออนไลน์",
-          sleepersCount: () => "Không gian yên tĩnh • Sẵn sàng nghỉ trưa",
-          dimBtn: "ห้องมืด",
-          soundOn: "เปิดเสียงกล่อม",
-          soundOff: "กำลังเล่น",
-          breeze: "ลมพัดโชยสบายๆ",
-          moodTag: "🌸 บ่ายวันฤดูร้อนอันแสนสงบ",
-          quickFan: "🌀 พัดลม:",
-          quickRain: "🌧️ เสียงฝน:",
-          fanOn: "หมุนอยู่",
-          fanOff: "ปิด",
-          rainOn: "กำลังตก",
-          rainOff: "ปิด",
-          snore: "ครอกฟี้... Zzz...",
-          sanctuary: "พื้นที่พักผ่อนส่วนตัว",
-          sleepingState: "สถานะ: กำลังหลับปุ๋ย",
-          heroTitle: 'ยินดีต้อนรับสู่เตียงนอนกลางวันของ <span class="text-cozy-500 underline decoration-cozy-300/60 underline-offset-4">Minh Châu</span> ☁️',
-          heroDesc: "พักเดดไลน์และแชตงานไว้ก่อน งีบหลับ 15-25 นาทีเคล้าเสียงพัดลมเย็นฉ่ำและเสียงฝนพรำเพื่อฟื้นฟูพลังสมอง 100%!",
-          chooseMood: "เลือกบรรยากาศที่ชอบสำหรับการงีบ:",
-          moods: {
-            he: "หน้าร้อนบ้านสวน",
-            mua: "ฝนตกกระทบหลังคา",
-            vanphong: "แอบงีบในออฟฟิศ",
-            bien: "เปลริมชายหาด"
-          },
-          btnScrollTimer: "ตั้งเวลาหลับ",
-          btnScrollPass: "ใบขอนอนกลางวัน",
-          timerHeader: "นาฬิกาตั้งเวลางีบหลับตามหลักวิทยาศาสตร์",
-          timerStatusNotStarted: "ยังไม่เริ่ม",
-          timerStatusReady: "พร้อมแล้ว",
-          timerStatusPaused: "หยุดชั่วคราว",
-          timerStatusSleeping: "กำลังเคลิ้มหลับ",
-          timerStatusEnded: "หมดเวลาแล้ว!",
-          presetPower: "ตื่นตัวทันใจ",
-          presetCoffee: "Coffee Nap",
-          presetNasa: "มาตรฐาน NASA (+34%)",
-          presetDeep: "ฟื้นฟูล้ำลึก",
-          timerReadyMsg: "พร้อมสำหรับการงีบหลับ",
-          timerSleepMsg: "ครอกฟี้... ขอให้ฝันดีนะ!",
-          timerWakeMsg: "ตื่นขึ้นมาพร้อมความสดชื่น!",
-          timerMinMsg: (m) => `ตั้งเวลา: ${m} นาที`,
-          btnStartSleep: "เริ่มนอนหลับ",
-          btnPauseSleep: "หยุดชั่วคราว",
-          btnResumeSleep: "นอนต่อ",
-          btnRestartSleep: "นอนใหม่อีกครั้ง",
-          alarmToneLabel: "🔔 เสียงนาฬิกาปลุก:",
-          alarmTones: {
-            chime: "กระดิ่งลมวัดอันสงบ",
-            bowl: "ขันธิเบตบำบัด",
-            birds: "เสียงนกร้องยามเช้า",
-            whisper: "ทำนองปลุกอันสดใส"
-          },
-          testAlarm: "ทดลองฟังเสียง",
-          titleBreathing: "ฝึกหายใจแบบ 4-7-8",
-          badgeBreathing: "ลดอัตราการเต้นหัวใจ",
-          descBreathing: "ช่วยให้ผ่อนคลายและหลับได้ภายใน 2 นาที",
-          breatheStart: "เริ่มต้น",
-          breatheIn: "หายใจเข้า...",
-          breatheInDesc: "หายใจเข้าลึกๆ ทางจมูก 4 วินาที",
-          breatheHold: "กลั้นหายใจ...",
-          breatheHoldDesc: "กลั้นหายใจไว้ 7 วินาที",
-          breatheOut: "หายใจออก...",
-          breatheOutDesc: "ค่อยๆ ผ่อนลมหายใจออกทางปาก 8 วินาที",
-          breatheInitialTip: "กดปุ่มด้านล่างเพื่อเริ่มฝึกหายใจ",
-          btnStartBreathe: "เริ่มฝึกหายใจ",
-          btnStopBreathe: "หยุดฝึกหายใจ",
-          titleSheep: "นับแกะกระโดดข้ามรั้ว",
-          sheepUnit: "ตัว",
-          descSheep: "ทุกครั้งที่กด จะมีแกะขนปุยกระโดดข้ามรั้วหนึ่งตัว",
-          sheepPrompt: "กดปุ่มเพื่อปล่อยน้องแกะกระโดด!",
-          btnJumpSheep: "กระโดด 1 ตัว 🐑",
-          soundboardTitle: "แผงควบคุมเสียงกล่อมหลับ",
-          muteAll: "ปิดเสียงทั้งหมด",
-          soundboardDesc: "จำลองคลื่นเสียงธรรมชาติสำหรับการพักผ่อนช่วงบ่ายอย่างแท้จริง ผสมผสานเสียงได้ตามใจชอบ",
-          sounds: {
-            fan: { title: "เสียงพัดลมฮึ่มๆ", desc: "ลมเย็นสบายในบ่ายวันอบอุ่น" },
-            rain: { title: "เสียงฝนตกกระทบสังกะสี", desc: "หยดน้ำสม่ำเสมอผ่อนคลายอารมณ์" },
-            cicadas: { title: "เสียงจักจั่นฤดูร้อน", desc: "ชวนคิดถึงวันวานในชนบท" },
-            waves: { title: "เสียงคลื่นทะเล", desc: "จังหวะน้ำทะเลซัดสาดแสนสงบ" },
-            purr: { title: "เสียงแมวครางเพอร์ (Purr)", desc: "คลื่นความถี่บำบัด 25-50Hz" },
-            clock: { title: "เสียงเข็มนาฬิกาเดิน", desc: "จังหวะหัวใจอันสงบและมั่นคง" }
-          },
-          btnTurnOn: "เปิด",
-          btnTurnOff: "ปิด",
-          audioTip: "เคล็ดลับ: สวมหูฟังแล้วเปิด <b>พัดลม</b> + <b>เสียงฝน</b> พร้อมกันเพื่อตัดเสียงรบกวนในออฟฟิศได้ 100%!",
-          passBadge: "เครื่องมือพิเศษสำหรับชาวออฟฟิศ",
-          passTitle: 'โปรแกรมสร้าง "ใบอนุญาตขอนอนกลางวัน" 🎫',
-          passDesc: "สร้างบัตรห้ามรบกวนอย่างเป็นทางการเพื่อส่งให้หัวหน้าหรือเพื่อนร่วมงานก่อนเข้าสู่นิทรา 20 นาทีอันศักดิ์สิทธิ์!",
-          lblPassName: "ชื่อผู้นอน:",
-          lblPassDept: "แผนก / ตำแหน่ง:",
-          lblPassReason: "เหตุผลอันสมควร:",
-          lblPassTime: "ช่วงเวลาที่นอน:",
-          lblPassUrgency: "ระดับความเร่งด่วน:",
-          btnCopyPass: "คัดลอกบัตรขอนอน (LINE / Slack)",
-          ticketHeader: "ใบอนุญาตขอนอนกลางวันอย่างเป็นทางการ",
-          ticketPillDND: "กรุณาอย่ารบกวน",
-          tkLblName: "ผู้ได้รับสิทธิ์:",
-          tkLblDept: "แผนก:",
-          tkLblTime: "เวลาที่กำหนด:",
-          tkLblReason: "เหตุผลที่ชอบธรรม:",
-          tkLblUrgency: "คำสั่ง:",
-          stampText: 'อนุมัติแล้ว 💤<br><span class="text-[8px] font-mono">เขตห้ามรบกวน</span>',
-          guestbookTitle: "สมุดลงชื่อนอนกลางวัน & คำอวยพร",
-          guestbookOnline: "ออนไลน์",
-          checkinPlaceholderName: "ชื่อของคุณ",
-          checkinPlaceholderMsg: "ฝากข้อความไว้ (เช่น ของีบ 20 นาที บ่ายนี้ลุยต่อ...)",
-          btnCheckin: "ลงชื่อนอน 🛌",
-          scienceTitle: "วิทยาศาสตร์แห่งการนอนกลางวัน",
-          sciTip1Title: "กฎทอง 20-30 นาที:",
-          sciTip1Desc: "ไม่ควรนอนเกิน 30 นาที เพื่อป้องกันไม่ให้เข้าสู่ภาวะหลับลึกซึ่งจะทำให้รู้สึกงัวเงียปวดหัวเมื่อตื่นขึ้นมา",
-          sciTip2Title: "เคล็ดลับ 'Coffee Nap':",
-          sciTip2Desc: "ดื่มกาแฟอย่างรวดเร็วแล้วหลับทันที 20 นาที คาเฟอีนจะออกฤทธิ์พอดีตอนตื่น ทำให้สดชื่นขึ้นเป็น 2 เท่า!",
-          sciTip3Title: "ท่านอนในที่ทำงาน:",
-          sciTip3Desc: "ใช้หมอนรองคอพิงพนักเก้าอี้ หลีกเลี่ยงการฟุบหน้าลงกับโต๊ะเพื่อถนอมกระดูกคอและสายตา",
-          footerWish: "— ขอให้คุณได้รับการพักผ่อนที่ผ่อนคลายและสดชื่นที่สุด",
-          footerSub: "รองรับหลายภาษาทั่วโลก • ไม่มีโฆษณา • ระบบเสียง Web Audio แท้",
-          dimmerNote: "เปิดโหมดห้องมืดแล้วเพื่อปกป้องสายตาจากแสงจ้า",
-          dimmerRemaining: "เวลาที่เหลือนอน:",
-          dimmerStatus: "สถานะ:",
-          dimmerStatusVal: "Minh Châu กำลังนอนหลับสบาย 💤",
-          dimmerExit: "แตะหน้าจอเพื่อตื่นนอน ☀️",
-          toastAudioOn: "เปิดเสียงกล่อมการนอนแล้ว",
-          toastAudioOff: "ปิดเสียงทั้งหมดแล้ว",
-          toastTimerStart: "ขอให้หลับฝันดีและพักผ่อนอย่างเต็มอิ่ม!",
-          toastTimerWake: "หมดเวลาการนอนกลางวันแล้ว! ขอให้มีช่วงบ่ายที่สดใสและมีพลัง! ☀️",
-          toastCopySuccess: "คัดลอกบัตรขอนอนแล้ว! นำไปวางในแชตได้เลย",
-          sheepRemarks: [
-            "แกะสีขาวขนปุย 1 ตัวกระโดดข้ามรั้ว...",
-            "แกะ 2 ตัวกำลังเล็มหญ้าแล้วกระโดดข้ามมา...",
-            "แกะ 3 ตัวลอยละล่องอย่างนุ่มนวล...",
-            "แกะ 5 ตัว... เปลือกตาเริ่มหนักขึ้นเรื่อยๆ...",
-            "แกะ 10 ตัว... ร่างกายผ่อนคลายอย่างสมบูรณ์...",
-            "แกะ 15 ตัว... เข้าสู่ห้วงนิทราแสนหวานพร้อมกับ Minh Châu 💤"
-          ]
-        }
-      };
-
-      // -------------------------------------------------------------
-      // 1. STATE & STORAGE WRAPPERS
-      // -------------------------------------------------------------
-      const state = {
-        lang: 'vi',
-        timerDurationSec: 15 * 60,
-        timerRemainingSec: 15 * 60,
-        timerRunning: false,
-        timerInterval: null,
-        masterAudioEnabled: false,
-        breatheInterval: null,
-        sheepCount: 0,
-        sleepersCount: 1,
-        currentAlarmTone: 'chime'
-      };
-
-      function safeStorageGet(key, fallback) {
-        try {
-          const val = localStorage.getItem(key);
-          return val !== null ? val : fallback;
-        } catch (e) {
-          return fallback;
-        }
-      }
-
-      function safeStorageSet(key, val) {
-        try {
-          localStorage.setItem(key, val);
-        } catch (e) {}
-      }
-
-      function getT() {
-        return i18n[state.lang] || i18n.vi;
-      }
-
-      function showToast(message, icon = '💤') {
-        const container = document.getElementById('toastContainer');
-        const toast = document.createElement('div');
-        toast.className = 'px-4 py-2.5 rounded-2xl bg-stone-900/90 dark:bg-cozy-900 text-white text-xs font-medium shadow-xl flex items-center space-x-2 pointer-events-auto transform transition duration-300 translate-y-2 opacity-0 border border-white/10';
-        toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
-        container.appendChild(toast);
-        
-        requestAnimationFrame(() => {
-          toast.classList.remove('translate-y-2', 'opacity-0');
-        });
-
-        setTimeout(() => {
-          toast.classList.add('opacity-0', 'translate-y-2');
-          setTimeout(() => toast.remove(), 400);
-        }, 3200);
-      }
-
-      // -------------------------------------------------------------
-      // 2. I18N UPDATE FUNCTION (FULL APP TEXT UPDATE)
-      // -------------------------------------------------------------
-      function updateLanguage(newLang) {
-        if (!i18n[newLang]) newLang = 'vi';
-        state.lang = newLang;
-        safeStorageSet('lang', newLang);
-
-        const t = getT();
-        document.documentElement.lang = newLang;
-
-        // Top bar
-        document.getElementById('badgeSubTitle').textContent = t.subTitle;
-        document.getElementById('liveSleepersText').textContent = t.sleepersCount(state.sleepersCount);
-        document.getElementById('btnDimLabel').textContent = t.dimBtn;
-        document.getElementById('audioLabel').textContent = state.masterAudioEnabled ? t.soundOff : t.soundOn;
-
-        // Hero
-        document.getElementById('badgeBreeze').textContent = t.breeze;
-        document.getElementById('quickFanLabel').textContent = t.quickFan;
-        document.getElementById('quickRainLabel').textContent = t.quickRain;
-        document.getElementById('quickFanState').textContent = soundChannels.fan.active ? t.fanOn : t.fanOff;
-        document.getElementById('quickRainState').textContent = soundChannels.rain.active ? t.rainOn : t.rainOff;
-        document.getElementById('snoreText').textContent = `"${t.snore}"`;
-        document.getElementById('labelSanctuary').textContent = t.sanctuary;
-        document.getElementById('labelSleepingState').textContent = t.sleepingState;
-        document.getElementById('heroTitle').innerHTML = t.heroTitle;
-        document.getElementById('heroDesc').textContent = t.heroDesc;
-        document.getElementById('labelChooseMood').textContent = t.chooseMood;
-        document.getElementById('moodHeText').textContent = t.moods.he;
-        document.getElementById('moodMuaText').textContent = t.moods.mua;
-        document.getElementById('moodVanphongText').textContent = t.moods.vanphong;
-        document.getElementById('moodBienText').textContent = t.moods.bien;
-        document.getElementById('btnScrollTimerText').textContent = t.btnScrollTimer;
-        document.getElementById('btnScrollPassText').textContent = t.btnScrollPass;
-
-        // Timer
-        document.getElementById('timerHeader').textContent = t.timerHeader;
-        if (!state.timerRunning) {
-          document.getElementById('timerStatusPill').textContent = t.timerStatusReady;
-          document.getElementById('timerPlayText').textContent = t.btnStartSleep;
-        } else {
-          document.getElementById('timerStatusPill').textContent = t.timerStatusSleeping;
-          document.getElementById('timerPlayText').textContent = t.btnPauseSleep;
-        }
-        document.getElementById('descPowerNap').textContent = t.presetPower;
-        document.getElementById('descCoffeeNap').textContent = t.presetCoffee;
-        document.getElementById('descNasaNap').textContent = t.presetNasa;
-        document.getElementById('descDeepNap').textContent = t.presetDeep;
-        document.getElementById('labelAlarmTone').textContent = t.alarmToneLabel;
-        document.getElementById('btnTestAlarm').textContent = t.testAlarm;
-
-        // Update Alarm select options text
-        const select = document.getElementById('alarmToneSelect');
-        if (select) {
-          Array.from(select.options).forEach(opt => {
-            if (t.alarmTones[opt.value]) {
-              opt.textContent = t.alarmTones[opt.value];
-            }
-          });
-        }
-
-        // Breathing & Sheep
-        document.getElementById('titleBreathing').textContent = t.titleBreathing;
-        document.getElementById('badgeBreathing').textContent = t.badgeBreathing;
-        document.getElementById('descBreathing').textContent = t.descBreathing;
-        document.getElementById('btnToggleBreathe').textContent = breathingActive ? t.btnStopBreathe : t.btnStartBreathe;
-        document.getElementById('titleSheep').textContent = t.titleSheep;
-        document.getElementById('sheepCounterBadge').textContent = `${state.sheepCount} ${t.sheepUnit}`;
-        document.getElementById('descSheep').textContent = t.descSheep;
-        document.getElementById('btnAddSheepText').textContent = t.btnJumpSheep;
-
-        // Soundboard
-        document.getElementById('titleSoundboard').textContent = t.soundboardTitle;
-        document.getElementById('btnMuteAllSounds').textContent = t.muteAll;
-        document.getElementById('descSoundboard').textContent = t.soundboardDesc;
-        document.getElementById('audioTipText').innerHTML = t.audioTip;
-
-        for (let chKey in t.sounds) {
-          const capKey = chKey.charAt(0).toUpperCase() + chKey.slice(1);
-          const tEl = document.getElementById(`ch${capKey}Title`);
-          const dEl = document.getElementById(`ch${capKey}Desc`);
-          if (tEl) tEl.textContent = t.sounds[chKey].title;
-          if (dEl) dEl.textContent = t.sounds[chKey].desc;
-
-          const card = document.querySelector(`.sound-card[data-channel="${chKey}"]`);
-          if (card) {
-            const toggle = card.querySelector('.channel-toggle');
-            if (toggle) {
-              toggle.textContent = soundChannels[chKey].active ? t.btnTurnOff : t.btnTurnOn;
-            }
-          }
-        }
-
-        // Nap pass
-        document.getElementById('passBadgeSub').textContent = t.passBadge;
-        document.getElementById('passSectionTitle').textContent = t.passTitle;
-        document.getElementById('passSectionDesc').textContent = t.passDesc;
-        document.getElementById('lblPassName').textContent = t.lblPassName;
-        document.getElementById('lblPassDept').textContent = t.lblPassDept;
-        document.getElementById('lblPassReason').textContent = t.lblPassReason;
-        document.getElementById('lblPassTime').textContent = t.lblPassTime;
-        document.getElementById('lblPassUrgency').textContent = t.lblPassUrgency;
-        document.getElementById('btnCopyPassLabel').textContent = t.btnCopyPass;
-        document.getElementById('ticketBadgeTop').textContent = "OFFICIAL NAP PASS";
-        document.getElementById('ticketMainTitle').textContent = t.ticketHeader;
-        document.getElementById('ticketPillDND').textContent = t.ticketPillDND;
-        document.getElementById('tkLblName').textContent = t.tkLblName;
-        document.getElementById('tkLblDept').textContent = t.tkLblDept;
-        document.getElementById('tkLblTime').textContent = t.tkLblTime;
-        document.getElementById('tkLblReason').textContent = t.tkLblReason;
-        document.getElementById('tkLblUrgency').textContent = t.tkLblUrgency;
-        document.getElementById('ticketStamp').innerHTML = t.stampText;
-
-        // Guestbook
-        document.getElementById('guestbookTitle').textContent = t.guestbookTitle;
-        document.getElementById('guestbookOnline').textContent = t.guestbookOnline;
-        document.getElementById('checkinNameInput').placeholder = t.checkinPlaceholderName;
-        document.getElementById('checkinMessageInput').placeholder = t.checkinPlaceholderMsg;
-        document.getElementById('btnCheckinText').textContent = t.btnCheckin;
-
-        // Science
-        document.getElementById('scienceTitle').textContent = t.scienceTitle;
-        document.getElementById('sciTip1Title').querySelector('span:last-child').textContent = t.sciTip1Title;
-        document.getElementById('sciTip1Desc').innerHTML = t.sciTip1Desc;
-        document.getElementById('sciTip2Title').querySelector('span:last-child').textContent = t.sciTip2Title;
-        document.getElementById('sciTip2Desc').innerHTML = t.sciTip2Desc;
-        document.getElementById('sciTip3Title').querySelector('span:last-child').textContent = t.sciTip3Title;
-        document.getElementById('sciTip3Desc').innerHTML = t.sciTip3Desc;
-
-        // Footer & Dimmer
-        document.getElementById('footerWish').textContent = t.footerWish;
-        document.getElementById('footerSub').innerHTML = t.footerSub;
-        document.getElementById('dimmerNote').textContent = t.dimmerNote;
-        document.getElementById('dimmerLblRemaining').textContent = t.dimmerRemaining;
-        document.getElementById('dimmerLblStatus').textContent = t.dimmerStatus;
-        document.getElementById('dimmerStatusVal').textContent = t.dimmerStatusVal;
-        document.getElementById('btnExitDimmer').textContent = t.dimmerExit;
-
-        // Language selector value sync
-        const lSelect = document.getElementById('langSelect');
-        if (lSelect && lSelect.value !== newLang) {
-          lSelect.value = newLang;
-        }
-
-        updateTimerDisplay();
-      }
-
-      // -------------------------------------------------------------
-      // 3. WEB AUDIO AMBIENT SYNTHESIZER
-      // -------------------------------------------------------------
-      let audioCtx = null;
-
-      function initAudioContext() {
-        if (!audioCtx) {
-          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-          if (AudioContextClass) {
-            audioCtx = new AudioContextClass();
-          }
-        }
-        if (audioCtx && audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-      }
-
-      let masterGainNode = null;
-
-      function getMasterGain() {
-        if (!audioCtx) initAudioContext();
-        if (!masterGainNode && audioCtx) {
-          masterGainNode = audioCtx.createGain();
-          masterGainNode.gain.setValueAtTime(state.masterAudioEnabled ? 1.0 : 0.0, audioCtx.currentTime);
-          masterGainNode.connect(audioCtx.destination);
-        }
-        return masterGainNode;
-      }
-
-      function createNoiseBuffer(seconds = 3) {
-        if (!audioCtx) return null;
-        const bufferSize = audioCtx.sampleRate * seconds;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = Math.random() * 2 - 1;
-        }
-        return buffer;
-      }
-
-      const soundChannels = {
-        fan: {
+            clock: {
           active: false,
-          volume: 0.7,
+          volume: 0.35,
+          timerId: null,
+          start: function() {
+            if (!audioCtx) return;
+            const playTick = () => {
+              if (!this.active || !audioCtx) return;
+              const osc = audioCtx.createOscillator();
+              const gain = audioCtx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
+              gain.gain.setValueAtTime(this.volume * 0.12, audioCtx.currentTime);
+              gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+              osc.connect(gain);
+              gain.connect(getMasterGain());
+              osc.start();
+              osc.stop(audioCtx.currentTime + 0.05);
+            };
+            this.timerId = setInterval(playTick, 1000);
+          },
+          stop: function() {
+            if (this.timerId) {
+              clearInterval(this.timerId);
+              this.timerId = null;
+            }
+          },
+          setVol: function(v) {
+            this.volume = v;
+          }
+        },
+
+        winter_wind: {
+          active: false,
+          volume: 0.6,
           nodes: null,
           start: function() {
             if (!audioCtx) return;
             const noise = audioCtx.createBufferSource();
-            noise.buffer = createNoiseBuffer(4);
+            noise.buffer = createNoiseBuffer(5);
             noise.loop = true;
 
             const filter = audioCtx.createBiquadFilter();
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(450, audioCtx.currentTime);
-
-            const osc = audioCtx.createOscillator();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(62, audioCtx.currentTime);
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(380, audioCtx.currentTime);
+            filter.Q.setValueAtTime(3.5, audioCtx.currentTime);
 
             const lfo = audioCtx.createOscillator();
             lfo.type = 'sine';
-            lfo.frequency.setValueAtTime(4.2, audioCtx.currentTime);
+            lfo.frequency.setValueAtTime(0.18, audioCtx.currentTime);
             const lfoGain = audioCtx.createGain();
-            lfoGain.gain.setValueAtTime(15, audioCtx.currentTime);
+            lfoGain.gain.setValueAtTime(220, audioCtx.currentTime);
             lfo.connect(filter.frequency);
 
-            const gain = audioCtx.createGain();
-            gain.gain.setValueAtTime(this.volume * 0.35, audioCtx.currentTime);
-
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(55, audioCtx.currentTime);
             const oscGain = audioCtx.createGain();
-            oscGain.gain.setValueAtTime(this.volume * 0.12, audioCtx.currentTime);
+            oscGain.gain.setValueAtTime(this.volume * 0.15, audioCtx.currentTime);
+
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(this.volume * 0.45, audioCtx.currentTime);
 
             noise.connect(filter);
             filter.connect(gain);
@@ -2801,11 +1417,12 @@
           setVol: function(v) {
             this.volume = v;
             if (this.nodes && audioCtx) {
-              this.nodes.gain.gain.setValueAtTime(v * 0.35, audioCtx.currentTime);
-              this.nodes.oscGain.gain.setValueAtTime(v * 0.12, audioCtx.currentTime);
+              this.nodes.gain.gain.setValueAtTime(v * 0.45, audioCtx.currentTime);
+              this.nodes.oscGain.gain.setValueAtTime(v * 0.15, audioCtx.currentTime);
             }
           }
-        },
+        }
+      };
 
         rain: {
           active: false,
@@ -3585,6 +2202,10 @@
         } else if (mood === 'bien') {
           badge.textContent = `🌊 ${t.moods.bien}`;
           toggleChannel('waves', true);
+        } else if (mood === 'ngudong') {
+          badge.textContent = `❄️ Ngủ đông ấm áp`;
+          toggleChannel('winter_wind', true);
+          toggleChannel('purr', true);
         }
         showToast(badge.textContent, '🎨');
       }
@@ -3816,10 +2437,10 @@
             const rSleepers = card.dataset.sleepers;
             const rDesc = card.dataset.desc;
 
-            document.getElementById('headerRoomLabel').textContent = `${rName} (${rSleepers}/100)`;
+            document.getElementById('headerRoomLabel').textContent = rName;
             document.getElementById('activeRoomBadgeTitle').textContent = `${rName} (${rDesc.split(':')[0]})`;
             document.getElementById('activeRoomDescText').textContent = rDesc;
-            document.getElementById('roomSleepersOnline').textContent = rSleepers;
+            const rOnlineEl = document.getElementById('roomSleepersOnline'); if (rOnlineEl && rSleepers) rOnlineEl.textContent = rSleepers;
 
             document.querySelectorAll('.room-select-card').forEach(c => {
               if (c.dataset.roomId === rId) {
@@ -3836,7 +2457,7 @@
           });
         });
 
-        // 7. Donate modal controls
+        // 7. Donate modal controls (MoMo real integration)
         const donateModal = document.getElementById('donateModal');
         function openDonateModal() {
           donateModal.classList.remove('opacity-0', 'pointer-events-none');
@@ -3848,25 +2469,46 @@
         }
         document.getElementById('btnOpenDonateModal').addEventListener('click', openDonateModal);
         document.getElementById('btnCloseDonateModal').addEventListener('click', closeDonateModal);
+        const btnCloseModalBottom = document.getElementById('btnCloseModalBottom');
+        if (btnCloseModalBottom) btnCloseModalBottom.addEventListener('click', closeDonateModal);
+
         donateModal.addEventListener('click', (e) => {
           if (e.target.id === 'donateModal') closeDonateModal();
         });
 
+        // Copy MoMo phone number
+        const btnCopyPhone = document.getElementById('btnCopyPhoneQuick');
+        const copyPhoneText = document.getElementById('copyPhoneText');
+        if (btnCopyPhone) {
+          btnCopyPhone.addEventListener('click', () => {
+            navigator.clipboard.writeText('0793869600').then(() => {
+              if (copyPhoneText) copyPhoneText.textContent = 'Đã copy!';
+              showToast('Đã sao chép SĐT MoMo: 0793869600 📋', '💖');
+              setTimeout(() => {
+                if (copyPhoneText) copyPhoneText.textContent = 'Sao chép';
+              }, 2500);
+            }).catch(() => {
+              showToast('SĐT MoMo: 0793869600', '📱');
+            });
+          });
+        }
+
+        // Donate tiers selector
         document.querySelectorAll('.donate-tier').forEach(tier => {
           tier.addEventListener('click', () => {
             document.querySelectorAll('.donate-tier').forEach(t => {
-              t.classList.remove('border-amber-500', 'bg-amber-50');
-              t.classList.add('border-stone-200');
+              t.classList.remove('border-[#A50064]', 'bg-pink-50', 'dark:bg-[#A50064]/20');
+              t.classList.add('border-stone-200', 'dark:border-stone-700');
             });
-            tier.classList.add('border-amber-500', 'bg-amber-50');
-            tier.classList.remove('border-stone-200');
-            showToast(`Đã chọn mức ủng hộ: ${tier.dataset.amount} (${tier.dataset.item})`, '🍵');
+            tier.classList.add('border-[#A50064]', 'bg-pink-50', 'dark:bg-[#A50064]/20');
+            tier.classList.remove('border-stone-200', 'dark:border-stone-700');
+            const amt = tier.dataset.amount;
+            const noteEl = document.getElementById('transferNoteText');
+            if (noteEl) {
+              noteEl.textContent = `Ung ho Minh Chau (${amt})`;
+            }
+            showToast(`Đã chọn mức: ${amt} ☕ Cảm ơn tấm lòng của bạn!`, '💖');
           });
-        });
-
-        document.getElementById('btnSendVirtualDonation').addEventListener('click', () => {
-          closeDonateModal();
-          showToast('Cảm ơn tấm lòng của bạn đã tiếp sức cho viện ngủ trưa! 💖', '🍵');
         });
 
         // Initialize displays and apply language
