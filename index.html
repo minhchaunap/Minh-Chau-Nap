@@ -178,18 +178,7 @@
       </div>
     </div>
 
-    <!-- 2. HÀNG CÀI ĐẶT GIỜ & CÀI ĐẶT NGÀY (MÀU XANH BIỂN) -->
-    <div class="grid grid-cols-2 gap-3 pt-0.5">
-      <button id="btnOpenTimeModal" class="btn-ocean py-2.5 px-4 rounded-full text-center font-display font-bold text-xs sm:text-sm flex items-center justify-center space-x-2">
-        <span>⏰</span>
-        <span data-i18n="setTimeBtn">Cài đặt giờ</span>
-      </button>
-
-      <button id="btnOpenDateModal" class="btn-ocean py-2.5 px-4 rounded-full text-center font-display font-bold text-xs sm:text-sm flex items-center justify-center space-x-2">
-        <span>📅</span>
-        <span data-i18n="setDateBtn">Cài đặt ngày</span>
-      </button>
-    </div>
+    <!-- 2. HÀNG CÀI ĐẶT GIỜ & CÀI ĐẶT NGÀY ĐÃ ĐƯỢC DI CHUYỂN VÀO Ô THỜI GIAN THEO HÌNH VẼ TAY -->
 
     <!-- 3. KHỐI 1: ÂM BÁO THỨC DẬY (CÓ DẤU TÍCH CHỌN CHẾ ĐỘ RÕ RÀNG) -->
     <div class="p-3.5 rounded-2xl bg-sky-50/70 border border-sky-200 space-y-2">
@@ -243,13 +232,19 @@
       </div>
 
       <div class="grid grid-cols-2 gap-3 items-stretch">
-        <!-- Cột 1: Trạng thái âm thanh thư giãn -->
-        <div class="p-3 rounded-2xl bg-white border border-sky-200 flex flex-col justify-center space-y-1">
+        <!-- Cột 1: Trạng thái âm thanh & NÚT CHỌN ÂM THANH ▼ THEO HÌNH VẼ 12395.jpg -->
+        <div class="p-3 rounded-2xl bg-white border border-sky-200 flex flex-col justify-center space-y-2">
           <div class="flex items-center space-x-1.5 text-sky-800 font-bold text-xs">
             <span>🎵</span>
             <span data-i18n="relaxSoundHeader">Âm thanh thư giãn</span>
           </div>
           <span class="text-[11px] font-extrabold text-slate-600 truncate" id="activeSoundIndicator">Đã tắt âm thanh</span>
+
+          <!-- TẠO "NÚT CHỌN ÂM THANH ▼" -->
+          <button id="btnOpenSoundPickerModal" class="w-full py-2 px-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition">
+            <span>🎵</span>
+            <span>Chọn âm thanh ▼</span>
+          </button>
         </div>
 
         <!-- Cột 2: Chọn chế độ tắt -->
@@ -278,48 +273,7 @@
         </div>
       </div>
 
-      <!-- 6 Nút âm thanh: Mưa nhẹ, Suối chảy, Piano, Sóng biển, Đếm cừu, Tải lên -->
-      <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 pt-1">
-        <button class="btn-ocean-sound py-2.5 px-1 text-center font-bold text-xs flex flex-col items-center justify-center" data-sound="rain">
-          <span class="text-lg">🌧️</span>
-          <span class="mt-0.5 leading-tight text-[11px]" data-i18n="sndRain">Mưa nhẹ</span>
-        </button>
-
-        <button class="btn-ocean-sound py-2.5 px-1 text-center font-bold text-xs flex flex-col items-center justify-center" data-sound="stream">
-          <span class="text-lg">🍃</span>
-          <span class="mt-0.5 leading-tight text-[11px]" data-i18n="sndStream">Suối chảy</span>
-        </button>
-
-        <button class="btn-ocean-sound py-2.5 px-1 text-center font-bold text-xs flex flex-col items-center justify-center" data-sound="piano">
-          <span class="text-lg">🎹</span>
-          <span class="mt-0.5 leading-tight text-[11px]" data-i18n="sndPiano">Piano</span>
-        </button>
-
-        <button class="btn-ocean-sound py-2.5 px-1 text-center font-bold text-xs flex flex-col items-center justify-center" data-sound="waves">
-          <span class="text-lg">🌊</span>
-          <span class="mt-0.5 leading-tight text-[11px]" data-i18n="sndWaves">Sóng biển</span>
-        </button>
-
-        <button class="btn-ocean-sound py-2.5 px-1 text-center font-bold text-xs flex flex-col items-center justify-center" id="btnToggleSheepCounter">
-          <span class="text-lg">🐑</span>
-          <span class="mt-0.5 leading-tight text-[11px]" data-i18n="sndSheep">Đếm Cừu</span>
-        </button>
-
-        <label for="customAudioUpload" class="btn-ocean-sound py-2.5 px-1 text-center font-bold text-xs flex flex-col items-center justify-center cursor-pointer">
-          <span class="text-lg">📁</span>
-          <span class="mt-0.5 leading-tight text-[11px]" data-i18n="sndUpload">Tải lên</span>
-          <input type="file" id="customAudioUpload" accept="audio/*" class="hidden">
-        </label>
-      </div>
-
-      <!-- Thanh đếm cừu khi đang chạy -->
-      <div id="sheepCountLiveBar" class="hidden p-2 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-between text-xs">
-        <div class="flex items-center space-x-2">
-          <span class="text-lg animate-bounce">🐑</span>
-          <span class="font-extrabold text-indigo-900" id="sheepCountLiveText">Đang đếm: 1 con cừu...</span>
-        </div>
-        <button id="btnStopSheepFast" class="px-2 py-0.5 rounded-lg bg-indigo-200 text-indigo-800 font-bold text-[10px]" data-i18n="stopCountingBtn">Dừng đếm</button>
-      </div>
+      <!-- 6 NÚT ÂM THANH ĐÃ CHO VÀO BÊN TRONG MODAL THEO HÌNH VẼ 12395.jpg -->
     </div>
 
     <!-- 5. THỜI GIAN NGỦ: 2 CỘT RÕ RÀNG -->
@@ -350,6 +304,19 @@
             <span>🛏️</span>
             <span data-i18n="selectBedBtn">Chọn giường ▼</span>
           </button>
+
+          <!-- 1b. DI CHUYỂN: CÀI ĐẶT GIỜ VÀ CÀI ĐẶT NGÀY VÀO Ô THỜI GIAN PHÍA DƯỚI NÚT CHỌN GIƯỜNG THEO HÌNH VẼ 12395.jpg -->
+          <div class="grid grid-cols-2 gap-2 mt-2">
+            <button id="btnOpenTimeModal" class="btn-ocean py-2 px-2.5 rounded-xl text-center font-display font-bold text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition">
+              <span>⏰</span>
+              <span data-i18n="setTimeBtn">Cài đặt giờ</span>
+            </button>
+
+            <button id="btnOpenDateModal" class="btn-ocean py-2 px-2.5 rounded-xl text-center font-display font-bold text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition">
+              <span>📅</span>
+              <span data-i18n="setDateBtn">Cài đặt ngày</span>
+            </button>
+          </div>
         </div>
 
         <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
@@ -641,6 +608,75 @@
       <button id="btnDoneSelectBedHub" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
         Đóng lại
       </button>
+    </div>
+  </div>
+
+    <!-- MODAL CHỌN ÂM THANH (CHO 6 ÂM THANH VÀO BÊN TRONG THEO HÌNH VẼ 12395.jpg) -->
+  <div id="soundPickerModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3.5 border border-sky-300 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div class="flex items-center space-x-2">
+          <span class="text-xl">🎵</span>
+          <h3 class="text-base font-extrabold text-slate-900 font-display">Chọn Âm Thanh Thư Giãn</h3>
+        </div>
+        <button id="btnCloseSoundPicker" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-600 font-medium">
+        Chọn âm thanh dịu êm để chìm vào giấc ngủ ngon:
+      </p>
+
+      <!-- 6 TÙY CHỌN ÂM THANH THEO HÌNH VẼ 12395.jpg: 1.Mưa nhẹ, 2.Suối chảy, 3.Piano, 4.Sóng biển, 5.Đếm cừu, 6.Tải lên -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
+          <span class="text-xl">🌧️</span>
+          <span>1. Mưa nhẹ</span>
+        </button>
+
+        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
+          <span class="text-xl">🍃</span>
+          <span>2. Suối chảy</span>
+        </button>
+
+        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
+          <span class="text-xl">🎹</span>
+          <span>3. Piano</span>
+        </button>
+
+        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
+          <span class="text-xl">🌊</span>
+          <span>4. Sóng biển</span>
+        </button>
+
+        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" id="btnToggleSheepCounterModal">
+          <span class="text-xl">🐑</span>
+          <span>5. Đếm Cừu</span>
+        </button>
+
+        <label for="customAudioUploadModal" class="p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
+          <span class="text-xl">📁</span>
+          <span>6. Tải lên</span>
+          <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
+        </label>
+      </div>
+
+      <!-- Hoạt cảnh cừu nhảy qua rào khi đếm cừu -->
+      <div id="sheepCountLiveBar" class="hidden p-2 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-between text-xs mt-2">
+        <div class="flex items-center space-x-2">
+          <span class="text-lg animate-bounce">🐑</span>
+          <span class="font-extrabold text-indigo-900" id="sheepCountLiveText">Đang đếm: 1 con cừu...</span>
+        </div>
+        <button id="btnStopSheepFast" class="px-2 py-0.5 rounded-lg bg-indigo-200 text-indigo-800 font-bold text-[10px]">Dừng đếm</button>
+      </div>
+
+      <div class="flex items-center space-x-2 pt-1">
+        <button id="btnTurnOffSoundInside" class="w-1/2 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+          Tắt âm thanh
+        </button>
+        <button id="btnDoneSoundPicker" class="w-1/2 py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs transition shadow-sm">
+          Xác nhận đóng
+        </button>
+      </div>
     </div>
   </div>
 
@@ -2129,7 +2165,7 @@
         });
       });
 
-      document.getElementById('btnToggleSheepCounter').addEventListener('click', toggleSheepCounter);
+      if (document.getElementById('btnToggleSheepCounter')) document.getElementById('btnToggleSheepCounter').addEventListener('click', toggleSheepCounter);
       document.getElementById('btnStopSheepFast').addEventListener('click', toggleSheepCounter);
 
       if (document.getElementById('btnStopRelaxingDirect')) document.getElementById('btnStopRelaxingDirect').addEventListener('click', () => {
@@ -2379,7 +2415,7 @@
       });
 
       // Custom File upload
-      document.getElementById('customAudioUpload').addEventListener('change', (e) => {
+      if (document.getElementById('customAudioUpload')) document.getElementById('customAudioUpload').addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
           if (uploadedCustomAudio) uploadedCustomAudio.pause();
