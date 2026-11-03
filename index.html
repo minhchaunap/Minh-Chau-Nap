@@ -202,7 +202,7 @@
           <!-- Chế độ 1: Tắt khi bấm -->
           <div id="alarmModeClickRow" class="p-2 rounded-xl bg-white border border-sky-300 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
             <div class="flex items-center space-x-2">
-              <div id="checkAlarmClick" class="custom-check-box unchecked"></div>
+              <div id="checkAlarmClick" class="custom-check-box checked">✓</div>
               <span class="text-xs font-bold text-slate-800" data-i18n="stopOnClick1">Tắt khi bấm</span>
             </div>
             <button id="btnStopAlarmDirect" class="px-2 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-800 font-extrabold hover:bg-sky-200 active:scale-95 transition" data-i18n="stopDirectBtn1">
@@ -213,10 +213,10 @@
           <!-- Chế độ 2: Tắt sau 15 phút reo -->
           <div id="alarmMode15MinRow" class="p-2 rounded-xl bg-white border border-sky-200 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
             <div class="flex items-center space-x-2">
-              <div id="checkAlarm15Min" class="custom-check-box checked">✓</div>
+              <div id="checkAlarm15Min" class="custom-check-box unchecked"></div>
               <span class="text-xs font-bold text-slate-800" data-i18n="stopAfter15m">Tắt sau 15 phút</span>
             </div>
-            <span class="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200" data-i18n="badgeAuto">
+            <span class="text-[9px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded-md border border-slate-200" data-i18n="badgeAuto">
               Tự động
             </span>
           </div>
@@ -252,7 +252,7 @@
           <!-- Chế độ 1: Tắt khi bấm -->
           <div id="soundModeClickRow" class="p-2 rounded-xl bg-white border border-sky-300 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
             <div class="flex items-center space-x-2">
-              <div id="checkSoundClick" class="custom-check-box unchecked"></div>
+              <div id="checkSoundClick" class="custom-check-box checked">✓</div>
               <span class="text-xs font-bold text-slate-800" data-i18n="stopOnClick2">Tắt khi bấm</span>
             </div>
             <span class="px-2 py-0.5 rounded-md bg-slate-100 text-[10px] text-slate-600 font-bold" data-i18n="badgeManual">
@@ -263,10 +263,10 @@
           <!-- Chế độ 2: Tắt khi hết thời gian -->
           <div id="soundModeTimerRow" class="p-2 rounded-xl bg-white border border-sky-200 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
             <div class="flex items-center space-x-2">
-              <div id="checkSoundTimer" class="custom-check-box checked">✓</div>
+              <div id="checkSoundTimer" class="custom-check-box unchecked"></div>
               <span class="text-xs font-bold text-slate-800" data-i18n="stopOnTimer">Tắt khi hết giờ</span>
             </div>
-            <span class="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200" data-i18n="badgeAuto">
+            <span class="text-[9px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded-md border border-slate-200" data-i18n="badgeAuto">
               Tự động
             </span>
           </div>
@@ -278,7 +278,7 @@
 
     <!-- 5. THỜI GIAN NGỦ: 2 CỘT RÕ RÀNG -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-sky-50/60 border border-sky-200 shadow-inner">
-      <!-- CỘT 1: NGÀY GIỜ NĂM THEO THỜI GIAN THỰC -->
+      <!-- CỘT 1: NGÀY GIỜ NĂM THEO THỜI GIAN THỰC & CÔNG TẮC GIỮ SÁNG MÀN HÌNH (YÊU CẦU 2) -->
       <div class="flex flex-col justify-center p-3 rounded-xl bg-white border border-sky-100 space-y-1">
         <div class="flex items-center space-x-1.5 text-sky-600">
           <span class="text-sm">🌐</span>
@@ -290,6 +290,12 @@
         <div class="text-xs font-bold text-slate-600" id="realDateText">
           Thứ hai, 03/11/2026
         </div>
+
+        <!-- CÔNG TẮC GIỮ SÁNG MÀN HÌNH (KHÔNG BAO GIỜ BỊ TẮT KHI NGỦ) -->
+        <button id="btnToggleWakeLock" class="mt-1.5 w-full py-1.5 px-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 flex items-center justify-center space-x-1.5 transition active:scale-95 text-xs font-bold shadow-xs" title="Chống tắt màn hình khi ngủ">
+          <span id="wakeLockIcon">🔆</span>
+          <span id="wakeLockLabel">Sáng màn hình: BẬT</span>
+        </button>
       </div>
 
       <!-- CỘT 2: THỜI GIAN NGỦ (KHI SETUP XONG MỚI NHẢY) -->
@@ -673,10 +679,19 @@
           <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
         </label>
 
-        <!-- 7. Sóng não (Vị trí 7, nằm sau 6. Tải lên theo đúng yêu cầu) -->
-        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95 col-span-2" data-sound="delta_432hz">
+        <!-- 7. Sóng não (Vị trí 7) -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="delta_432hz">
           <span class="text-xl">🌌</span>
-          <span>7. Sóng não (432Hz / Delta)</span>
+          <span>7. Sóng não (432Hz)</span>
+        </button>
+
+        <!-- 8. ĐÀN DU DƯƠNG (TRẦM BỔNG THEO YÊU CẦU 4) -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2 transition active:scale-95 shadow-xs" data-sound="dan_du_duong">
+          <span class="text-xl">🪕</span>
+          <div class="text-left">
+            <div>8. Đàn Du Dương</div>
+            <div class="text-[9px] text-amber-700 font-normal">Trầm bổng êm ái</div>
+          </div>
         </button>
       </div>
 
@@ -731,6 +746,12 @@
           <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="120">
             <span>⚡</span>
             <span>4. Ngủ 2 giờ</span>
+          </button>
+
+          <!-- 5. CHẾ ĐỘ NGỦ 24/7 (VÔ TẬN - KHÔNG BAO GIỜ TẮT THEO YÊU CẦU 1) -->
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-purple-400 bg-purple-50 hover:bg-purple-100 text-purple-950 font-black flex items-center justify-center space-x-2 shadow-xs active:scale-95 transition col-span-2" data-minutes="infinite">
+            <span class="text-lg">♾️</span>
+            <span>5. Ngủ 24/7 (Vô tận - Không báo thức)</span>
           </button>
         </div>
       </div>
@@ -1181,10 +1202,10 @@
     let chosenTeaName = null;
     let isSleepTimerRunning = false;
 
-    let modeAlarmClick = false;
-    let modeAlarm15Min = true;
-    let modeSoundClick = false;
-    let modeSoundTimer = true;
+    let modeAlarmClick = true;
+    let modeAlarm15Min = false;
+    let modeSoundClick = true;
+    let modeSoundTimer = false;
 
     let currentUser = {
       name: '',
@@ -1285,10 +1306,23 @@
     function startCountdownLoop() {
       if (countdownInterval) clearInterval(countdownInterval);
       countdownInterval = setInterval(() => {
-        if (isSleepTimerRunning && timerCountdownSec > 0) {
+        if (!isSleepTimerRunning) return;
+
+        // Chế độ 24/7: Đếm tăng dần thời gian đang ngủ, không bao giờ hết giờ!
+        if (is247SleepMode) {
+          const elapsedSec = Math.floor((Date.now() - sleepStartTimestamp) / 1000);
+          const hh = Math.floor(elapsedSec / 3600);
+          const mm = Math.floor((elapsedSec % 3600) / 60);
+          const ss = elapsedSec % 60;
+          document.getElementById('countdownDecreasingClock').textContent = 
+            `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}:${String(ss).padStart(2, '0')}`;
+          return;
+        }
+
+        if (timerCountdownSec > 0) {
           timerCountdownSec--;
           updateCountdownDisplay();
-        } else if (isSleepTimerRunning && timerCountdownSec <= 0) {
+        } else if (timerCountdownSec <= 0) {
           clearInterval(countdownInterval);
           isSleepTimerRunning = false;
           
@@ -1380,6 +1414,66 @@
 
       activeSoundNodes.push(osc1, g1, osc2, g2, subOsc, subG);
     }
+
+    // 8. NHẠC ĐÀN DU DƯƠNG (TRẦM BỔNG - 100% BẢN QUYỀN TRẮNG)
+    function startDanDuDuongSound() {
+      initAudio();
+      stopAllRelaxingSounds();
+
+      // Thang âm trầm bổng: Nốt trầm (D3, G3, A3) xen kẽ nốt bổng (D4, F4, A4, C5, D5, F5)
+      const bassNotes = [146.83, 196.00, 220.00, 196.00]; // D3, G3, A3, G3 (trầm)
+      const highNotes = [293.66, 349.23, 440.00, 523.25, 587.33, 698.46]; // D4, F4, A4, C5, D5, F5 (bổng)
+      let step = 0;
+
+      function pluckString(freq, isBass = false) {
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = isBass ? 'sine' : 'triangle';
+        osc.frequency.setValueAtTime(freq, now);
+
+        if (!isBass) {
+          // Rung nhẹ dây đàn (Vibrato)
+          const lfo = audioCtx.createOscillator();
+          const lfoG = audioCtx.createGain();
+          lfo.frequency.setValueAtTime(4.2, now);
+          lfoG.gain.setValueAtTime(freq * 0.012, now);
+          lfo.connect(osc.frequency);
+          lfo.start(now + 0.1);
+          lfo.stop(now + 2.8);
+        }
+
+        g.gain.setValueAtTime(isBass ? 0.32 : 0.26, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + (isBass ? 3.5 : 2.5));
+        osc.connect(g);
+        g.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + (isBass ? 3.6 : 2.6));
+      }
+
+      // Nốt đầu tiên
+      pluckString(bassNotes[0], true);
+      pluckString(highNotes[0], false);
+
+      const intervalId = setInterval(() => {
+        step++;
+        const isBassTurn = (step % 2 === 0);
+        if (isBassTurn) {
+          const bFreq = bassNotes[(step / 2) % bassNotes.length];
+          pluckString(bFreq, true);
+        } else {
+          const hFreq = highNotes[step % highNotes.length];
+          pluckString(hFreq, false);
+        }
+      }, 1200);
+
+      activeSoundNodes.push({
+        stop: () => clearInterval(intervalId),
+        disconnect: () => {}
+      });
+    }
+
 
     function stopAllRelaxingSounds() {
       if (wavesEngine.active) wavesEngine.stop();
@@ -2230,12 +2324,34 @@
       document.getElementById('endDateInput').value = today;
 
       // GẮN SỰ KIỆN: CÀI ĐẶT GIỜ NHANH (MỤC 2 HÌNH VẼ 12400.jpg & 12402.jpg)
+      let is247SleepMode = false;
+      let sleepStartTimestamp = null;
+
       function startQuickNap(minutes) {
         const now = new Date();
         const startH = String(now.getHours()).padStart(2, '0');
         const startM = String(now.getMinutes()).padStart(2, '0');
         const sT = `${startH}:${startM}`;
 
+        if (minutes === 'infinite' || minutes === 0) {
+          // CHẾ ĐỘ NGỦ 24/7 (VÔ TẬN - KHÔNG BAO GIỜ TẮT THEO YÊU CẦU 1)
+          is247SleepMode = true;
+          isSleepTimerRunning = true;
+          sleepStartTimestamp = Date.now();
+
+          document.getElementById('startTimeInput').value = sT;
+          document.getElementById('displaySleepTimeRange').textContent = `24/7 ➔ Vô tận ♾️`;
+          document.getElementById('totalSleepHoursLabel').textContent = `Không giới hạn ♾️`;
+          document.getElementById('countdownDecreasingClock').textContent = `00:00:00`;
+
+          startCountdownLoop();
+
+          document.getElementById('timeModal').classList.add('opacity-0', 'pointer-events-none');
+          showToast(currentLang === 'vi' ? 'Đã kích hoạt chế độ ngủ 24/7 vô tận! ♾️ Chúc bạn ngủ ngon' : 'Activated 24/7 infinite sleep mode! ♾️', '♾️');
+          return;
+        }
+
+        is247SleepMode = false;
         const endDate = new Date(now.getTime() + minutes * 60 * 1000);
         const endH = String(endDate.getHours()).padStart(2, '0');
         const endM = String(endDate.getMinutes()).padStart(2, '0');
@@ -2262,8 +2378,12 @@
 
       document.querySelectorAll('.btn-quick-nap').forEach(btn => {
         btn.addEventListener('click', () => {
-          const min = parseInt(btn.getAttribute('data-minutes'), 10);
-          startQuickNap(min);
+          const minAttr = btn.getAttribute('data-minutes');
+          if (minAttr === 'infinite') {
+            startQuickNap('infinite');
+          } else {
+            startQuickNap(parseInt(minAttr, 10));
+          }
         });
       });
 
@@ -2317,6 +2437,7 @@
 
         const namesVI = { 
           delta_432hz: 'Sóng não (432Hz / Delta)',
+          dan_du_duong: 'Đàn Du Dương (Trầm Bổng)',
           rain: 'Mưa nhẹ', 
           stream: 'Suối chảy', 
           piano: 'Piano', 
@@ -2326,6 +2447,8 @@
 
         if (sndKey === 'delta_432hz') {
           startDelta432HzSound();
+        } else if (sndKey === 'dan_du_duong') {
+          startDanDuDuongSound();
         } else if (sndKey === 'rain') {
           rainEngine.start();
         } else if (sndKey === 'stream') {
@@ -2376,6 +2499,61 @@
           showToast(`Đang phát file: ${file.name}`, '📁');
         }
       });
+
+      
+    // --- CHỨC NĂNG SÁNG MÀN HÌNH (SCREEN WAKE LOCK API) THEO YÊU CẦU 2 ---
+    let wakeLockSentinel = null;
+    let isWakeLockEnabled = true;
+
+    async function applyWakeLock() {
+      if (!isWakeLockEnabled) return;
+      try {
+        if ('wakeLock' in navigator) {
+          wakeLockSentinel = await navigator.wakeLock.request('screen');
+          const icon = document.getElementById('wakeLockIcon');
+          const label = document.getElementById('wakeLockLabel');
+          if (icon) icon.textContent = '🔆';
+          if (label) label.textContent = 'Sáng màn hình: BẬT';
+          const btn = document.getElementById('btnToggleWakeLock');
+          if (btn) btn.className = 'mt-1.5 w-full py-1.5 px-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 flex items-center justify-center space-x-1.5 transition active:scale-95 text-xs font-bold shadow-xs';
+        }
+      } catch (err) {
+        console.log('WakeLock:', err.message);
+      }
+    }
+
+    function toggleWakeLock() {
+      isWakeLockEnabled = !isWakeLockEnabled;
+      const icon = document.getElementById('wakeLockIcon');
+      const label = document.getElementById('wakeLockLabel');
+      const btn = document.getElementById('btnToggleWakeLock');
+
+      if (isWakeLockEnabled) {
+        applyWakeLock();
+        if (icon) icon.textContent = '🔆';
+        if (label) label.textContent = 'Sáng màn hình: BẬT';
+        if (btn) btn.className = 'mt-1.5 w-full py-1.5 px-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 flex items-center justify-center space-x-1.5 transition active:scale-95 text-xs font-bold shadow-xs';
+        showToast(currentLang === 'vi' ? 'Đã BẬT giữ sáng màn hình khi ngủ!' : 'Keep screen awake ON!', '🔆');
+      } else {
+        if (wakeLockSentinel) {
+          wakeLockSentinel.release();
+          wakeLockSentinel = null;
+        }
+        if (icon) icon.textContent = '🌙';
+        if (label) label.textContent = 'Sáng màn hình: TẮT';
+        if (btn) btn.className = 'mt-1.5 w-full py-1.5 px-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 flex items-center justify-center space-x-1.5 transition active:scale-95 text-xs font-bold shadow-xs';
+        showToast(currentLang === 'vi' ? 'Đã TẮT giữ sáng màn hình' : 'Keep screen awake OFF', '🌙');
+      }
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && isWakeLockEnabled) {
+        applyWakeLock();
+      }
+    });
+
+      const btnWake = document.getElementById('btnToggleWakeLock'); if (btnWake) btnWake.addEventListener('click', toggleWakeLock);
+      applyWakeLock();
 
       // Language init
       applyLanguage(currentLang);
