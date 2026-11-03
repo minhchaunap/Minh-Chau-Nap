@@ -116,6 +116,20 @@
   </style>
 </head>
 <body class="flex flex-col items-center justify-start min-h-screen p-3 sm:p-6">
+  <!-- ================= BANNER BÁO THỨC ĐANG KÊU (TẮT KHI BẤM HOẶC TỰ TẮT SAU 15 PHÚT) ================= -->
+  <div id="alarmRingingBanner" class="fixed top-3 inset-x-3 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:max-w-md z-50 p-4 rounded-3xl bg-red-600 text-white shadow-2xl border-2 border-yellow-300 flex items-center justify-between space-x-3 hidden animate-bounce">
+    <div class="flex items-center space-x-3">
+      <span class="text-3xl animate-spin">🔔</span>
+      <div>
+        <div class="font-extrabold text-sm sm:text-base font-display">ĐÃ HẾT GIỜ NGỦ!</div>
+        <div class="text-[11px] text-yellow-100 font-semibold" id="alarmAutoStopNotice">Chuông đang kêu (Tự tắt sau 15p)</div>
+      </div>
+    </div>
+    <button id="btnDismissAlarm" class="px-4 py-2.5 rounded-2xl bg-white text-red-700 font-black text-xs sm:text-sm shadow-lg hover:bg-yellow-100 active:scale-95 transition">
+      🔕 TẮT CHUÔNG
+    </button>
+  </div>
+
 
   <!-- ================= GIAO DIỆN BÊN NGOÀI ĐƠN GIẢN ================= -->
   <main id="mainHomeScreen" class="w-full max-w-xl bg-white rounded-3xl shadow-xl border border-sky-200 p-4 sm:p-7 flex flex-col space-y-5 transition-all duration-300">
@@ -795,10 +809,103 @@
         } else if (isSleepTimerRunning && timerCountdownSec <= 0) {
           clearInterval(countdownInterval);
           isSleepTimerRunning = false;
-          playAlarmSound(selectedAlarmSound);
+          // 1. TỰ ĐỘNG TẮT HẾT ÂM THANH THƯ GIÃN
+          stopAllRelaxingSounds();
+          // 2. BẬT BÁO THỨC DẬY (KÊU LIÊN TỤC, TẮT KHI BẤM HOẶC TỰ TẮT SAU 15 PHÚT)
+          startAlarmClock(selectedAlarmSound);
           showToast('Đã hết giờ ngủ! Chuông báo thức dậy 🔔', '⏰');
         }
       }, 1000);
+    }
+
+    
+    // --- BỘ ĐIỀU KHIỂN ÂM THANH THƯ GIÃN: TẮT KHI BẤM & TẮT KHI HẾT GIỜ NGỦ ---
+    let uploadedCustomAudio = null;
+
+    function stopAllRelaxingSounds() {
+      // 1. Tắt sóng biển
+      if (wavesEngine.active) wavesEngine.stop();
+      // 2. Tắt piano
+      if (pianoEngine.active) pianoEngine.stop();
+      // 3. Tắt suối chảy
+      if (streamEngine.active) streamEngine.stop();
+      // 4. Tắt mưa nhẹ
+      if (rainEngine.active) rainEngine.stop();
+
+      // 5. Tắt đếm cừu tự động
+      if (sheepInterval) {
+        clearInterval(sheepInterval);
+        sheepInterval = null;
+        document.getElementById('btnToggleSheepCounter').classList.remove('active');
+        document.getElementById('sheepCountLiveBar').classList.add('hidden');
+      }
+
+      // 6. Tắt nhạc riêng tải lên (nếu có)
+      if (uploadedCustomAudio) {
+        uploadedCustomAudio.pause();
+        uploadedCustomAudio.currentTime = 0;
+      }
+
+      // Gỡ bỏ class active trên tất cả các nút âm thanh
+      document.querySelectorAll('.btn-ocean-sound').forEach(btn => btn.classList.remove('active'));
+      updateSoundStatusLabel();
+    }
+
+    // --- BỘ ĐIỀU KHIỂN ÂM BÁO THỨC DẬY: LẶP LẠI LIÊN TỤC, TẮT KHI BẤM & TỰ TẮT SAU 15 PHÚT ---
+    let alarmRepeatInterval = null;
+    let alarmAutoStopTimeout = null;
+    let isAlarmRinging = false;
+    let alarmStartTime = null;
+
+    function startAlarmClock(soundType) {
+      // Khi hết giờ ngủ: Dừng ngay toàn bộ âm thanh thư giãn để nghe rõ chuông báo thức
+      stopAllRelaxingSounds();
+
+      isAlarmRinging = true;
+      alarmStartTime = Date.now();
+
+      // Hiện banner báo thức màu đỏ nổi bật
+      const banner = document.getElementById('alarmRingingBanner');
+      if (banner) banner.classList.remove('hidden');
+
+      // Phát tiếng chuông đầu tiên ngay lập tức
+      playAlarmSound(soundType);
+
+      // Lặp lại tiếng chuông mỗi 3.5 giây để báo thức liên tục
+      if (alarmRepeatInterval) clearInterval(alarmRepeatInterval);
+      alarmRepeatInterval = setInterval(() => {
+        if (isAlarmRinging) {
+          playAlarmSound(soundType);
+        }
+      }, 3500);
+
+      // TỰ ĐỘNG TẮT CHUÔNG SAU 15 PHÚT (15 * 60 * 1000 = 900.000 ms)
+      if (alarmAutoStopTimeout) clearTimeout(alarmAutoStopTimeout);
+      alarmAutoStopTimeout = setTimeout(() => {
+        stopAlarmClock('timeout');
+      }, 15 * 60 * 1000);
+    }
+
+    function stopAlarmClock(reason = 'manual') {
+      isAlarmRinging = false;
+      if (alarmRepeatInterval) {
+        clearInterval(alarmRepeatInterval);
+        alarmRepeatInterval = null;
+      }
+      if (alarmAutoStopTimeout) {
+        clearTimeout(alarmAutoStopTimeout);
+        alarmAutoStopTimeout = null;
+      }
+
+      // Ẩn banner báo thức
+      const banner = document.getElementById('alarmRingingBanner');
+      if (banner) banner.classList.add('hidden');
+
+      if (reason === 'timeout') {
+        showToast('Chuông báo thức đã tự động tắt sau 15 phút!', '🔕');
+      } else {
+        showToast('Đã tắt chuông báo thức dậy!', '🔕');
+      }
     }
 
     // --- 4. Web Audio Engine (Audible Waves, Stream, Piano, Rain, Sheep, Alarm) ---
@@ -1747,12 +1854,20 @@
       document.getElementById('customAudioUpload').addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
+          if (uploadedCustomAudio) {
+            uploadedCustomAudio.pause();
+          }
           const url = URL.createObjectURL(file);
-          const audio = new Audio(url);
-          audio.loop = true;
-          audio.play();
+          uploadedCustomAudio = new Audio(url);
+          uploadedCustomAudio.loop = true;
+          uploadedCustomAudio.play();
           showToast(`Đang phát: ${file.name}`, '🎵');
         }
+      });
+
+      // Nút tắt chuông báo thức trên banner (TẮT KHI BẤM)
+      document.getElementById('btnDismissAlarm').addEventListener('click', () => {
+        stopAlarmClock('manual');
       });
     });
   </script>
