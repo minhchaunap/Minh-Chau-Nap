@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Minh Chau Nap 🌙💎 | Website Ngủ Trưa Trực Tuyến</title>
-  <meta name="description" content="Minh Chau Nap - Ứng dụng ngủ trưa online: 50 giường 3D xoay 2 ngón tay, đếm cừu tự động, thời gian thực, ly trà ngủ ngon và hỗ trợ đa kênh.">
+  <meta name="description" content="Minh Chau Nap - Ứng dụng ngủ trưa online: 50 giường 3D xoay 2 ngón tay, âm thanh rõ nét, thời gian thực, ly trà ngủ ngon và hỗ trợ đa kênh.">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,9 +14,9 @@
       theme: {
         extend: {
           colors: {
-            bananaGreen: '#84CC16', // Xanh đọt chuối
+            bananaGreen: '#84CC16',
             bananaGreenDark: '#65A30D',
-            oceanBlue: '#0284C7',   // Xanh biển tươi sáng
+            oceanBlue: '#0284C7',
             oceanBlueHover: '#0369A1',
             oceanBlueLight: '#38BDF8',
             momo: '#A50064',
@@ -125,6 +125,29 @@
       background: #DC2626 !important;
       color: white !important;
     }
+
+    /* Checkbox toggle box style */
+    .custom-check-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .custom-check-box.checked {
+      background: #0284C7;
+      color: white;
+      border-color: #0284C7;
+    }
+    .custom-check-box.unchecked {
+      background: #FFFFFF;
+      color: transparent;
+      border: 2px solid #CBD5E1;
+    }
   </style>
 </head>
 <body class="flex flex-col items-center justify-start min-h-screen p-3 sm:p-6">
@@ -156,56 +179,60 @@
       </button>
     </div>
 
-    <!-- 3. KHỐI 1 (ĐÚNG SƠ ĐỒ BẢN VẼ): ÂM BÁO THỨC DẬY (CỘT 1: CHỌN ÂM THANH | CỘT 2: CHẾ ĐỘ TẮT) -->
+    <!-- 3. KHỐI 1: ÂM BÁO THỨC DẬY (CÓ DẤU TÍCH CHỌN CHẾ ĐỘ RÕ RÀNG) -->
     <div class="p-3.5 rounded-2xl bg-sky-50/70 border border-sky-200 space-y-2">
-      <!-- Tiêu đề 2 cột như bản vẽ 12371.jpg -->
       <div class="grid grid-cols-2 text-xs font-black text-sky-900 px-1">
         <div>① Chọn âm thanh</div>
         <div>② Chọn chế độ tắt</div>
       </div>
 
-      <div class="grid grid-cols-2 gap-3">
+      <div class="grid grid-cols-2 gap-3 items-stretch">
         <!-- Cột 1: Âm báo thức dậy -->
         <button id="btnOpenAlarmModal" class="btn-ocean p-3 rounded-2xl text-center font-display font-bold text-xs sm:text-sm flex flex-col items-center justify-center space-y-1">
           <div class="flex items-center space-x-1.5">
             <span class="text-lg">🔔</span>
             <span class="font-extrabold">Âm báo thức dậy</span>
           </div>
-          <span class="text-[10px] text-sky-100 font-normal truncate max-w-full" id="selectedAlarmLabel">Chuông Thiền</span>
+          <span class="text-[10px] text-sky-100 font-normal truncate max-w-full" id="selectedAlarmLabel">Chuông Thiền Ngân Vang</span>
         </button>
 
-        <!-- Cột 2: Chọn chế độ tắt (Tắt khi bấm + Tắt sau 15 phút reo) -->
-        <div class="flex flex-col space-y-1.5">
-          <!-- Hàng 1: Nút Tắt khi bấm (có thể bấm ngay để tắt chuông) -->
-          <button id="btnStopAlarmDirect" class="p-2 rounded-xl bg-white border border-sky-300 text-sky-900 hover:bg-sky-100 active:scale-95 transition flex items-center justify-between text-xs font-bold shadow-xs">
-            <div class="flex items-center space-x-1.5">
-              <span class="text-xs">🔕</span>
-              <span>Tắt khi bấm</span>
+        <!-- Cột 2: Chọn chế độ tắt VỚI DẤU TÍCH CHỌN RÕ RÀNG -->
+        <div class="flex flex-col justify-between space-y-1.5">
+          
+          <!-- Chế độ 1: Tắt khi bấm (Có dấu tích chọn và nút bấm tắt) -->
+          <div id="alarmModeClickRow" class="p-2 rounded-xl bg-white border border-sky-300 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
+            <div class="flex items-center space-x-2">
+              <div id="checkAlarmClick" class="custom-check-box checked">✓</div>
+              <span class="text-xs font-bold text-slate-800">Tắt khi bấm</span>
             </div>
-            <span class="px-1.5 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-700 font-extrabold" id="alarmStatusBadge">Bấm tắt</span>
-          </button>
-
-          <!-- Hàng 2: Tắt sau 15 phút reo -->
-          <div class="p-2 rounded-xl bg-white/80 border border-sky-200 flex items-center justify-between text-xs font-semibold text-slate-700">
-            <div class="flex items-center space-x-1.5">
-              <span class="text-xs">⏱️</span>
-              <span>Tắt sau 15 phút reo</span>
-            </div>
-            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200">Tự động</span>
+            <button id="btnStopAlarmDirect" class="px-2 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-800 font-extrabold hover:bg-sky-200 active:scale-95 transition" title="Bấm tắt ngay khi reo">
+              Bấm tắt
+            </button>
           </div>
+
+          <!-- Chế độ 2: Tắt sau 15 phút reo (Có dấu tích chọn) -->
+          <div id="alarmMode15MinRow" class="p-2 rounded-xl bg-white border border-sky-200 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
+            <div class="flex items-center space-x-2">
+              <div id="checkAlarm15Min" class="custom-check-box checked">✓</div>
+              <span class="text-xs font-bold text-slate-800">Tắt sau 15 phút</span>
+            </div>
+            <span class="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200">
+              Tự động
+            </span>
+          </div>
+
         </div>
       </div>
     </div>
 
-    <!-- 4. KHỐI 2 (ĐÚNG SƠ ĐỒ BẢN VẼ): ÂM THANH THƯ GIÃN (CỘT 1: CHỌN ÂM THANH | CỘT 2: CHẾ ĐỘ TẮT) -->
+    <!-- 4. KHỐI 2: ÂM THANH THƯ GIÃN (CÓ DẤU TÍCH CHỌN CHẾ ĐỘ RÕ RÀNG & ÂM THANH RÕ NÉT) -->
     <div class="p-3.5 rounded-2xl bg-sky-50/70 border border-sky-200 space-y-2">
-      <!-- Tiêu đề 2 cột như bản vẽ 12371.jpg -->
       <div class="grid grid-cols-2 text-xs font-black text-sky-900 px-1">
         <div>① Chọn âm thanh</div>
         <div>② Chọn chế độ tắt</div>
       </div>
 
-      <div class="grid grid-cols-2 gap-3 items-center">
+      <div class="grid grid-cols-2 gap-3 items-stretch">
         <!-- Cột 1: Trạng thái âm thanh thư giãn -->
         <div class="p-3 rounded-2xl bg-white border border-sky-200 flex flex-col justify-center space-y-1">
           <div class="flex items-center space-x-1.5 text-sky-800 font-bold text-xs">
@@ -215,29 +242,35 @@
           <span class="text-[11px] font-extrabold text-slate-600 truncate" id="activeSoundIndicator">Đã tắt âm thanh</span>
         </div>
 
-        <!-- Cột 2: Chọn chế độ tắt (Tắt khi bấm + Tắt khi hết thời gian) -->
-        <div class="flex flex-col space-y-1.5">
-          <!-- Hàng 1: Nút Tắt khi bấm (Bấm vào tắt ngay toàn bộ âm thanh) -->
-          <button id="btnStopRelaxingDirect" class="p-2 rounded-xl bg-white border border-sky-300 text-sky-900 hover:bg-sky-100 active:scale-95 transition flex items-center justify-between text-xs font-bold shadow-xs">
-            <div class="flex items-center space-x-1.5">
-              <span class="text-xs">⏹️</span>
-              <span>Tắt khi bấm</span>
+        <!-- Cột 2: Chọn chế độ tắt VỚI DẤU TÍCH CHỌN RÕ RÀNG -->
+        <div class="flex flex-col justify-between space-y-1.5">
+          
+          <!-- Chế độ 1: Tắt khi bấm -->
+          <div id="soundModeClickRow" class="p-2 rounded-xl bg-white border border-sky-300 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
+            <div class="flex items-center space-x-2">
+              <div id="checkSoundClick" class="custom-check-box checked">✓</div>
+              <span class="text-xs font-bold text-slate-800">Tắt khi bấm</span>
             </div>
-            <span class="px-1.5 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-700 font-extrabold" id="soundStopBtnBadge">Bấm tắt</span>
-          </button>
-
-          <!-- Hàng 2: Tắt khi hết thời gian -->
-          <div class="p-2 rounded-xl bg-white/80 border border-sky-200 flex items-center justify-between text-xs font-semibold text-slate-700">
-            <div class="flex items-center space-x-1.5">
-              <span class="text-xs">⌛</span>
-              <span>Tắt khi hết thời gian</span>
-            </div>
-            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200">Tự động</span>
+            <button id="btnStopRelaxingDirect" class="px-2 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-800 font-extrabold hover:bg-sky-200 active:scale-95 transition" title="Tắt toàn bộ âm thanh">
+              Bấm tắt
+            </button>
           </div>
+
+          <!-- Chế độ 2: Tắt khi hết thời gian -->
+          <div id="soundModeTimerRow" class="p-2 rounded-xl bg-white border border-sky-200 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
+            <div class="flex items-center space-x-2">
+              <div id="checkSoundTimer" class="custom-check-box checked">✓</div>
+              <span class="text-xs font-bold text-slate-800">Tắt khi hết giờ</span>
+            </div>
+            <span class="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200">
+              Tự động
+            </span>
+          </div>
+
         </div>
       </div>
 
-      <!-- Danh sách 6 nút âm thanh: Mưa nhẹ, Suối chảy, Piano, Sóng biển, Đếm cừu, Tải lên -->
+      <!-- Danh sách 6 nút âm thanh RÕ NÉT: Mưa nhẹ, Suối chảy, Piano, Sóng biển, Đếm cừu, Tải lên -->
       <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 pt-1">
         <button class="btn-ocean-sound py-2.5 px-1 text-center font-bold text-xs flex flex-col items-center justify-center" data-sound="rain">
           <span class="text-lg">🌧️</span>
@@ -281,9 +314,9 @@
       </div>
     </div>
 
-    <!-- 5. THỜI GIAN NGỦ: CHIA LÀM 2 CỘT RÕ RÀNG -->
+    <!-- 5. THỜI GIAN NGỦ: 2 CỘT RÕ RÀNG -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-sky-50/60 border border-sky-200 shadow-inner">
-      <!-- CỘT 1: NGÀY GIỜ NĂM THEO THỜI GIAN THỰC (GIỮ NGUYÊN) -->
+      <!-- CỘT 1: NGÀY GIỜ NĂM THEO THỜI GIAN THỰC -->
       <div class="flex flex-col justify-center p-3 rounded-xl bg-white border border-sky-100 space-y-1">
         <div class="flex items-center space-x-1.5 text-sky-600">
           <span class="text-sm">🌐</span>
@@ -297,11 +330,11 @@
         </div>
       </div>
 
-      <!-- CỘT 2: THỜI GIAN NGỦ (KHI NÀO SET UP MỚI NHẢY) -->
+      <!-- CỘT 2: THỜI GIAN NGỦ (KHI SETUP XONG MỚI NHẢY) -->
       <div class="flex flex-col justify-between p-3 rounded-xl bg-white border border-sky-100 space-y-2 text-xs">
         <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
           <span class="font-bold text-slate-600">Người ngủ:</span>
-          <span class="font-black text-sky-700" id="displaySleeperNameTag">Minh Châu ⭐</span>
+          <span class="font-black text-sky-700" id="displaySleeperNameTag">Chưa chọn giường</span>
         </div>
 
         <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
@@ -314,7 +347,6 @@
           <span class="font-extrabold text-slate-900" id="totalSleepHoursLabel">Bấm 'Cài đặt giờ' để bắt đầu</span>
         </div>
 
-        <!-- Trà: Chỉ hiện khi có bấm chọn trà -->
         <div id="teaStatusContainer" class="hidden flex items-center justify-between bg-amber-50 p-1.5 rounded-lg border border-amber-200">
           <span class="font-bold text-amber-900">Trà thưởng thức:</span>
           <div class="flex items-center space-x-1">
@@ -323,7 +355,6 @@
           </div>
         </div>
 
-        <!-- Thống kê: Số lần ngủ -->
         <div class="flex items-center justify-between pt-0.5">
           <span class="font-bold text-slate-600">Số lần ngủ:</span>
           <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-extrabold text-[11px]" id="statNapCountBadge">
@@ -338,13 +369,13 @@
       <button id="btnOpenRoom1" class="btn-ocean py-4 px-2 rounded-2xl flex flex-col items-center justify-center text-center">
         <span class="text-2xl sm:text-3xl filter drop-shadow">🏠</span>
         <span class="text-sm sm:text-base font-extrabold font-display mt-1">Phòng 1</span>
-        <span class="text-[10px] text-sky-100 font-semibold">50 giường</span>
+        <span class="text-[10px] text-sky-100 font-semibold" id="room1OccupancyText">50 giường</span>
       </button>
 
       <button id="btnOpenRoom2" class="btn-ocean py-4 px-2 rounded-2xl flex flex-col items-center justify-center text-center">
         <span class="text-2xl sm:text-3xl filter drop-shadow">🏡</span>
         <span class="text-sm sm:text-base font-extrabold font-display mt-1">Phòng 2</span>
-        <span class="text-[10px] text-sky-100 font-semibold">50 giường</span>
+        <span class="text-[10px] text-sky-100 font-semibold" id="room2OccupancyText">50 giường</span>
       </button>
 
       <button id="btnOpenTeaModal" class="btn-ocean py-4 px-2 rounded-2xl flex flex-col items-center justify-center text-center bg-gradient-to-br from-blue-600 to-indigo-700">
@@ -367,7 +398,7 @@
 
 
   <!-- ======================================================== -->
-  <!-- ================= 3D ROOM SCREEN (2 NGÓN TAY XOAY & THU NHỎ) ================= -->
+  <!-- ================= 3D ROOM (XÓA HẾT NGƯỜI ẢO - 50 GIƯỜNG THỰC) ================= -->
   <!-- ======================================================== -->
   <div id="room3DScreen" class="fixed inset-0 z-40 bg-[#141210] flex flex-col justify-between opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="absolute inset-0 z-0 overflow-hidden" id="canvas3dContainer">
@@ -392,7 +423,7 @@
 
     <div class="relative z-10 mx-auto text-center pointer-events-none">
       <span class="px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-sky-200 text-xs font-semibold border border-sky-400/30">
-        ✌️ Dùng 2 ngón tay để xoay, phóng to & thu nhỏ phòng • Chạm vào giường để nhận chỗ
+        ✌️ Dùng 2 ngón tay xoay & phóng to/thu nhỏ • Chạm vào giường trống để nằm
       </span>
     </div>
 
@@ -409,11 +440,10 @@
   <!-- ================= MODALS & POPUPS ================= -->
   <!-- ======================================================== -->
 
-  <!-- MODAL: DONATE ĐẦY ĐỦ 3 MỤC (MOMO, TAPTAP SEND, METAMASK BNB CHAIN) -->
+  <!-- MODAL: DONATE 3 MỤC (MOMO, TAPTAP SEND, METAMASK BNB CHAIN) -->
   <div id="donateModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 max-w-md w-full space-y-4 border border-sky-300 shadow-2xl max-h-[90vh] overflow-y-auto">
       
-      <!-- Header Modal -->
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
         <div class="flex items-center space-x-2">
           <div class="w-9 h-9 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-center text-xl shadow-xs">
@@ -427,10 +457,8 @@
         <button id="btnCloseDonateModal" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
       </div>
 
-      <!-- 3 MỤC ỦNG HỘ RÕ RÀNG -->
       <div class="space-y-3">
-        
-        <!-- MỤC 1: Direct Support – MoMo -->
+        <!-- Mục 1: Direct Support – MoMo -->
         <div class="p-3.5 rounded-2xl bg-[#FFF0F6] border border-[#F8B4D9] space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-[#A50064] bg-white px-2 py-0.5 rounded-full border border-[#F8B4D9]">
@@ -455,7 +483,7 @@
           </div>
         </div>
 
-        <!-- MỤC 2: International Support – Taptap Send to MoMo -->
+        <!-- Mục 2: International Support – Taptap Send to MoMo -->
         <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800 bg-white px-2 py-0.5 rounded-full border border-emerald-200">
@@ -489,7 +517,7 @@
           </div>
         </div>
 
-        <!-- MỤC 3: Crypto Support – MetaMask (BNB Chain) -->
+        <!-- Mục 3: Crypto Support – MetaMask (BNB Chain) -->
         <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-300 space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-900 bg-white px-2 py-0.5 rounded-full border border-amber-300">
@@ -511,7 +539,6 @@
             </button>
           </div>
         </div>
-
       </div>
 
       <button id="btnDoneDonate" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition">
@@ -522,7 +549,7 @@
   </div>
 
 
-  <!-- MODAL: CÀI ĐẶT GIỜ (KHI SETUP XONG MỚI NHẢY) -->
+  <!-- MODAL: CÀI ĐẶT GIỜ -->
   <div id="timeModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-4 shadow-2xl border border-sky-200 transform transition-transform scale-95">
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
@@ -536,7 +563,7 @@
       <div class="space-y-3">
         <div>
           <label class="text-xs font-bold text-slate-700 block mb-1">Tên người ngủ:</label>
-          <input type="text" id="setupUserNameInput" value="Minh Châu ⭐" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-bold text-sm text-slate-800 focus:outline-none focus:border-sky-500">
+          <input type="text" id="setupUserNameInput" placeholder="Nhập tên của bạn..." value="Minh Châu ⭐" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-bold text-sm text-slate-800 focus:outline-none focus:border-sky-500">
         </div>
         <div>
           <label class="text-xs font-bold text-slate-700 block mb-1">Giờ bắt đầu ngủ:</label>
@@ -587,13 +614,12 @@
   <!-- MODAL: ÂM BÁO THỨC DẬY (CHỌN CHUÔNG) -->
   <div id="alarmModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-4 shadow-2xl border border-sky-200 transform transition-transform scale-95">
-      
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
         <div class="flex items-center space-x-2">
           <span class="text-2xl">🔔</span>
           <div>
             <h3 class="text-base font-extrabold text-slate-800 font-display">Chọn Âm Báo Thức Dậy</h3>
-            <span class="text-[11px] text-slate-500">Chuông êm ái khi hết giờ ngủ</span>
+            <span class="text-[11px] text-slate-500">Âm thanh ngân vang, đánh thức nhẹ nhàng</span>
           </div>
         </div>
         <button id="btnCloseAlarmModal" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
@@ -605,7 +631,7 @@
             <input type="radio" name="alarmSound" value="singing_bowl" checked class="accent-sky-600 w-4 h-4">
             <div>
               <div class="font-bold text-xs text-slate-800">Chuông Thiền Ngân Vang</div>
-              <div class="text-[10px] text-slate-500">Thanh tịnh, xua tan mệt mỏi</div>
+              <div class="text-[10px] text-slate-500">Âm vang trầm bổng, trong trẻo</div>
             </div>
           </div>
           <button type="button" class="btn-test-alarm px-2.5 py-1 rounded-lg bg-sky-600 text-white text-[10px] font-bold" data-alarm="singing_bowl">Nghe thử</button>
@@ -616,7 +642,7 @@
             <input type="radio" name="alarmSound" value="wind_chimes" class="accent-sky-600 w-4 h-4">
             <div>
               <div class="font-bold text-xs text-slate-800">Chuông Gió Leng Keng</div>
-              <div class="text-[10px] text-slate-500">Tiếng leng keng trong trẻo</div>
+              <div class="text-[10px] text-slate-500">Tiếng leng keng kim loại thanh thoát</div>
             </div>
           </div>
           <button type="button" class="btn-test-alarm px-2.5 py-1 rounded-lg bg-slate-200 text-slate-700 text-[10px] font-bold" data-alarm="wind_chimes">Nghe thử</button>
@@ -627,7 +653,7 @@
             <input type="radio" name="alarmSound" value="birds" class="accent-sky-600 w-4 h-4">
             <div>
               <div class="font-bold text-xs text-slate-800">Tiếng Chim Hót Ban Mai</div>
-              <div class="text-[10px] text-slate-500">Tươi mới, tràn đầy năng lượng</div>
+              <div class="text-[10px] text-slate-500">Tiếng hót véo von tươi sáng</div>
             </div>
           </div>
           <button type="button" class="btn-test-alarm px-2.5 py-1 rounded-lg bg-slate-200 text-slate-700 text-[10px] font-bold" data-alarm="birds">Nghe thử</button>
@@ -637,7 +663,6 @@
       <button id="btnSaveAlarmSound" class="w-full py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs active:scale-95 transition shadow-md">
         Chọn Âm Báo Này
       </button>
-
     </div>
   </div>
 
@@ -645,7 +670,6 @@
   <!-- MODAL: TRÀ NGỦ NGON & LY TRÀ CHO 1 NGƯỜI -->
   <div id="teaModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 sm:p-6 max-w-sm w-full space-y-4 shadow-2xl border border-sky-200 transform transition-transform scale-95 text-center">
-      
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
         <div class="text-left">
           <h3 class="text-base font-extrabold text-slate-800 font-display">Ly Trà Ngủ Ngon Cho 1 Người</h3>
@@ -712,18 +736,17 @@
       <button id="btnConfirmSelectTea" class="w-full py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs active:scale-95 transition shadow-md">
         Chọn Ly Trà Này Cho Giấc Ngủ 🍵
       </button>
-
     </div>
   </div>
 
 
-  <!-- MODAL: DANH SÁCH 50 GIƯỜNG -->
+  <!-- MODAL: DANH SÁCH 50 GIƯỜNG (HOÀN TOÀN KHÔNG CÓ NGƯỜI ẢO) -->
   <div id="bedPickerModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3.5 shadow-2xl border border-sky-200 max-h-[85vh] flex flex-col">
       <div class="flex items-center justify-between pb-2 border-b border-slate-100 shrink-0">
         <div>
           <h3 class="text-base font-extrabold text-slate-800 font-display" id="bedModalTitleText">Danh Sách 50 Giường</h3>
-          <span class="text-[11px] text-slate-500">Bấm số giường để nhận chỗ hoặc đổi tên</span>
+          <span class="text-[11px] text-slate-500">Chạm vào số giường trống để nhận chỗ</span>
         </div>
         <button id="btnCloseBedPicker" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
       </div>
@@ -737,9 +760,9 @@
       <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 shrink-0 space-y-2">
         <div class="flex items-center justify-between text-xs">
           <span class="font-bold text-slate-700">Giường đang chọn:</span>
-          <span class="font-extrabold text-sky-700" id="currentBedSelectLabel">#01 (Minh Châu ⭐)</span>
+          <span class="font-extrabold text-sky-700" id="currentBedSelectLabel">#01 (Còn trống)</span>
         </div>
-        <input type="text" id="sleeperNameInput" placeholder="Nhập tên người nằm..." class="w-full px-3 py-2 rounded-xl border border-slate-300 font-bold text-xs focus:outline-none focus:border-sky-600">
+        <input type="text" id="sleeperNameInput" placeholder="Nhập tên của bạn..." class="w-full px-3 py-2 rounded-xl border border-slate-300 font-bold text-xs focus:outline-none focus:border-sky-600">
         <button id="btnConfirmClaimBed" class="w-full py-2 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs active:scale-95 transition shadow-sm">
           Xác Nhận Nằm Giường Này 💤
         </button>
@@ -756,20 +779,26 @@
 
 
   <!-- ======================================================== -->
-  <!-- ================= JAVASCRIPT & 3D ENGINE ================= -->
+  <!-- ================= JAVASCRIPT & 3D & AUDIO ENGINE ================= -->
   <!-- ======================================================== -->
   <script>
-    // --- 1. App State & Persistent Nap Counter ---
+    // --- 1. App State & ĐÃ XÓA TOÀN BỘ NGƯỜI ẢO ---
     let currentActiveRoom = 1;
     let activeSelectedBedId = 1;
     let selectedAlarmSound = 'singing_bowl';
     let chosenTeaName = null;
     let isSleepTimerRunning = false;
 
+    // Chế độ tắt toggle states (Được điều khiển bằng dấu tích)
+    let modeAlarmClick = true;   // Tắt báo thức khi bấm
+    let modeAlarm15Min = true;   // Tự tắt báo thức sau 15 phút
+    let modeSoundClick = true;   // Tắt âm thanh thư giãn khi bấm
+    let modeSoundTimer = true;   // Tắt âm thanh thư giãn khi hết giờ ngủ
+
     let currentUser = {
-      name: 'Minh Châu ⭐',
+      name: '',
       room: 1,
-      bedId: 1
+      bedId: null
     };
 
     let totalNapCount = parseInt(localStorage.getItem('minhchau_nap_count') || '1', 10);
@@ -779,26 +808,20 @@
       sessionStorage.setItem('minhchau_session_counted', 'true');
     }
 
+    // 50 Giường HOÀN TOÀN TRỐNG, KHÔNG CÓ BẤT KỲ NGƯỜI ẢO NÀO
     const roomState = {
-      1: Array.from({ length: 50 }, (_, i) => {
-        const id = i + 1;
-        if (id === 1) return { id, name: 'Minh Châu ⭐', status: 'occupied', color: 0xD47A88 };
-        if (id === 2) return { id, name: 'An', status: 'occupied', color: 0x0284C7 };
-        if (id === 3) return { id, name: 'Bảo', status: 'occupied', color: 0x16A34A };
-        if (id === 4) return { id, name: 'Linh', status: 'occupied', color: 0xEA580C };
-        if (id === 5) return { id, name: 'Hùng', status: 'occupied', color: 0x0284C7 };
-        if (id === 8) return { id, name: 'Vy', status: 'occupied', color: 0xD47A88 };
-        if (id === 12) return { id, name: 'Tuấn', status: 'occupied', color: 0x0284C7 };
-        if (id === 15) return { id, name: 'Hương', status: 'occupied', color: 0xEA580C };
-        return { id, name: '', status: 'vacant', color: 0x4A3E38 };
-      }),
-      2: Array.from({ length: 50 }, (_, i) => {
-        const id = i + 1;
-        if (id === 1) return { id, name: 'Hà', status: 'occupied', color: 0xD47A88 };
-        if (id === 2) return { id, name: 'Khoa', status: 'occupied', color: 0x0284C7 };
-        if (id === 6) return { id, name: 'Trang', status: 'occupied', color: 0xEA580C };
-        return { id, name: '', status: 'vacant', color: 0x4A3E38 };
-      })
+      1: Array.from({ length: 50 }, (_, i) => ({
+        id: i + 1,
+        name: '',
+        status: 'vacant',
+        color: 0x4A3E38
+      })),
+      2: Array.from({ length: 50 }, (_, i) => ({
+        id: i + 1,
+        name: '',
+        status: 'vacant',
+        color: 0x4A3E38
+      }))
     };
 
     // --- 2. Real-Time Clock & Date (Cột 1) ---
@@ -826,7 +849,7 @@
     function applySleepSetup() {
       const sT = document.getElementById('startTimeInput').value;
       const eT = document.getElementById('endTimeInput').value;
-      const name = document.getElementById('setupUserNameInput').value.trim() || 'Minh Châu ⭐';
+      const name = document.getElementById('setupUserNameInput').value.trim() || 'Người dùng';
 
       currentUser.name = name;
       document.getElementById('displaySleeperNameTag').textContent = name;
@@ -869,16 +892,20 @@
         } else if (isSleepTimerRunning && timerCountdownSec <= 0) {
           clearInterval(countdownInterval);
           isSleepTimerRunning = false;
-          // TẮT HẾT ÂM THANH THƯ GIÃN KHI HẾT GIỜ NGỦ
-          stopAllRelaxingSounds();
-          // BẬT BÁO THỨC DẬY (LẶP LẠI LIÊN TỤC, TẮT KHI BẤM HOẶC TỰ TẮT SAU 15 PHÚT)
+          
+          // Chế độ: Tắt khi hết thời gian (Nếu bật tích)
+          if (modeSoundTimer) {
+            stopAllRelaxingSounds();
+          }
+
+          // BẬT BÁO THỨC DẬY
           startAlarmClock(selectedAlarmSound);
           showToast('Đã hết giờ ngủ! Chuông báo thức dậy 🔔', '⏰');
         }
       }, 1000);
     }
 
-    // --- 4. Web Audio Engine & BỘ ĐIỀU KHIỂN ÂM THANH + BÁO THỨC ---
+    // --- 4. TẤT CẢ ÂM THANH RÕ NÉT & CHẤT LƯỢNG CAO (Web Audio API) ---
     let audioCtx = null;
     let masterGain = null;
     let uploadedCustomAudio = null;
@@ -887,7 +914,7 @@
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         masterGain = audioCtx.createGain();
-        masterGain.gain.setValueAtTime(0.85, audioCtx.currentTime);
+        masterGain.gain.setValueAtTime(0.9, audioCtx.currentTime);
         masterGain.connect(audioCtx.destination);
       }
       if (audioCtx.state === 'suspended') {
@@ -895,7 +922,7 @@
       }
     }
 
-    // TẮT TOÀN BỘ ÂM THANH THƯ GIÃN KHI BẤM HOẶC KHI HẾT GIỜ NGỦ
+    // TẮT TOÀN BỘ ÂM THANH THƯ GIÃN
     function stopAllRelaxingSounds() {
       if (wavesEngine.active) wavesEngine.stop();
       if (pianoEngine.active) pianoEngine.stop();
@@ -918,28 +945,26 @@
       updateSoundStatusLabel();
     }
 
-    // BÁO THỨC DẬY: LẶP LẠI LIÊN TỤC, TẮT KHI BẤM & TỰ TẮT SAU 15 PHÚT REO
+    // BÁO THỨC DẬY: LẶP LẠI LIÊN TỤC, TẮT KHI BẤM HOẶC SAU 15 PHÚT
     let alarmRepeatInterval = null;
     let alarmAutoStopTimeout = null;
     let isAlarmRinging = false;
 
     function startAlarmClock(soundType) {
-      stopAllRelaxingSounds();
+      if (modeSoundTimer) {
+        stopAllRelaxingSounds();
+      }
       isAlarmRinging = true;
 
-      // Đổi nút "Tắt khi bấm" trên Khối 1 thành màu đỏ nhấp nháy
+      // Nút tắt khi bấm nhấp nháy đỏ
       const stopBtn = document.getElementById('btnStopAlarmDirect');
-      const badge = document.getElementById('alarmStatusBadge');
-      if (stopBtn) stopBtn.classList.add('alarm-ringing-active');
-      if (badge) {
-        badge.textContent = 'BẤM TẮT NGAY!';
-        badge.className = 'px-2 py-0.5 rounded-md bg-yellow-300 text-red-900 font-black animate-pulse';
+      if (stopBtn) {
+        stopBtn.classList.add('alarm-ringing-active');
+        stopBtn.textContent = 'BẤM TẮT NGAY!';
       }
 
-      // Phát tiếng chuông đầu tiên
       playAlarmSound(soundType);
 
-      // Lặp lại chuông mỗi 3.5 giây để đánh thức người dùng
       if (alarmRepeatInterval) clearInterval(alarmRepeatInterval);
       alarmRepeatInterval = setInterval(() => {
         if (isAlarmRinging) {
@@ -947,11 +972,13 @@
         }
       }, 3500);
 
-      // TỰ ĐỘNG TẮT SAU 15 PHÚT (15 * 60 * 1000 = 900.000 ms)
+      // Tự động tắt sau 15 phút (Nếu bật tích modeAlarm15Min)
       if (alarmAutoStopTimeout) clearTimeout(alarmAutoStopTimeout);
-      alarmAutoStopTimeout = setTimeout(() => {
-        stopAlarmClock('timeout');
-      }, 15 * 60 * 1000);
+      if (modeAlarm15Min) {
+        alarmAutoStopTimeout = setTimeout(() => {
+          stopAlarmClock('timeout');
+        }, 15 * 60 * 1000);
+      }
     }
 
     function stopAlarmClock(reason = 'manual') {
@@ -965,13 +992,10 @@
         alarmAutoStopTimeout = null;
       }
 
-      // Khôi phục nút "Tắt khi bấm" về trạng thái bình thường
       const stopBtn = document.getElementById('btnStopAlarmDirect');
-      const badge = document.getElementById('alarmStatusBadge');
-      if (stopBtn) stopBtn.classList.remove('alarm-ringing-active');
-      if (badge) {
-        badge.textContent = 'Bấm tắt';
-        badge.className = 'px-1.5 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-700 font-extrabold';
+      if (stopBtn) {
+        stopBtn.classList.remove('alarm-ringing-active');
+        stopBtn.textContent = 'Bấm tắt';
       }
 
       if (reason === 'timeout') {
@@ -981,7 +1005,7 @@
       }
     }
 
-    // Sóng biển
+    // 1. SÓNG BIỂN RÕ NÉT (Âm thanh sóng vỗ bờ cát chân thực, dải âm ấm áp)
     const wavesEngine = {
       active: false,
       nodes: null,
@@ -1000,7 +1024,7 @@
         const bp = audioCtx.createBiquadFilter();
         bp.type = 'bandpass';
         bp.frequency.setValueAtTime(650, audioCtx.currentTime);
-        bp.Q.setValueAtTime(1.4, audioCtx.currentTime);
+        bp.Q.setValueAtTime(1.5, audioCtx.currentTime);
 
         const lfo = audioCtx.createOscillator();
         lfo.type = 'sine';
@@ -1010,7 +1034,7 @@
         lfo.connect(bp.frequency);
 
         const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.75, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.85, audioCtx.currentTime); // Âm lượng rõ nét
 
         noise.connect(bp);
         bp.connect(gain);
@@ -1029,7 +1053,7 @@
       }
     };
 
-    // Piano
+    // 2. PIANO LOFI RÕ NÉT (Hòa âm mượt mà, ngân vang tự nhiên)
     const pianoEngine = {
       active: false,
       timer: null,
@@ -1037,10 +1061,10 @@
         initAudio();
         this.active = true;
         const chords = [
-          [261.63, 329.63, 392.00, 523.25],
-          [220.00, 261.63, 329.63, 440.00],
-          [174.61, 220.00, 261.63, 349.23],
-          [196.00, 246.94, 293.66, 392.00]
+          [261.63, 329.63, 392.00, 523.25], // Cmaj7
+          [220.00, 261.63, 329.63, 440.00], // Am7
+          [174.61, 220.00, 261.63, 349.23], // Fmaj7
+          [196.00, 246.94, 293.66, 392.00]  // G7
         ];
         let idx = 0;
         const playChord = () => {
@@ -1056,11 +1080,11 @@
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now + i * 0.08);
             osc2.type = 'triangle';
-            osc2.frequency.setValueAtTime(freq, now + i * 0.08);
+            osc2.frequency.setValueAtTime(freq * 2, now + i * 0.08); // Overtones
 
             g.gain.setValueAtTime(0.0001, now + i * 0.08);
-            g.gain.linearRampToValueAtTime(0.28, now + i * 0.08 + 0.04);
-            g.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.08 + 3.4);
+            g.gain.linearRampToValueAtTime(0.25, now + i * 0.08 + 0.03);
+            g.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.08 + 3.2);
 
             osc.connect(g);
             osc2.connect(g);
@@ -1068,12 +1092,12 @@
 
             osc.start(now + i * 0.08);
             osc2.start(now + i * 0.08);
-            osc.stop(now + i * 0.08 + 3.6);
-            osc2.stop(now + i * 0.08 + 3.6);
+            osc.stop(now + i * 0.08 + 3.4);
+            osc2.stop(now + i * 0.08 + 3.4);
           });
         };
         playChord();
-        this.timer = setInterval(playChord, 3500);
+        this.timer = setInterval(playChord, 3400);
       },
       stop() {
         this.active = false;
@@ -1081,7 +1105,7 @@
       }
     };
 
-    // Suối chảy
+    // 3. SUỐI CHẢY RÕ NÉT (Nước chảy róc rách, trong trẻo)
     const streamEngine = {
       active: false,
       nodes: null,
@@ -1106,11 +1130,11 @@
         lfo.type = 'sine';
         lfo.frequency.setValueAtTime(0.85, audioCtx.currentTime);
         const lfoGain = audioCtx.createGain();
-        lfoGain.gain.setValueAtTime(320, audioCtx.currentTime);
+        lfoGain.gain.setValueAtTime(350, audioCtx.currentTime);
         lfo.connect(bp.frequency);
 
         const g = audioCtx.createGain();
-        g.gain.setValueAtTime(0.48, audioCtx.currentTime);
+        g.gain.setValueAtTime(0.55, audioCtx.currentTime);
 
         noise.connect(bp);
         bp.connect(g);
@@ -1129,7 +1153,7 @@
       }
     };
 
-    // Mưa nhẹ
+    // 4. MƯA NHẸ RÕ NÉT (Tiếng mưa rơi êm đềm, không bị ồn hay rè)
     const rainEngine = {
       active: false,
       nodes: null,
@@ -1147,10 +1171,10 @@
 
         const lp = audioCtx.createBiquadFilter();
         lp.type = 'lowpass';
-        lp.frequency.setValueAtTime(1100, audioCtx.currentTime);
+        lp.frequency.setValueAtTime(1200, audioCtx.currentTime);
 
         const g = audioCtx.createGain();
-        g.gain.setValueAtTime(0.42, audioCtx.currentTime);
+        g.gain.setValueAtTime(0.5, audioCtx.currentTime);
 
         noise.connect(lp);
         lp.connect(g);
@@ -1168,7 +1192,7 @@
       }
     };
 
-    // Đếm cừu tự động
+    // 5. ĐẾM CỪU TỰ ĐỘNG (Tiếng gõ thanh mộc trong trẻo, dễ chịu)
     let sheepCounter = 0;
     let sheepInterval = null;
 
@@ -1179,13 +1203,13 @@
       const g = audioCtx.createGain();
       osc.type = 'triangle';
       osc.frequency.setValueAtTime(523.25, now);
-      osc.frequency.exponentialRampToValueAtTime(440, now + 0.1);
-      g.gain.setValueAtTime(0.18, now);
-      g.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      osc.frequency.exponentialRampToValueAtTime(440, now + 0.08);
+      g.gain.setValueAtTime(0.25, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
       osc.connect(g);
       g.connect(masterGain);
       osc.start(now);
-      osc.stop(now + 0.45);
+      osc.stop(now + 0.4);
     }
 
     function toggleSheepCounter() {
@@ -1216,33 +1240,35 @@
       }
     }
 
-    // Âm báo thức dậy
+    // 6. ÂM BÁO THỨC DẬY RÕ NÉT (Chuông Thiền, Chuông Gió, Chim Hót)
     function playAlarmSound(type) {
       initAudio();
       const now = audioCtx.currentTime;
       if (type === 'singing_bowl') {
-        [216, 432, 648].forEach((freq, i) => {
+        // Chuông thiền Tây Tạng ngân vang trầm bổng
+        [216, 432, 648, 864].forEach((freq, i) => {
           const osc = audioCtx.createOscillator();
           const g = audioCtx.createGain();
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, now);
           g.gain.setValueAtTime(0, now);
-          g.gain.linearRampToValueAtTime(0.35 / (i + 1), now + 0.05);
-          g.gain.exponentialRampToValueAtTime(0.0001, now + 4.5);
+          g.gain.linearRampToValueAtTime(0.4 / (i + 1), now + 0.04);
+          g.gain.exponentialRampToValueAtTime(0.0001, now + 4.2);
           osc.connect(g);
           g.connect(masterGain);
           osc.start(now);
-          osc.stop(now + 4.6);
+          osc.stop(now + 4.3);
         });
       } else if (type === 'wind_chimes') {
+        // Chuông gió trong trẻo
         [1046, 1174, 1318, 1567, 1760, 2093].forEach((f, idx) => {
-          const delay = idx * 0.15;
+          const delay = idx * 0.14;
           const osc = audioCtx.createOscillator();
           const g = audioCtx.createGain();
           osc.type = 'sine';
           osc.frequency.setValueAtTime(f, now + delay);
           g.gain.setValueAtTime(0, now + delay);
-          g.gain.linearRampToValueAtTime(0.2, now + delay + 0.02);
+          g.gain.linearRampToValueAtTime(0.24, now + delay + 0.02);
           g.gain.exponentialRampToValueAtTime(0.0001, now + delay + 1.8);
           osc.connect(g);
           g.connect(masterGain);
@@ -1250,14 +1276,15 @@
           osc.stop(now + delay + 2.0);
         });
       } else {
+        // Chim hót véo von
         [1800, 2400, 2200, 2800].forEach((f, i) => {
-          const d = i * 0.18;
+          const d = i * 0.16;
           const osc = audioCtx.createOscillator();
           const g = audioCtx.createGain();
           osc.type = 'sine';
           osc.frequency.setValueAtTime(f, now + d);
-          osc.frequency.exponentialRampToValueAtTime(f + 600, now + d + 0.12);
-          g.gain.setValueAtTime(0.2, now + d);
+          osc.frequency.exponentialRampToValueAtTime(f + 650, now + d + 0.12);
+          g.gain.setValueAtTime(0.25, now + d);
           g.gain.exponentialRampToValueAtTime(0.001, now + d + 0.15);
           osc.connect(g);
           g.connect(masterGain);
@@ -1281,8 +1308,10 @@
 
       const btn = document.querySelector(`.btn-ocean-sound[data-sound="${name}"]`);
       if (engine.active) {
-        engine.stop();
-        if (btn) btn.classList.remove('active');
+        if (modeSoundClick) {
+          engine.stop();
+          if (btn) btn.classList.remove('active');
+        }
       } else {
         engine.start();
         if (btn) btn.classList.add('active');
@@ -1309,7 +1338,7 @@
       }
     }
 
-    // --- 5. THREE.JS 3D ROOM: 2 NGÓN TAY XOAY & THU NHỎ ---
+    // --- 5. THREE.JS 3D ROOM: 50 GIƯỜNG THỰC, SẠCH SẼ, KHÔNG CÓ NGƯỜI ẢO ---
     let scene3DInited = false;
     let renderer3D = null;
     let scene3D = null;
@@ -1373,7 +1402,7 @@
       beds3DGroup = new THREE.Group();
       scene3D.add(beds3DGroup);
 
-      // Cử chỉ 2 ngón tay xoay & thu nhỏ
+      // Cử chỉ 2 ngón tay xoay & thu nhỏ mượt mà
       let touchCount = 0;
       let prevSingleX = 0, prevSingleY = 0;
       let prevPinchDist = 0;
@@ -1434,7 +1463,7 @@
         }
       });
 
-      // Desktop Mouse controls
+      // Desktop controls
       let isMouseDrag = false;
       let prevMX = 0, prevMY = 0;
       canvasEl.addEventListener('mousedown', (e) => {
@@ -1442,7 +1471,6 @@
         prevMX = e.clientX;
         prevMY = e.clientY;
       });
-
       window.addEventListener('mousemove', (e) => {
         if (!isMouseDrag) return;
         const dx = e.clientX - prevMX;
@@ -1452,7 +1480,6 @@
         targetRotY += dx * 0.005;
         targetRotX = Math.max(0.2, Math.min(1.4, targetRotX + dy * 0.004));
       });
-
       window.addEventListener('mouseup', () => { isMouseDrag = false; });
       canvasEl.addEventListener('wheel', (e) => {
         e.preventDefault();
@@ -1567,6 +1594,7 @@
         fR.position.set(0.25, 0.2, 0.9);
         g.add(fR);
       } else {
+        // Giường trống: Chăn gấp phẳng phiu, sạch sẽ
         const foldGeo = new THREE.BoxGeometry(1.1, 0.12, 0.8);
         const foldMat = new THREE.MeshStandardMaterial({ color: 0x483D36 });
         const fold = new THREE.Mesh(foldGeo, foldMat);
@@ -1602,6 +1630,7 @@
       });
 
       render3DBedLabelsHTML();
+      updateOccupancyBadges();
     }
 
     function render3DBedLabelsHTML() {
@@ -1643,6 +1672,13 @@
           }
         }
       });
+    }
+
+    function updateOccupancyBadges() {
+      const occ1 = roomState[1].filter(b => b.status === 'occupied').length;
+      const occ2 = roomState[2].filter(b => b.status === 'occupied').length;
+      document.getElementById('room1OccupancyText').textContent = `${occ1}/50 giường`;
+      document.getElementById('room2OccupancyText').textContent = `${occ2}/50 giường`;
     }
 
     function openRoomScreen(roomId) {
@@ -1689,7 +1725,7 @@
         btn.addEventListener('click', () => {
           activeSelectedBedId = bed.id;
           document.getElementById('currentBedSelectLabel').textContent = `#${bed.id} (${bed.status === 'occupied' ? bed.name : 'Còn trống'})`;
-          document.getElementById('sleeperNameInput').value = bed.status === 'occupied' ? bed.name : currentUser.name;
+          document.getElementById('sleeperNameInput').value = bed.status === 'occupied' ? bed.name : (currentUser.name || '');
           renderBedNumberGrid50();
         });
 
@@ -1702,7 +1738,7 @@
       const bed = roomState[currentActiveRoom].find(b => b.id === bedId);
       if (bed) {
         document.getElementById('currentBedSelectLabel').textContent = `#${bed.id} (${bed.status === 'occupied' ? bed.name : 'Còn trống'})`;
-        document.getElementById('sleeperNameInput').value = bed.status === 'occupied' ? bed.name : currentUser.name;
+        document.getElementById('sleeperNameInput').value = bed.status === 'occupied' ? bed.name : (currentUser.name || '');
       }
       renderBedNumberGrid50();
       document.getElementById('bedPickerModal').classList.remove('opacity-0', 'pointer-events-none');
@@ -1730,6 +1766,43 @@
       document.getElementById('endDateInput').value = today;
 
       document.getElementById('statNapCountBadge').textContent = `${totalNapCount} lần`;
+      updateOccupancyBadges();
+
+      // --- DẤU TÍCH CHỌN CHẾ ĐỘ TẮT BÁO THỨC ---
+      document.getElementById('alarmModeClickRow').addEventListener('click', (e) => {
+        if (e.target.id === 'btnStopAlarmDirect') return; // Tránh bấm nút tắt trực tiếp
+        modeAlarmClick = !modeAlarmClick;
+        const box = document.getElementById('checkAlarmClick');
+        box.className = `custom-check-box ${modeAlarmClick ? 'checked' : 'unchecked'}`;
+        box.textContent = modeAlarmClick ? '✓' : '';
+        showToast(modeAlarmClick ? 'Đã bật: Tắt báo thức khi bấm' : 'Đã tắt: Tắt báo thức khi bấm', '⚙️');
+      });
+
+      document.getElementById('alarmMode15MinRow').addEventListener('click', () => {
+        modeAlarm15Min = !modeAlarm15Min;
+        const box = document.getElementById('checkAlarm15Min');
+        box.className = `custom-check-box ${modeAlarm15Min ? 'checked' : 'unchecked'}`;
+        box.textContent = modeAlarm15Min ? '✓' : '';
+        showToast(modeAlarm15Min ? 'Đã bật: Tự tắt báo thức sau 15 phút' : 'Đã tắt: Tự tắt báo thức sau 15 phút', '⚙️');
+      });
+
+      // --- DẤU TÍCH CHỌN CHẾ ĐỘ TẮT ÂM THANH THƯ GIÃN ---
+      document.getElementById('soundModeClickRow').addEventListener('click', (e) => {
+        if (e.target.id === 'btnStopRelaxingDirect') return;
+        modeSoundClick = !modeSoundClick;
+        const box = document.getElementById('checkSoundClick');
+        box.className = `custom-check-box ${modeSoundClick ? 'checked' : 'unchecked'}`;
+        box.textContent = modeSoundClick ? '✓' : '';
+        showToast(modeSoundClick ? 'Đã bật: Tắt âm thanh khi bấm' : 'Đã tắt: Tắt âm thanh khi bấm', '⚙️');
+      });
+
+      document.getElementById('soundModeTimerRow').addEventListener('click', () => {
+        modeSoundTimer = !modeSoundTimer;
+        const box = document.getElementById('checkSoundTimer');
+        box.className = `custom-check-box ${modeSoundTimer ? 'checked' : 'unchecked'}`;
+        box.textContent = modeSoundTimer ? '✓' : '';
+        showToast(modeSoundTimer ? 'Đã bật: Tắt âm thanh khi hết giờ ngủ' : 'Đã tắt: Tắt âm thanh khi hết giờ ngủ', '⚙️');
+      });
 
       // 6 Nút âm thanh thư giãn
       document.querySelectorAll('.btn-ocean-sound[data-sound]').forEach(btn => {
@@ -1742,13 +1815,13 @@
       document.getElementById('btnToggleSheepCounter').addEventListener('click', toggleSheepCounter);
       document.getElementById('btnStopSheepFast').addEventListener('click', toggleSheepCounter);
 
-      // NÚT "TẮT KHI BẤM" CHO ÂM THANH THƯ GIÃN (KHỐI 2)
+      // Nút Tắt khi bấm cho Âm thanh thư giãn
       document.getElementById('btnStopRelaxingDirect').addEventListener('click', () => {
         stopAllRelaxingSounds();
         showToast('Đã tắt toàn bộ âm thanh thư giãn!', '⏹️');
       });
 
-      // NÚT "TẮT KHI BẤM" CHO ÂM BÁO THỨC DẬY (KHỐI 1)
+      // Nút Tắt khi bấm cho Âm báo thức dậy
       document.getElementById('btnStopAlarmDirect').addEventListener('click', () => {
         if (isAlarmRinging) {
           stopAlarmClock('manual');
@@ -1780,9 +1853,9 @@
         if (checked) {
           selectedAlarmSound = checked.value;
           const mapName = {
-            singing_bowl: 'Chuông Thiền',
-            wind_chimes: 'Chuông Gió',
-            birds: 'Chim Hót'
+            singing_bowl: 'Chuông Thiền Ngân Vang',
+            wind_chimes: 'Chuông Gió Leng Keng',
+            birds: 'Tiếng Chim Hót Ban Mai'
           };
           document.getElementById('selectedAlarmLabel').textContent = mapName[selectedAlarmSound] || 'Chuông Thiền';
         }
@@ -1865,9 +1938,10 @@
       document.getElementById('btnConfirmClaimBed').addEventListener('click', () => {
         const bed = roomState[currentActiveRoom].find(b => b.id === activeSelectedBedId);
         if (!bed) return;
-        const name = document.getElementById('sleeperNameInput').value.trim() || currentUser.name || 'Người ẩn danh';
+        const name = document.getElementById('sleeperNameInput').value.trim() || 'Người dùng';
         bed.name = name;
         bed.status = 'occupied';
+        bed.color = 0x0284C7;
         currentUser.name = name;
         currentUser.room = currentActiveRoom;
         currentUser.bedId = bed.id;
@@ -1878,7 +1952,7 @@
         showToast(`Đã nhận Giường #${bed.id} cho ${name}! 💤`, '🛌');
       });
 
-      // DONATE 3 MỤC: MoMo, Taptap Send, MetaMask BNB Chain
+      // DONATE 3 MỤC
       document.getElementById('btnOpenDonateModal').addEventListener('click', () => {
         document.getElementById('donateModal').classList.remove('opacity-0', 'pointer-events-none');
       });
@@ -1889,7 +1963,6 @@
         document.getElementById('donateModal').classList.add('opacity-0', 'pointer-events-none');
       });
 
-      // Copy MoMo
       document.getElementById('btnCopyMoMo').addEventListener('click', () => {
         navigator.clipboard.writeText('0793869600').then(() => {
           showToast('Đã sao chép SĐT MoMo: 0793869600', '📋');
@@ -1898,7 +1971,6 @@
         });
       });
 
-      // Copy Taptap Send info
       document.getElementById('btnCopyTaptap').addEventListener('click', () => {
         const info = 'Người nhận: NGUYỄN THỊ MINH CHÂU - Số MoMo: 0793869600';
         navigator.clipboard.writeText(info).then(() => {
@@ -1908,7 +1980,6 @@
         });
       });
 
-      // Copy Crypto BNB Address
       document.getElementById('btnCopyCrypto').addEventListener('click', () => {
         const addr = '0x92973de5eDefFd82a04b569eA90db519aC7cA2b1';
         navigator.clipboard.writeText(addr).then(() => {
