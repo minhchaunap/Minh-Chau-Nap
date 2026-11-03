@@ -213,7 +213,7 @@
           <!-- Chế độ 1: Tắt khi bấm -->
           <div id="alarmModeClickRow" class="p-2 rounded-xl bg-white border border-sky-300 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
             <div class="flex items-center space-x-2">
-              <div id="checkAlarmClick" class="custom-check-box checked">✓</div>
+              <div id="checkAlarmClick" class="custom-check-box unchecked"></div>
               <span class="text-xs font-bold text-slate-800" data-i18n="stopOnClick1">Tắt khi bấm</span>
             </div>
             <button id="btnStopAlarmDirect" class="px-2 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-800 font-extrabold hover:bg-sky-200 active:scale-95 transition" data-i18n="stopDirectBtn1">
@@ -257,7 +257,7 @@
           <!-- Chế độ 1: Tắt khi bấm -->
           <div id="soundModeClickRow" class="p-2 rounded-xl bg-white border border-sky-300 flex items-center justify-between cursor-pointer hover:bg-sky-50 transition shadow-xs">
             <div class="flex items-center space-x-2">
-              <div id="checkSoundClick" class="custom-check-box checked">✓</div>
+              <div id="checkSoundClick" class="custom-check-box unchecked"></div>
               <span class="text-xs font-bold text-slate-800" data-i18n="stopOnClick2">Tắt khi bấm</span>
             </div>
             <button id="btnStopRelaxingDirect" class="px-2 py-0.5 rounded-md bg-sky-100 text-[10px] text-sky-800 font-extrabold hover:bg-sky-200 active:scale-95 transition" data-i18n="stopDirectBtn2">
@@ -466,13 +466,13 @@
         <button id="btnCloseDonateModal" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
       </div>
 
-      <!-- ĐẦU TIÊN: CÂU MINH BẠCH NGUỒN THU ĐÚNG NGUYÊN VĂN -->
-      <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-200 text-slate-800 text-xs leading-relaxed text-center shadow-xs">
-        <p class="font-bold text-sky-950 text-xs sm:text-sm">
-          "Your voluntary support helps me maintain this website. No products or services are provided in exchange."
+      <!-- LỜI NHẮN ỦNG HỘ TỰ NGUYỆN THEO NỘI DUNG MỚI CỦA BẠN -->
+      <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-200 text-slate-800 text-xs sm:text-sm leading-relaxed text-center shadow-xs">
+        <p class="font-bold text-sky-950" id="donateModalMessageText">
+          "Nếu bạn yêu thích website này, bạn có thể tự nguyện gửi tôi một chút ủng hộ. Cảm ơn sự quan tâm và lòng tốt của bạn!"
         </p>
-        <p class="text-[11px] text-slate-500 mt-1 italic">
-          (Sự ủng hộ tự nguyện của bạn giúp tôi duy trì trang web này. Không có sản phẩm hay dịch vụ nào được cung cấp để trao đổi.)
+        <p class="text-[11px] text-slate-500 mt-1 italic" id="donateModalSubText">
+          (If you enjoy this website, you can voluntarily send me a little support. Thank you for your kindness and consideration!)
         </p>
       </div>
 
@@ -1004,6 +1004,13 @@
       }
 
       updateOccupancyBadges();
+            if (lang === 'vi') {
+        const msg = document.getElementById('donateModalMessageText');
+        if (msg) msg.textContent = '"Nếu bạn yêu thích website này, bạn có thể tự nguyện gửi tôi một chút ủng hộ. Cảm ơn sự quan tâm và lòng tốt của bạn!"';
+      } else {
+        const msg = document.getElementById('donateModalMessageText');
+        if (msg) msg.textContent = '"If you enjoy this website, you can voluntarily send me a little support. Thank you for your kindness and consideration!"';
+      }
       updateSoundStatusLabel();
       updateCountdownDisplay();
     }
@@ -1015,9 +1022,9 @@
     let chosenTeaName = null;
     let isSleepTimerRunning = false;
 
-    let modeAlarmClick = true;
+    let modeAlarmClick = false;
     let modeAlarm15Min = true;
-    let modeSoundClick = true;
+    let modeSoundClick = false;
     let modeSoundTimer = true;
 
     let currentUser = {
@@ -1852,6 +1859,13 @@
 
       render3DBedLabelsHTML();
       updateOccupancyBadges();
+            if (lang === 'vi') {
+        const msg = document.getElementById('donateModalMessageText');
+        if (msg) msg.textContent = '"Nếu bạn yêu thích website này, bạn có thể tự nguyện gửi tôi một chút ủng hộ. Cảm ơn sự quan tâm và lòng tốt của bạn!"';
+      } else {
+        const msg = document.getElementById('donateModalMessageText');
+        if (msg) msg.textContent = '"If you enjoy this website, you can voluntarily send me a little support. Thank you for your kindness and consideration!"';
+      }
     }
 
     function render3DBedLabelsHTML() {
@@ -1999,6 +2013,13 @@
 
       document.getElementById('statNapCountBadge').textContent = `${totalNapCount} ` + (currentLang === 'vi' ? 'lần' : 'times');
       updateOccupancyBadges();
+            if (lang === 'vi') {
+        const msg = document.getElementById('donateModalMessageText');
+        if (msg) msg.textContent = '"Nếu bạn yêu thích website này, bạn có thể tự nguyện gửi tôi một chút ủng hộ. Cảm ơn sự quan tâm và lòng tốt của bạn!"';
+      } else {
+        const msg = document.getElementById('donateModalMessageText');
+        if (msg) msg.textContent = '"If you enjoy this website, you can voluntarily send me a little support. Thank you for your kindness and consideration!"';
+      }
 
       // Checkbox modes
       document.getElementById('alarmModeClickRow').addEventListener('click', (e) => {
