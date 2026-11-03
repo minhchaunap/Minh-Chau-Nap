@@ -636,53 +636,51 @@
       </div>
 
       <!-- KHU VỰC CUỘN DANH SÁCH ÂM THANH (ĐẦY ĐỦ 6 ÂM THANH MỚI THEO YÊU CẦU + TỰ NHIÊN) -->
-      <!-- DANH SÁCH ÂM THANH THƯ GIÃN (GIỮ LẠI SÓNG NÃO 432HZ & CÁC ÂM THANH TỰ NHIÊN) -->
+      <!-- DANH SÁCH 7 ÂM THANH THEO ĐÚNG THỨ TỰ TUẦN TỰ TỪ 1 ĐẾN 7:
+           1. Mưa nhẹ, 2. Suối chảy, 3. Piano, 4. Sóng biển, 5. Đếm Cừu, 6. Tải lên, 7. Sóng não -->
       <div class="grid grid-cols-2 gap-2 text-xs">
-        <!-- 1. SÓNG NÃO NGỦ SÂU (TẦN SỐ 432HZ / DELTA) - GIỮ LẠI THEO YÊU CẦU CỦA BẠN -->
-        <button class="sound-select-item p-3 rounded-2xl border-2 border-indigo-300 bg-indigo-50/70 hover:bg-indigo-100 font-extrabold text-indigo-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs col-span-2" data-sound="delta_432hz">
-          <span class="text-2xl">🌌</span>
-          <div class="text-left">
-            <div class="font-black text-xs text-indigo-950">Sóng Não Ngủ Sâu (432Hz / Delta)</div>
-            <div class="text-[10px] text-indigo-700 font-medium">Thư giãn não bộ & chìm vào giấc ngủ sâu</div>
-          </div>
-        </button>
-
-        <!-- 2. Mưa nhẹ -->
+        <!-- 1. Mưa nhẹ -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
           <span class="text-xl">🌧️</span>
           <span>1. Mưa nhẹ</span>
         </button>
 
-        <!-- 3. Suối chảy -->
+        <!-- 2. Suối chảy -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
           <span class="text-xl">🍃</span>
           <span>2. Suối chảy</span>
         </button>
 
-        <!-- 4. Piano -->
+        <!-- 3. Piano -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
           <span class="text-xl">🎹</span>
           <span>3. Piano</span>
         </button>
 
-        <!-- 5. Sóng biển -->
+        <!-- 4. Sóng biển -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
           <span class="text-xl">🌊</span>
           <span>4. Sóng biển</span>
         </button>
 
-        <!-- 6. Đếm cừu -->
+        <!-- 5. Đếm cừu -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="sheep" id="btnSoundItemSheep">
           <span class="text-xl">🐑</span>
           <span>5. Đếm Cừu</span>
         </button>
 
-        <!-- 7. Tải lên MP3 (cho phép người dùng tải file kinh / niệm Phật có người đọc thật) -->
+        <!-- 6. Tải lên -->
         <label for="customAudioUploadModal" class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
           <span class="text-xl">📁</span>
-          <span>6. Tải lên MP3</span>
+          <span>6. Tải lên</span>
           <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
         </label>
+
+        <!-- 7. Sóng não (Vị trí 7, nằm sau 6. Tải lên theo đúng yêu cầu) -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95 col-span-2" data-sound="delta_432hz">
+          <span class="text-xl">🌌</span>
+          <span>7. Sóng não (432Hz / Delta)</span>
+        </button>
       </div>
 
       <!-- Hoạt cảnh cừu đếm nhảy qua rào -->
@@ -2307,7 +2305,7 @@
         stopAllRelaxingSounds();
 
         const namesVI = { 
-          delta_432hz: 'Sóng Não 432Hz (Delta)',
+          delta_432hz: 'Sóng não (432Hz / Delta)',
           rain: 'Mưa nhẹ', 
           stream: 'Suối chảy', 
           piano: 'Piano', 
