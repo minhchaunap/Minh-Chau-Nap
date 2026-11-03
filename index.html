@@ -441,6 +441,227 @@
 
   <!-- ĐÃ GỠ BỎ MỤC MỜI CÀ PHÊ ĐỂ AN TOÀN 100% THEO YÊU CẦU -->
 
+  <!-- ================= MODALS TÍNH NĂNG ĐƯỢC PHỤC HỒI ĐẦY ĐỦ ================= -->
+
+  <!-- MODAL 1: GOM VÀO TRONG: BẤM NÚT 'CHỌN GIƯỜNG ▼' MỞ RA BẢNG NÀY -->
+  <div id="selectBedHubModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3.5 border border-sky-300 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div class="flex items-center space-x-2">
+          <span class="text-xl">🛏️</span>
+          <h3 class="text-base font-extrabold text-slate-900 font-display">Chọn Giường & Phòng Ngủ</h3>
+        </div>
+        <button id="btnCloseSelectBedHub" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-600 font-medium">
+        Vui lòng chọn phòng để trải nghiệm không gian 3D và chọn giường nằm của bạn:
+      </p>
+
+      <div class="space-y-2.5">
+        <!-- Nút vào Phòng 1 -->
+        <button id="btnHubOpenRoom1" class="btn-ocean w-full p-3 rounded-2xl flex items-center justify-between shadow-sm active:scale-95 transition">
+          <div class="flex items-center space-x-3 text-left">
+            <span class="text-2xl">🏠</span>
+            <div>
+              <div class="font-extrabold text-xs text-white">Phòng 1</div>
+              <div class="text-[10px] text-sky-100" id="room1OccupancyText">0/50 giường</div>
+            </div>
+          </div>
+          <span class="text-xs text-white font-bold">Vào phòng ➔</span>
+        </button>
+
+        <!-- Nút vào Phòng 2 -->
+        <button id="btnHubOpenRoom2" class="btn-ocean w-full p-3 rounded-2xl flex items-center justify-between shadow-sm active:scale-95 transition">
+          <div class="flex items-center space-x-3 text-left">
+            <span class="text-2xl">🏡</span>
+            <div>
+              <div class="font-extrabold text-xs text-white">Phòng 2</div>
+              <div class="text-[10px] text-sky-100" id="room2OccupancyText">0/50 giường</div>
+            </div>
+          </div>
+          <span class="text-xs text-white font-bold">Vào phòng ➔</span>
+        </button>
+
+        <!-- Nút Trà Thư Thái -->
+        <button id="btnOpenTeaModal" class="w-full p-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white flex items-center justify-between shadow-sm active:scale-95 transition">
+          <div class="flex items-center space-x-3 text-left">
+            <span class="text-2xl">🍵</span>
+            <div>
+              <div class="font-extrabold text-xs">Trà</div>
+              <div class="text-[10px] text-indigo-100">Ly cho 1 người</div>
+            </div>
+          </div>
+          <span class="text-xs font-bold">Chọn trà ➔</span>
+        </button>
+      </div>
+
+      <button id="btnDoneSelectBedHub" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+        Đóng lại
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL 2: CHỌN ÂM THANH THƯ GIÃN (7 ÂM THANH THEO ĐÚNG THỨ TỰ TUẦN TỰ) -->
+  <div id="soundPickerModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3.5 border border-sky-300 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div class="flex items-center space-x-2">
+          <span class="text-xl">🎵</span>
+          <h3 class="text-base font-extrabold text-slate-900 font-display">Chọn Âm Thanh Thư Giãn</h3>
+        </div>
+        <button id="btnCloseSoundPicker" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
+      </div>
+
+      <!-- Trạng thái âm thanh đang phát & điều chỉnh âm lượng -->
+      <div class="p-3 rounded-2xl bg-sky-50 border border-sky-200 space-y-1.5">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-800">
+          <span id="modalSoundStatus">Chạm vào âm thanh bên dưới để nghe:</span>
+          <span id="volumeNumberLabel" class="text-sky-800 font-mono">85%</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-xs">🔈</span>
+          <input type="range" id="soundVolumeSlider" min="0" max="100" value="85" class="w-full accent-[#0284C7] cursor-pointer">
+          <span class="text-xs">🔊</span>
+        </div>
+      </div>
+
+      <!-- DANH SÁCH ÂM THANH: 1. Mưa nhẹ, 2. Suối chảy, 3. Piano, 4. Sóng biển, 5. Đếm Cừu, 6. Tải lên, 7. Sóng não, 8. Đàn Du Dương -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <!-- 1. Mưa nhẹ -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
+          <span class="text-xl">🌧️</span>
+          <span>1. Mưa nhẹ</span>
+        </button>
+
+        <!-- 2. Suối chảy -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
+          <span class="text-xl">🍃</span>
+          <span>2. Suối chảy</span>
+        </button>
+
+        <!-- 3. Piano -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
+          <span class="text-xl">🎹</span>
+          <span>3. Piano</span>
+        </button>
+
+        <!-- 4. Sóng biển -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
+          <span class="text-xl">🌊</span>
+          <span>4. Sóng biển</span>
+        </button>
+
+        <!-- 5. Đếm cừu -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="sheep" id="btnSoundItemSheep">
+          <span class="text-xl">🐑</span>
+          <span>5. Đếm Cừu</span>
+        </button>
+
+        <!-- 6. Tải lên -->
+        <label for="customAudioUploadModal" class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
+          <span class="text-xl">📁</span>
+          <span>6. Tải lên</span>
+          <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
+        </label>
+
+        <!-- 7. Sóng não (Vị trí 7, nằm sau 6. Tải lên) -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="delta_432hz">
+          <span class="text-xl">🌌</span>
+          <span>7. Sóng não (432Hz)</span>
+        </button>
+
+        <!-- 8. Đàn Du Dương (Trầm Bổng) -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2 transition active:scale-95 shadow-xs" data-sound="dan_du_duong">
+          <span class="text-xl">🪕</span>
+          <div class="text-left">
+            <div>8. Đàn Du Dương</div>
+            <div class="text-[9px] text-amber-700 font-normal">Trầm bổng</div>
+          </div>
+        </button>
+      </div>
+
+      <!-- Hoạt cảnh cừu đếm nhảy qua rào -->
+      <div id="sheepCountLiveBar" class="hidden p-2 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-between text-xs mt-1">
+        <div class="flex items-center space-x-2">
+          <span class="text-lg animate-bounce">🐑</span>
+          <span class="font-extrabold text-indigo-900" id="sheepCountLiveText">Đang đếm: 1 con cừu...</span>
+        </div>
+        <button id="btnStopSheepFast" class="px-2 py-0.5 rounded-lg bg-indigo-200 text-indigo-800 font-bold text-[10px]">Dừng đếm</button>
+      </div>
+
+      <!-- Nút tắt âm thanh & Xác nhận đóng -->
+      <div class="flex items-center space-x-2 pt-1">
+        <button id="btnTurnOffSoundInside" class="w-1/2 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+          ⏹️ Tắt âm thanh
+        </button>
+        <button id="btnDoneSoundPicker" class="w-1/2 py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs transition shadow-sm">
+          ✓ Xác nhận đóng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: CÀI ĐẶT GIỜ NHANH (1 Ngủ 15p, 2 Ngủ 30p, 3 Ngủ 1h, 4 Ngủ 2h, 5 Ngủ 24/7 vô tận) -->
+  <div id="timeModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3.5 shadow-2xl border border-sky-300">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div class="flex items-center space-x-2">
+          <span class="text-2xl">⏰</span>
+          <h3 class="text-base font-extrabold text-slate-800 font-display">Cài Đặt Giờ Nhanh</h3>
+        </div>
+        <button id="btnCloseTimeModal" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
+      </div>
+
+      <!-- 4 NÚT CÀI GIỜ NHANH + NÚT 24/7 -->
+      <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold text-sky-800 uppercase tracking-wider block">Bấm chọn giờ nhanh để ngủ ngay:</label>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="15">
+            <span>⚡</span>
+            <span>1. Ngủ 15 phút</span>
+          </button>
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="30">
+            <span>⚡</span>
+            <span>2. Ngủ 30 phút</span>
+          </button>
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="60">
+            <span>⚡</span>
+            <span>3. Ngủ 1 giờ</span>
+          </button>
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="120">
+            <span>⚡</span>
+            <span>4. Ngủ 2 giờ</span>
+          </button>
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-purple-400 bg-purple-50 hover:bg-purple-100 text-purple-950 font-black flex items-center justify-center space-x-2 shadow-xs active:scale-95 transition col-span-2" data-minutes="infinite">
+            <span class="text-lg">♾️</span>
+            <span>5. Ngủ 24/7 (Vô tận - Không báo thức)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TÙY CHỌN TỰ ĐIỀU CHỈNH GIỜ -->
+      <div class="border-t border-slate-100 pt-2.5 space-y-2">
+        <div class="text-[11px] font-bold text-slate-500">Hoặc tự chọn giờ tùy ý:</div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div>
+            <label class="text-[10px] font-bold text-slate-600 block mb-0.5">Bắt đầu:</label>
+            <input type="time" id="startTimeInput" value="12:00" class="w-full px-2.5 py-1.5 rounded-xl border border-slate-300 font-bold text-xs">
+          </div>
+          <div>
+            <label class="text-[10px] font-bold text-slate-600 block mb-0.5">Báo thức dậy:</label>
+            <input type="time" id="endTimeInput" value="13:30" class="w-full px-2.5 py-1.5 rounded-xl border border-slate-300 font-bold text-xs">
+          </div>
+        </div>
+        <button id="btnSaveTime" class="w-full py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs active:scale-95 transition shadow-sm mt-1">
+          Xác Nhận Giờ Tự Chọn ⏰
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
   <!-- MODAL: CÀI ĐẶT NGÀY -->
   <div id="dateModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-4 shadow-2xl border border-sky-200 transform transition-transform scale-95">
