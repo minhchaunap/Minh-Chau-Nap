@@ -309,7 +309,7 @@
           <div class="grid grid-cols-2 gap-2 mt-2">
             <button id="btnOpenTimeModal" class="btn-ocean py-2 px-2.5 rounded-xl text-center font-display font-bold text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition">
               <span>⏰</span>
-              <span data-i18n="setTimeBtn">Cài đặt giờ</span>
+              <span data-i18n="setTimeBtn">Cài đặt giờ nhanh</span>
             </button>
 
             <button id="btnOpenDateModal" class="btn-ocean py-2 px-2.5 rounded-xl text-center font-display font-bold text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition">
@@ -611,7 +611,7 @@
     </div>
   </div>
 
-    <!-- MODAL CHỌN ÂM THANH (CHO 6 ÂM THANH VÀO BÊN TRONG THEO HÌNH VẼ 12395.jpg) -->
+    <!-- MODAL CHỌN ÂM THANH (CHO 6 ÂM THANH VÀO BÊN TRONG THEO HÌNH VẼ 12400.jpg & 12401.jpg) -->
   <div id="soundPickerModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3.5 border border-sky-300 shadow-2xl">
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
@@ -622,46 +622,55 @@
         <button id="btnCloseSoundPicker" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
       </div>
 
-      <p class="text-xs text-slate-600 font-medium">
-        Chọn âm thanh dịu êm để chìm vào giấc ngủ ngon:
-      </p>
+      <!-- Trạng thái âm thanh đang phát & điều chỉnh âm lượng -->
+      <div class="p-3 rounded-2xl bg-sky-50 border border-sky-200 space-y-1.5">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-800">
+          <span id="modalSoundStatus">Chạm vào âm thanh bên dưới để nghe:</span>
+          <span id="volumeNumberLabel" class="text-sky-800 font-mono">85%</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-xs">🔈</span>
+          <input type="range" id="soundVolumeSlider" min="0" max="100" value="85" class="w-full accent-[#0284C7] cursor-pointer">
+          <span class="text-xs">🔊</span>
+        </div>
+      </div>
 
-      <!-- 6 TÙY CHỌN ÂM THANH THEO HÌNH VẼ 12395.jpg: 1.Mưa nhẹ, 2.Suối chảy, 3.Piano, 4.Sóng biển, 5.Đếm cừu, 6.Tải lên -->
+      <!-- 6 TÙY CHỌN ÂM THANH THEO ĐÚNG HÌNH VẼ TAY 12400.jpg: 1.mưa, 2.Suối, 3.Piano, 4.Biển, 5.Đếm cừu, 6.Tải lên -->
       <div class="grid grid-cols-2 gap-2 text-xs">
-        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
           <span class="text-xl">🌧️</span>
           <span>1. Mưa nhẹ</span>
         </button>
 
-        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
           <span class="text-xl">🍃</span>
           <span>2. Suối chảy</span>
         </button>
 
-        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
           <span class="text-xl">🎹</span>
           <span>3. Piano</span>
         </button>
 
-        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
           <span class="text-xl">🌊</span>
           <span>4. Sóng biển</span>
         </button>
 
-        <button class="sound-modal-opt p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" id="btnToggleSheepCounterModal">
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="sheep" id="btnSoundItemSheep">
           <span class="text-xl">🐑</span>
           <span>5. Đếm Cừu</span>
         </button>
 
-        <label for="customAudioUploadModal" class="p-3 rounded-2xl border border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
+        <label for="customAudioUploadModal" class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
           <span class="text-xl">📁</span>
           <span>6. Tải lên</span>
           <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
         </label>
       </div>
 
-      <!-- Hoạt cảnh cừu nhảy qua rào khi đếm cừu -->
-      <div id="sheepCountLiveBar" class="hidden p-2 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-between text-xs mt-2">
+      <!-- Hoạt cảnh cừu đếm nhảy qua rào -->
+      <div id="sheepCountLiveBar" class="hidden p-2 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-between text-xs mt-1">
         <div class="flex items-center space-x-2">
           <span class="text-lg animate-bounce">🐑</span>
           <span class="font-extrabold text-indigo-900" id="sheepCountLiveText">Đang đếm: 1 con cừu...</span>
@@ -669,46 +678,69 @@
         <button id="btnStopSheepFast" class="px-2 py-0.5 rounded-lg bg-indigo-200 text-indigo-800 font-bold text-[10px]">Dừng đếm</button>
       </div>
 
+      <!-- Nút tắt âm thanh & Xác nhận đóng -->
       <div class="flex items-center space-x-2 pt-1">
         <button id="btnTurnOffSoundInside" class="w-1/2 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-          Tắt âm thanh
+          ⏹️ Tắt âm thanh
         </button>
         <button id="btnDoneSoundPicker" class="w-1/2 py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs transition shadow-sm">
-          Xác nhận đóng
+          ✓ Xác nhận đóng
         </button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL: CÀI ĐẶT GIỜ -->
+  <!-- MODAL: CÀI ĐẶT GIỜ NHANH (THEO HÌNH VẼ 12400.jpg & 12402.jpg) -->
   <div id="timeModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
-    <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-4 shadow-2xl border border-sky-200 transform transition-transform scale-95">
+    <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3.5 shadow-2xl border border-sky-300">
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
         <div class="flex items-center space-x-2">
           <span class="text-2xl">⏰</span>
-          <h3 class="text-base font-extrabold text-slate-800 font-display" data-i18n="timeModalTitle">Cài Đặt Giờ Ngủ</h3>
+          <h3 class="text-base font-extrabold text-slate-800 font-display">Cài Đặt Giờ Nhanh</h3>
         </div>
         <button id="btnCloseTimeModal" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 text-sm font-bold flex items-center justify-center">✕</button>
       </div>
 
-      <div class="space-y-3">
-        <div>
-          <label class="text-xs font-bold text-slate-700 block mb-1" data-i18n="sleeperNameInputLabel">Tên người ngủ:</label>
-          <input type="text" id="setupUserNameInput" placeholder="Minh Châu..." value="Minh Châu ⭐" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-bold text-sm text-slate-800 focus:outline-none focus:border-sky-500">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-700 block mb-1" data-i18n="startTimeInputLabel">Giờ bắt đầu ngủ:</label>
-          <input type="time" id="startTimeInput" value="12:00" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold text-sm text-slate-800 focus:outline-none focus:border-sky-500">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-700 block mb-1" data-i18n="endTimeInputLabel">Giờ kết thúc (Báo thức dậy):</label>
-          <input type="time" id="endTimeInput" value="13:30" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold text-sm text-slate-800 focus:outline-none focus:border-sky-500">
+      <!-- 4 NÚT CÀI GIỜ NHANH THEO HÌNH VẼ 12400.jpg: 1 Ngủ 15 phút, 2 Ngủ 30 phút, 3 Ngủ 1 giờ, 4 Ngủ 2 giờ -->
+      <div class="space-y-1.5">
+        <label class="text-[11px] font-extrabold text-sky-800 uppercase tracking-wider block">Bấm chọn giờ nhanh để ngủ ngay:</label>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="15">
+            <span>⚡</span>
+            <span>1. Ngủ 15 phút</span>
+          </button>
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="30">
+            <span>⚡</span>
+            <span>2. Ngủ 30 phút</span>
+          </button>
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="60">
+            <span>⚡</span>
+            <span>3. Ngủ 1 giờ</span>
+          </button>
+          <button class="btn-quick-nap p-3 rounded-2xl border-2 border-sky-400 bg-sky-50 hover:bg-sky-100 text-sky-950 font-black flex items-center justify-center space-x-1.5 shadow-xs active:scale-95 transition" data-minutes="120">
+            <span>⚡</span>
+            <span>4. Ngủ 2 giờ</span>
+          </button>
         </div>
       </div>
 
-      <button id="btnSaveTime" class="w-full py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs active:scale-95 transition shadow-md" data-i18n="startNapBtn">
-        Xác Nhận & Bắt Đầu Ngủ Ngay 💤
-      </button>
+      <!-- TÙY CHỌN TỰ ĐIỀU CHỈNH GIỜ -->
+      <div class="border-t border-slate-100 pt-2.5 space-y-2">
+        <div class="text-[11px] font-bold text-slate-500">Hoặc tự chọn giờ tùy ý:</div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div>
+            <label class="text-[10px] font-bold text-slate-600 block mb-0.5">Bắt đầu:</label>
+            <input type="time" id="startTimeInput" value="12:00" class="w-full px-2.5 py-1.5 rounded-xl border border-slate-300 font-bold text-xs">
+          </div>
+          <div>
+            <label class="text-[10px] font-bold text-slate-600 block mb-0.5">Báo thức dậy:</label>
+            <input type="time" id="endTimeInput" value="13:30" class="w-full px-2.5 py-1.5 rounded-xl border border-slate-300 font-bold text-xs">
+          </div>
+        </div>
+        <button id="btnSaveTime" class="w-full py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-extrabold text-xs active:scale-95 transition shadow-sm mt-1">
+          Xác Nhận Giờ Tự Chọn ⏰
+        </button>
+      </div>
     </div>
   </div>
 
@@ -936,7 +968,7 @@
     const i18nDict = {
       vi: {
         langNotice: 'Tự động nhận diện ngôn ngữ',
-        setTimeBtn: 'Cài đặt giờ',
+        setTimeBtn: 'Cài đặt giờ nhanh',
         setDateBtn: 'Cài đặt ngày',
         colSelectSound1: '① Chọn âm thanh',
         colSelectMode1: '② Chọn chế độ tắt',
@@ -1201,7 +1233,8 @@
     function applySleepSetup() {
       const sT = document.getElementById('startTimeInput').value;
       const eT = document.getElementById('endTimeInput').value;
-      const name = document.getElementById('setupUserNameInput').value.trim() || (currentLang === 'vi' ? 'Minh Châu ⭐' : 'User ⭐');
+      const nameEl = document.getElementById('setupUserNameInput');
+      const name = (nameEl ? nameEl.value.trim() : '') || (currentUser.name || (currentLang === 'vi' ? 'Minh Châu ⭐' : 'User ⭐'));
 
       currentUser.name = name;
       document.getElementById('displaySleeperNameTag').textContent = name;
@@ -2117,6 +2150,145 @@
       const today = new Date().toISOString().split('T')[0];
       document.getElementById('startDateInput').value = today;
       document.getElementById('endDateInput').value = today;
+
+      // GẮN SỰ KIỆN: CÀI ĐẶT GIỜ NHANH (MỤC 2 HÌNH VẼ 12400.jpg & 12402.jpg)
+      function startQuickNap(minutes) {
+        const now = new Date();
+        const startH = String(now.getHours()).padStart(2, '0');
+        const startM = String(now.getMinutes()).padStart(2, '0');
+        const sT = `${startH}:${startM}`;
+
+        const endDate = new Date(now.getTime() + minutes * 60 * 1000);
+        const endH = String(endDate.getHours()).padStart(2, '0');
+        const endM = String(endDate.getMinutes()).padStart(2, '0');
+        const eT = `${endH}:${endM}`;
+
+        document.getElementById('startTimeInput').value = sT;
+        document.getElementById('endTimeInput').value = eT;
+
+        timerCountdownSec = minutes * 60;
+        isSleepTimerRunning = true;
+
+        document.getElementById('displaySleepTimeRange').textContent = `${sT} ➔ ${eT}`;
+        const h = Math.floor(minutes / 60);
+        const m = minutes % 60;
+        document.getElementById('totalSleepHoursLabel').textContent = `${h > 0 ? h + 'h ' : ''}${m > 0 ? m + 'm' : ''}`;
+
+        startCountdownLoop();
+        updateCountdownDisplay();
+
+        document.getElementById('timeModal').classList.add('opacity-0', 'pointer-events-none');
+        const labelText = minutes < 60 ? `${minutes} phút` : `${minutes / 60} giờ`;
+        showToast(currentLang === 'vi' ? `Đã kích hoạt hẹn giờ ngủ ${labelText}! (${sT} ➔ ${eT}) ⏰` : `Nap timer set for ${labelText}! ⏰`, '⏰');
+      }
+
+      document.querySelectorAll('.btn-quick-nap').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const min = parseInt(btn.getAttribute('data-minutes'), 10);
+          startQuickNap(min);
+        });
+      });
+
+      // GẮN SỰ KIỆN: CHỌN ÂM THANH (MỤC 1 HÌNH VẼ 12400.jpg & 12401.jpg)
+      const btnOpenSoundPicker = document.getElementById('btnOpenSoundPickerModal');
+      const soundPickerModal = document.getElementById('soundPickerModal');
+      if (btnOpenSoundPicker && soundPickerModal) {
+        btnOpenSoundPicker.addEventListener('click', () => {
+          soundPickerModal.classList.remove('opacity-0', 'pointer-events-none');
+        });
+      }
+      document.getElementById('btnCloseSoundPicker').addEventListener('click', () => {
+        soundPickerModal.classList.add('opacity-0', 'pointer-events-none');
+      });
+      document.getElementById('btnDoneSoundPicker').addEventListener('click', () => {
+        soundPickerModal.classList.add('opacity-0', 'pointer-events-none');
+      });
+
+      // Tắt âm thanh từ bên trong modal
+      document.getElementById('btnTurnOffSoundInside').addEventListener('click', () => {
+        stopAllRelaxingSounds();
+        document.querySelectorAll('.sound-select-item').forEach(b => {
+          b.classList.remove('border-sky-500', 'bg-sky-50', 'text-sky-950');
+          b.classList.add('border-slate-200', 'bg-white');
+        });
+        document.getElementById('modalSoundStatus').textContent = 'Đã tắt toàn bộ âm thanh';
+        showToast('Đã tắt âm thanh thư giãn', '⏹️');
+      });
+
+      // Điều chỉnh âm lượng từ modal
+      document.getElementById('soundVolumeSlider').addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10);
+        document.getElementById('volumeNumberLabel').textContent = `${val}%`;
+        if (masterGain && audioCtx) {
+          masterGain.gain.setValueAtTime((val / 100) * 0.95, audioCtx.currentTime);
+        }
+        if (uploadedCustomAudio) {
+          uploadedCustomAudio.volume = (val / 100);
+        }
+      });
+
+      // Click chọn 6 âm thanh: 1.mưa, 2.suối, 3.piano, 4.sóng, 5.cừu, 6.tải lên
+      function playRelaxingSoundItem(sndKey) {
+        initAudio();
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        // Tắt các âm khác trước
+        stopAllRelaxingSounds();
+
+        const namesVI = { rain: 'Mưa nhẹ', stream: 'Suối chảy', piano: 'Piano', waves: 'Sóng biển', sheep: 'Đếm Cừu' };
+
+        if (sndKey === 'rain') {
+          rainEngine.start();
+        } else if (sndKey === 'stream') {
+          streamEngine.start();
+        } else if (sndKey === 'piano') {
+          pianoEngine.start();
+        } else if (sndKey === 'waves') {
+          wavesEngine.start();
+        } else if (sndKey === 'sheep') {
+          toggleSheepCounter();
+        }
+
+        // Highlight nút được chọn
+        document.querySelectorAll('.sound-select-item').forEach(b => {
+          b.classList.remove('border-sky-500', 'bg-sky-50', 'text-sky-950');
+          b.classList.add('border-slate-200', 'bg-white');
+        });
+        const activeBtn = document.querySelector(`.sound-select-item[data-sound="${sndKey}"]`);
+        if (activeBtn) {
+          activeBtn.classList.remove('border-slate-200', 'bg-white');
+          activeBtn.classList.add('border-sky-500', 'bg-sky-50', 'text-sky-950');
+        }
+
+        updateSoundStatusLabel();
+        document.getElementById('modalSoundStatus').textContent = `Đang phát: ${namesVI[sndKey] || sndKey}`;
+        showToast(`Đang phát âm thanh: ${namesVI[sndKey] || sndKey}! 🎵`, '🎵');
+      }
+
+      document.querySelectorAll('.sound-select-item[data-sound]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const snd = btn.getAttribute('data-sound');
+          if (snd) playRelaxingSoundItem(snd);
+        });
+      });
+
+      // Tải lên file âm thanh cá nhân từ modal
+      document.getElementById('customAudioUploadModal').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          initAudio();
+          stopAllRelaxingSounds();
+          uploadedCustomAudio = new Audio(URL.createObjectURL(file));
+          uploadedCustomAudio.loop = true;
+          uploadedCustomAudio.volume = 0.85;
+          uploadedCustomAudio.play();
+          document.getElementById('activeSoundIndicator').textContent = `${file.name}`;
+          document.getElementById('modalSoundStatus').textContent = `Đang phát: ${file.name}`;
+          showToast(`Đang phát file: ${file.name}`, '📁');
+        }
+      });
 
       // Language init
       applyLanguage(currentLang);
