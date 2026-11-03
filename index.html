@@ -635,38 +635,52 @@
         </div>
       </div>
 
-      <!-- 6 TÙY CHỌN ÂM THANH THEO ĐÚNG HÌNH VẼ TAY 12400.jpg: 1.mưa, 2.Suối, 3.Piano, 4.Biển, 5.Đếm cừu, 6.Tải lên -->
+      <!-- KHU VỰC CUỘN DANH SÁCH ÂM THANH (ĐẦY ĐỦ 6 ÂM THANH MỚI THEO YÊU CẦU + TỰ NHIÊN) -->
+      <!-- DANH SÁCH 7 ÂM THANH THEO ĐÚNG THỨ TỰ TUẦN TỰ TỪ 1 ĐẾN 7:
+           1. Mưa nhẹ, 2. Suối chảy, 3. Piano, 4. Sóng biển, 5. Đếm Cừu, 6. Tải lên, 7. Sóng não -->
       <div class="grid grid-cols-2 gap-2 text-xs">
+        <!-- 1. Mưa nhẹ -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
           <span class="text-xl">🌧️</span>
           <span>1. Mưa nhẹ</span>
         </button>
 
+        <!-- 2. Suối chảy -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
           <span class="text-xl">🍃</span>
           <span>2. Suối chảy</span>
         </button>
 
+        <!-- 3. Piano -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
           <span class="text-xl">🎹</span>
           <span>3. Piano</span>
         </button>
 
+        <!-- 4. Sóng biển -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
           <span class="text-xl">🌊</span>
           <span>4. Sóng biển</span>
         </button>
 
+        <!-- 5. Đếm cừu -->
         <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="sheep" id="btnSoundItemSheep">
           <span class="text-xl">🐑</span>
           <span>5. Đếm Cừu</span>
         </button>
 
+        <!-- 6. Tải lên -->
         <label for="customAudioUploadModal" class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
           <span class="text-xl">📁</span>
           <span>6. Tải lên</span>
           <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
         </label>
+
+        <!-- 7. Sóng não (Vị trí 7, nằm sau 6. Tải lên theo đúng yêu cầu) -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95 col-span-2" data-sound="delta_432hz">
+          <span class="text-xl">🌌</span>
+          <span>7. Sóng não (432Hz / Delta)</span>
+        </button>
       </div>
 
       <!-- Hoạt cảnh cừu đếm nhảy qua rào -->
@@ -1296,6 +1310,18 @@
     let masterGain = null;
     let uploadedCustomAudio = null;
 
+    
+    // Tự động mở khoá Web Audio API ngay khi chạm lần đầu trên điện thoại
+    function unlockAudioOnGesture() {
+      initAudio();
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+    ['touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
+      document.addEventListener(evt, unlockAudioOnGesture, { once: true });
+    });
+
     function initAudio() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1308,16 +1334,68 @@
       }
     }
 
+        // --- ÂM THANH SÓNG NÃO 432HZ / DELTA (GIỮ LẠI THEO YÊU CẦU CỦA BẠN) ---
+    let activeSoundNodes = [];
+
+    function clearCustomSoundNodes() {
+      activeSoundNodes.forEach(item => {
+        try { if (item.stop) item.stop(); } catch(e){}
+        try { if (item.disconnect) item.disconnect(); } catch(e){}
+      });
+      activeSoundNodes = [];
+    }
+
+    // SÓNG NÃO NGỦ SÂU (TẦN SỐ 432HZ / DELTA 3HZ)
+    function startDelta432HzSound() {
+      initAudio();
+      stopAllRelaxingSounds();
+      const now = audioCtx.currentTime;
+
+      // Sóng mang 432Hz (Tần số vàng thư giãn)
+      const osc1 = audioCtx.createOscillator();
+      const g1 = audioCtx.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(432, now);
+      g1.gain.setValueAtTime(0.18, now);
+      osc1.connect(g1);
+      g1.connect(masterGain);
+      osc1.start();
+
+      // Sóng lệch 435Hz (Tạo nhịp đập binaural Delta 3Hz giúp não bộ đi thẳng vào giấc ngủ sâu)
+      const osc2 = audioCtx.createOscillator();
+      const g2 = audioCtx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(435, now);
+      g2.gain.setValueAtTime(0.18, now);
+      osc2.connect(g2);
+      g2.connect(masterGain);
+      osc2.start();
+
+      // Sóng nền ấm áp 108Hz (Om sub-bass)
+      const subOsc = audioCtx.createOscillator();
+      const subG = audioCtx.createGain();
+      subOsc.type = 'sine';
+      subOsc.frequency.setValueAtTime(108, now);
+      subG.gain.setValueAtTime(0.14, now);
+      subOsc.connect(subG);
+      subG.connect(masterGain);
+      subOsc.start();
+
+      activeSoundNodes.push(osc1, g1, osc2, g2, subOsc, subG);
+    }
+
     function stopAllRelaxingSounds() {
       if (wavesEngine.active) wavesEngine.stop();
       if (pianoEngine.active) pianoEngine.stop();
       if (streamEngine.active) streamEngine.stop();
       if (rainEngine.active) rainEngine.stop();
 
+      clearCustomSoundNodes();
+
       if (sheepInterval) {
         clearInterval(sheepInterval);
         sheepInterval = null;
-        document.getElementById('btnToggleSheepCounter').classList.remove('active');
+        if (document.getElementById('btnToggleSheepCounter')) document.getElementById('btnToggleSheepCounter').classList.remove('active');
         document.getElementById('sheepCountLiveBar').classList.add('hidden');
       }
 
@@ -1597,27 +1675,29 @@
 
     function toggleSheepCounter() {
       initAudio();
-      const btn = document.getElementById('btnToggleSheepCounter');
+      const btn = document.getElementById('btnToggleSheepCounter') || document.getElementById('btnSoundItemSheep');
       const bar = document.getElementById('sheepCountLiveBar');
 
       if (sheepInterval) {
         clearInterval(sheepInterval);
         sheepInterval = null;
-        btn.classList.remove('active');
-        bar.classList.add('hidden');
+        if (btn) btn.classList.remove('active');
+        if (bar) bar.classList.add('hidden');
         updateSoundStatusLabel();
       } else {
         sheepCounter = 1;
-        btn.classList.add('active');
-        bar.classList.remove('hidden');
+        if (btn) btn.classList.add('active');
+        if (bar) bar.classList.remove('hidden');
         const text = currentLang === 'vi' ? `Đang đếm: ${sheepCounter} con cừu... 🐑` : `Counting: ${sheepCounter} sheep... 🐑`;
-        document.getElementById('sheepCountLiveText').textContent = text;
+        const textEl = document.getElementById('sheepCountLiveText');
+        if (textEl) textEl.textContent = text;
         playSoftWoodChime();
 
         sheepInterval = setInterval(() => {
           sheepCounter++;
           const t = currentLang === 'vi' ? `Đang đếm: ${sheepCounter} con cừu... 🐑` : `Counting: ${sheepCounter} sheep... 🐑`;
-          document.getElementById('sheepCountLiveText').textContent = t;
+          const tEl = document.getElementById('sheepCountLiveText');
+          if (tEl) tEl.textContent = t;
           playSoftWoodChime();
         }, 3200);
 
@@ -1708,6 +1788,7 @@
       if (pianoEngine.active) active.push(dict.sndPiano);
       if (streamEngine.active) active.push(dict.sndStream);
       if (rainEngine.active) active.push(dict.sndRain);
+      if (activeSoundNodes && activeSoundNodes.length > 0) active.push('Sóng não (432Hz / Delta)');
       if (sheepInterval) active.push(`${dict.sndSheep} (#${sheepCounter})`);
       if (uploadedCustomAudio && !uploadedCustomAudio.paused) active.push(dict.sndUpload);
 
@@ -2237,9 +2318,18 @@
         // Tắt các âm khác trước
         stopAllRelaxingSounds();
 
-        const namesVI = { rain: 'Mưa nhẹ', stream: 'Suối chảy', piano: 'Piano', waves: 'Sóng biển', sheep: 'Đếm Cừu' };
+        const namesVI = { 
+          delta_432hz: 'Sóng não (432Hz / Delta)',
+          rain: 'Mưa nhẹ', 
+          stream: 'Suối chảy', 
+          piano: 'Piano', 
+          waves: 'Sóng biển', 
+          sheep: 'Đếm Cừu' 
+        };
 
-        if (sndKey === 'rain') {
+        if (sndKey === 'delta_432hz') {
+          startDelta432HzSound();
+        } else if (sndKey === 'rain') {
           rainEngine.start();
         } else if (sndKey === 'stream') {
           streamEngine.start();
