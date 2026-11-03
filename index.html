@@ -636,113 +636,53 @@
       </div>
 
       <!-- KHU VỰC CUỘN DANH SÁCH ÂM THANH (ĐẦY ĐỦ 6 ÂM THANH MỚI THEO YÊU CẦU + TỰ NHIÊN) -->
-      <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-1 custom-scrollbar">
-        
-        <!-- NHÓM 1: 6 ÂM THANH THIỀN TỊNH & PHẬT GIÁO (KHÔNG VI PHẠM BẢN QUYỀN) -->
-        <div class="space-y-1.5">
-          <div class="flex items-center space-x-1.5 text-[11px] font-black text-amber-900 uppercase tracking-wider bg-amber-100/70 px-2.5 py-1 rounded-lg">
-            <span>✨</span>
-            <span>Thiền Định, Phật Giáo & Tần Số Ngủ Sâu:</span>
+      <!-- DANH SÁCH ÂM THANH THƯ GIÃN (GIỮ LẠI SÓNG NÃO 432HZ & CÁC ÂM THANH TỰ NHIÊN) -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <!-- 1. SÓNG NÃO NGỦ SÂU (TẦN SỐ 432HZ / DELTA) - GIỮ LẠI THEO YÊU CẦU CỦA BẠN -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-indigo-300 bg-indigo-50/70 hover:bg-indigo-100 font-extrabold text-indigo-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs col-span-2" data-sound="delta_432hz">
+          <span class="text-2xl">🌌</span>
+          <div class="text-left">
+            <div class="font-black text-xs text-indigo-950">Sóng Não Ngủ Sâu (432Hz / Delta)</div>
+            <div class="text-[10px] text-indigo-700 font-medium">Thư giãn não bộ & chìm vào giấc ngủ sâu</div>
           </div>
+        </button>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-            <!-- 1. Sóng não ngủ sâu (Tần số 432Hz / Delta) -->
-            <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs" data-sound="delta_432hz">
-              <span class="text-2xl">🌌</span>
-              <div class="text-left">
-                <div class="font-black text-xs text-amber-950">Sóng Não 432Hz (Delta)</div>
-                <div class="text-[10px] text-amber-800 font-medium">Thư giãn não bộ & ngủ sâu</div>
-              </div>
-            </button>
+        <!-- 2. Mưa nhẹ -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
+          <span class="text-xl">🌧️</span>
+          <span>1. Mưa nhẹ</span>
+        </button>
 
-            <!-- 2. Nhạc Cổ Điển / Đàn Tranh nhẹ nhàng -->
-            <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs" data-sound="dan_tranh">
-              <span class="text-2xl">🪕</span>
-              <div class="text-left">
-                <div class="font-black text-xs text-amber-950">Đàn Tranh Cổ Điển</div>
-                <div class="text-[10px] text-amber-800 font-medium">Giai điệu thanh thoát êm dịu</div>
-              </div>
-            </button>
+        <!-- 3. Suối chảy -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
+          <span class="text-xl">🍃</span>
+          <span>2. Suối chảy</span>
+        </button>
 
-            <!-- 3. Tiếng chuông mõ -->
-            <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs" data-sound="chuong_mo">
-              <span class="text-2xl">🔔</span>
-              <div class="text-left">
-                <div class="font-black text-xs text-amber-950">Tiếng Chuông Mõ</div>
-                <div class="text-[10px] text-amber-800 font-medium">Nhịp mõ trầm & chuông ngân</div>
-              </div>
-            </button>
+        <!-- 4. Piano -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
+          <span class="text-xl">🎹</span>
+          <span>3. Piano</span>
+        </button>
 
-            <!-- 4. Tiếng tụng chú đại bi -->
-            <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs" data-sound="chu_dai_bi">
-              <span class="text-2xl">🕉️</span>
-              <div class="text-left">
-                <div class="font-black text-xs text-amber-950">Tụng Chú Đại Bi</div>
-                <div class="text-[10px] text-amber-800 font-medium">Thiền tịnh an lành, nhiệm màu</div>
-              </div>
-            </button>
+        <!-- 5. Sóng biển -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
+          <span class="text-xl">🌊</span>
+          <span>4. Sóng biển</span>
+        </button>
 
-            <!-- 5. Tiếng niệm Phật A Di Đà -->
-            <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs" data-sound="niem_phat_adida">
-              <span class="text-2xl">📿</span>
-              <div class="text-left">
-                <div class="font-black text-xs text-amber-950">Niệm Phật A Di Đà</div>
-                <div class="text-[10px] text-amber-800 font-medium">Nam Mô A Di Đà Phật</div>
-              </div>
-            </button>
+        <!-- 6. Đếm cừu -->
+        <button class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="sheep" id="btnSoundItemSheep">
+          <span class="text-xl">🐑</span>
+          <span>5. Đếm Cừu</span>
+        </button>
 
-            <!-- 6. Tiếng niệm Phật Quan Thế Âm Bồ Tát -->
-            <button class="sound-select-item p-3 rounded-2xl border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 font-extrabold text-amber-950 flex items-center space-x-2.5 transition active:scale-95 shadow-xs" data-sound="niem_phat_quanam">
-              <span class="text-2xl">🌸</span>
-              <div class="text-left">
-                <div class="font-black text-xs text-amber-950">Niệm Phật Quán Thế Âm</div>
-                <div class="text-[10px] text-amber-800 font-medium">Nam Mô Quán Thế Âm Bồ Tát</div>
-              </div>
-            </button>
-          </div>
-        </div>
-
-        <!-- NHÓM 2: ÂM THANH THIÊN NHIÊN & THƯ GIÃN -->
-        <div class="space-y-1.5 pt-1">
-          <div class="flex items-center space-x-1.5 text-[11px] font-black text-sky-900 uppercase tracking-wider bg-sky-100/70 px-2.5 py-1 rounded-lg">
-            <span>🌿</span>
-            <span>Âm Thanh Thiên Nhiên:</span>
-          </div>
-
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <button class="sound-select-item p-2.5 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="rain">
-              <span class="text-lg">🌧️</span>
-              <span>Mưa nhẹ</span>
-            </button>
-
-            <button class="sound-select-item p-2.5 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="stream">
-              <span class="text-lg">🍃</span>
-              <span>Suối chảy</span>
-            </button>
-
-            <button class="sound-select-item p-2.5 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="piano">
-              <span class="text-lg">🎹</span>
-              <span>Piano</span>
-            </button>
-
-            <button class="sound-select-item p-2.5 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="waves">
-              <span class="text-lg">🌊</span>
-              <span>Sóng biển</span>
-            </button>
-
-            <button class="sound-select-item p-2.5 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 transition active:scale-95" data-sound="sheep" id="btnSoundItemSheep">
-              <span class="text-lg">🐑</span>
-              <span>Đếm Cừu</span>
-            </button>
-
-            <label for="customAudioUploadModal" class="sound-select-item p-2.5 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
-              <span class="text-lg">📁</span>
-              <span>Tải lên MP3</span>
-              <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
-            </label>
-          </div>
-        </div>
-
+        <!-- 7. Tải lên MP3 (cho phép người dùng tải file kinh / niệm Phật có người đọc thật) -->
+        <label for="customAudioUploadModal" class="sound-select-item p-3 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 font-bold flex items-center space-x-2 cursor-pointer transition active:scale-95">
+          <span class="text-xl">📁</span>
+          <span>6. Tải lên MP3</span>
+          <input type="file" id="customAudioUploadModal" accept="audio/*" class="hidden">
+        </label>
       </div>
 
       <!-- Hoạt cảnh cừu đếm nhảy qua rào -->
@@ -1384,13 +1324,10 @@
       }
     }
 
-        // --- HỆ THỐNG 6 ÂM THANH MỚI: PHẬT GIÁO, ĐÀN TRANH & SÓNG NÃO 432HZ (100% BẢN QUYỀN TRẮNG) ---
-    let activeSoundIntervals = [];
+        // --- ÂM THANH SÓNG NÃO 432HZ / DELTA (GIỮ LẠI THEO YÊU CẦU CỦA BẠN) ---
     let activeSoundNodes = [];
 
     function clearCustomSoundNodes() {
-      activeSoundIntervals.forEach(id => clearInterval(id));
-      activeSoundIntervals = [];
       activeSoundNodes.forEach(item => {
         try { if (item.stop) item.stop(); } catch(e){}
         try { if (item.disconnect) item.disconnect(); } catch(e){}
@@ -1398,43 +1335,7 @@
       activeSoundNodes = [];
     }
 
-    // Tiếng mõ chùa gõ nhịp trầm ấm tự nhiên
-    function playTempleWoodBlock(gainMult = 1.0) {
-      if (!audioCtx) return;
-      const now = audioCtx.currentTime;
-      const osc = audioCtx.createOscillator();
-      const g = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(540, now);
-      osc.frequency.exponentialRampToValueAtTime(150, now + 0.075);
-      g.gain.setValueAtTime(0.42 * gainMult, now);
-      g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-      osc.connect(g);
-      g.connect(masterGain);
-      osc.start(now);
-      osc.stop(now + 0.085);
-    }
-
-    // Tiếng chuông bát / chuông đồng đại hồng chung ngân vang
-    function playTempleSingingBowl(baseFreq = 432, gainMult = 1.0) {
-      if (!audioCtx) return;
-      const now = audioCtx.currentTime;
-      [baseFreq * 0.5, baseFreq, baseFreq * 1.5, baseFreq * 2.0].forEach((f, i) => {
-        const osc = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(f, now);
-        g.gain.setValueAtTime(0, now);
-        g.gain.linearRampToValueAtTime((0.35 / (i + 1)) * gainMult, now + 0.06);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + 5.2);
-        osc.connect(g);
-        g.connect(masterGain);
-        osc.start(now);
-        osc.stop(now + 5.3);
-      });
-    }
-
-    // 1. SÓNG NÃO NGỦ SÂU (TẦN SỐ 432HZ / DELTA 3HZ)
+    // SÓNG NÃO NGỦ SÂU (TẦN SỐ 432HZ / DELTA 3HZ)
     function startDelta432HzSound() {
       initAudio();
       stopAllRelaxingSounds();
@@ -1471,204 +1372,6 @@
       subOsc.start();
 
       activeSoundNodes.push(osc1, g1, osc2, g2, subOsc, subG);
-    }
-
-    // 2. NHẠC CỔ ĐIỂN / ĐÀN TRANH NHẸ NHÀNG (NGŨ CUNG D-F-G-A-C)
-    function startDanTranhSound() {
-      initAudio();
-      stopAllRelaxingSounds();
-      const scale = [
-        293.66, 349.23, 392.00, 440.00, 523.25, 587.33, 698.46, 783.99 // D4, F4, G4, A4, C5, D5, F5, G5
-      ];
-      const melodyPattern = [0, 2, 4, 3, 5, 4, 2, 1, 3, 2, 0, 4];
-      let step = 0;
-
-      function pluckString(freq) {
-        if (!audioCtx) return;
-        const now = audioCtx.currentTime;
-        // Dây đàn tranh: sine + triangle overtone với độ ngân rung nhẹ
-        const osc = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, now);
-        
-        // Rung nhẹ dây (Vibrato)
-        const lfo = audioCtx.createOscillator();
-        const lfoG = audioCtx.createGain();
-        lfo.frequency.setValueAtTime(4.5, now);
-        lfoG.gain.setValueAtTime(freq * 0.012, now);
-        lfo.connect(osc.frequency);
-        lfo.start(now + 0.1);
-
-        g.gain.setValueAtTime(0.38, now);
-        g.gain.exponentialRampToValueAtTime(0.001, now + 2.8);
-        osc.connect(g);
-        g.connect(masterGain);
-        osc.start(now);
-        osc.stop(now + 2.9);
-        lfo.stop(now + 2.9);
-      }
-
-      pluckString(scale[0]);
-      const id = setInterval(() => {
-        const noteIdx = melodyPattern[step % melodyPattern.length];
-        pluckString(scale[noteIdx]);
-        step++;
-      }, 1600);
-      activeSoundIntervals.push(id);
-    }
-
-    // 3. TIẾNG CHUÔNG MÕ (MÕ GỖ NHỊP NHÀNG & CHUÔNG BÁT NGÂN VANG)
-    function startChuongMoSound() {
-      initAudio();
-      stopAllRelaxingSounds();
-      playTempleSingingBowl(432, 1.2);
-      playTempleWoodBlock(1.1);
-
-      let count = 0;
-      const id = setInterval(() => {
-        count++;
-        playTempleWoodBlock(1.0);
-        if (count % 6 === 0) {
-          playTempleSingingBowl(432, 1.1);
-        }
-      }, 1800);
-      activeSoundIntervals.push(id);
-    }
-
-    // 4. TIẾNG TỤNG CHÚ ĐẠI BI (GIAI ĐIỆU THIỀN CA ĐẠI BI AN LẠC)
-    function startChuDaiBiSound() {
-      initAudio();
-      stopAllRelaxingSounds();
-      // Giai điệu tụng Chú Đại Bi thanh tịnh thiền môn
-      const chords = [
-        [261.63, 392.00], // C4, G4 - Nam Mô
-        [293.66, 440.00], // D4, A4 - Đại Bi
-        [329.63, 493.88], // E4, B4 - Hội Thượng
-        [392.00, 523.25], // G4, C5 - Phật Bồ Tát
-        [349.23, 440.00], // F4, A4 - Nam Mô Hắc Ra Đát Na
-        [293.66, 392.00]  // D4, G4 - Đa Ra Dạ Da
-      ];
-      let step = 0;
-
-      function playChantStep() {
-        if (!audioCtx) return;
-        const now = audioCtx.currentTime;
-        const chord = chords[step % chords.length];
-        step++;
-        chord.forEach((freq, idx) => {
-          const osc = audioCtx.createOscillator();
-          const g = audioCtx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, now + idx * 0.12);
-          g.gain.setValueAtTime(0, now + idx * 0.12);
-          g.gain.linearRampToValueAtTime(0.24, now + idx * 0.12 + 0.05);
-          g.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.12 + 4.2);
-          osc.connect(g);
-          g.connect(masterGain);
-          osc.start(now + idx * 0.12);
-          osc.stop(now + idx * 0.12 + 4.3);
-        });
-        if (step % 2 === 0) playTempleWoodBlock(0.85);
-        if (step % 6 === 0) playTempleSingingBowl(432, 0.9);
-      }
-
-      playChantStep();
-      const id = setInterval(playChantStep, 2400);
-      activeSoundIntervals.push(id);
-    }
-
-    // 5. TIẾNG NIỆM PHẬT A DI ĐÀ (NAM MÔ A DI ĐÀ PHẬT)
-    function startNiemPhatADiDaSound() {
-      initAudio();
-      stopAllRelaxingSounds();
-      // Nhịp 6 chữ Phật thanh tịnh: Nam (F4) - Mô (G4) - A (A4) - Di (C5) - Đà (A4) - Phật (G4)
-      const notes = [
-        { f: 349.23, syllable: 'Nam' },
-        { f: 392.00, syllable: 'Mô' },
-        { f: 440.00, syllable: 'A' },
-        { f: 523.25, syllable: 'Di' },
-        { f: 440.00, syllable: 'Đà' },
-        { f: 392.00, syllable: 'Phật' }
-      ];
-      let step = 0;
-
-      function playADiDaNote() {
-        if (!audioCtx) return;
-        const now = audioCtx.currentTime;
-        const item = notes[step % notes.length];
-        step++;
-
-        const osc = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(item.f, now);
-        g.gain.setValueAtTime(0, now);
-        g.gain.linearRampToValueAtTime(0.28, now + 0.06);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
-        osc.connect(g);
-        g.connect(masterGain);
-        osc.start(now);
-        osc.stop(now + 2.5);
-
-        // Gõ mõ vào chữ cuối 'Phật'
-        if (item.syllable === 'Phật') {
-          playTempleWoodBlock(1.0);
-        }
-        if (step % 12 === 0) {
-          playTempleSingingBowl(432, 0.95);
-        }
-      }
-
-      playADiDaNote();
-      const id = setInterval(playADiDaNote, 1300);
-      activeSoundIntervals.push(id);
-    }
-
-    // 6. TIẾNG NIỆM PHẬT QUAN THẾ ÂM BỒ TÁT (NAM MÔ QUÁN THẾ ÂM BỒ TÁT)
-    function startNiemPhatQuanAmSound() {
-      initAudio();
-      stopAllRelaxingSounds();
-      // Điệu tụng Quán Thế Âm Bồ Tát từ bi thanh tịnh: D4 - F4 - A4 - G4 - F4 - D4
-      const notes = [
-        { f: 293.66, s: 'Nam' },
-        { f: 349.23, s: 'Mô' },
-        { f: 440.00, s: 'Quán' },
-        { f: 392.00, s: 'Thế' },
-        { f: 349.23, s: 'Âm' },
-        { f: 293.66, s: 'Bồ Tát' }
-      ];
-      let step = 0;
-
-      function playQuanAmNote() {
-        if (!audioCtx) return;
-        const now = audioCtx.currentTime;
-        const item = notes[step % notes.length];
-        step++;
-
-        const osc = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(item.f, now);
-        g.gain.setValueAtTime(0, now);
-        g.gain.linearRampToValueAtTime(0.28, now + 0.08);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + 2.6);
-        osc.connect(g);
-        g.connect(masterGain);
-        osc.start(now);
-        osc.stop(now + 2.7);
-
-        if (item.s === 'Bồ Tát') {
-          playTempleWoodBlock(1.0);
-        }
-        if (step % 12 === 0) {
-          playTempleSingingBowl(349.23, 0.9);
-        }
-      }
-
-      playQuanAmNote();
-      const id = setInterval(playQuanAmNote, 1400);
-      activeSoundIntervals.push(id);
     }
 
     function stopAllRelaxingSounds() {
@@ -2605,11 +2308,6 @@
 
         const namesVI = { 
           delta_432hz: 'Sóng Não 432Hz (Delta)',
-          dan_tranh: 'Đàn Tranh Cổ Điển',
-          chuong_mo: 'Tiếng Chuông Mõ',
-          chu_dai_bi: 'Tụng Chú Đại Bi',
-          niem_phat_adida: 'Niệm Phật A Di Đà',
-          niem_phat_quanam: 'Niệm Phật Quán Thế Âm',
           rain: 'Mưa nhẹ', 
           stream: 'Suối chảy', 
           piano: 'Piano', 
@@ -2619,16 +2317,6 @@
 
         if (sndKey === 'delta_432hz') {
           startDelta432HzSound();
-        } else if (sndKey === 'dan_tranh') {
-          startDanTranhSound();
-        } else if (sndKey === 'chuong_mo') {
-          startChuongMoSound();
-        } else if (sndKey === 'chu_dai_bi') {
-          startChuDaiBiSound();
-        } else if (sndKey === 'niem_phat_adida') {
-          startNiemPhatADiDaSound();
-        } else if (sndKey === 'niem_phat_quanam') {
-          startNiemPhatQuanAmSound();
         } else if (sndKey === 'rain') {
           rainEngine.start();
         } else if (sndKey === 'stream') {
